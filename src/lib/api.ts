@@ -40,12 +40,20 @@ export type Config = {
   tiers: Tier[];
   birthday_gift: string;
   card_name: string;
+  intro_video?: string; intro_poster?: string; intro_title?: string; intro_text?: string; intro_tag?: string;
+  star_icon?: string; star_note?: string;
+  sponsors?: Record<string, { icon: string; label: string; note?: string }>;
+  category_sponsor?: Record<string, string>;
+  pairings?: Record<string, string>;
+  today?: { img?: string; tag?: string; title: string; text?: string; dish?: string }[];
+  google_review_url?: string; phone?: string; legal?: string;
 };
 export type Tenant = { id: string; slug: string; name: string; config: Config };
 export type Dish = {
   id: string; name: string; portion?: string | null; description?: string | null;
   price?: number | null; price2?: number | null; star: boolean; show: boolean;
   media_url?: string | null; media_type?: "image" | "video" | null;
+  sponsor?: string | null; photos?: string[];
 };
 export type Category = { id: string; name: string; note?: string | null; dishes: Dish[] };
 export type Menu = { tenant: Tenant; categories: Category[] };

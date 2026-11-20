@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { rpc, saveToken } from "../lib/api";
 import { MESES, cop, diasDoble } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
@@ -9,7 +9,8 @@ export default function Join() {
   const { slug = "" } = useParams();
   const { menu, state } = useMenu(slug);
   const nav = useNavigate();
-  const [mode, setMode] = useState<"nuevo" | "recuperar">("nuevo");
+  const [sp] = useSearchParams();
+  const [mode, setMode] = useState<"nuevo" | "recuperar">(sp.get("ya") ? "recuperar" : "nuevo");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [day, setDay] = useState("");

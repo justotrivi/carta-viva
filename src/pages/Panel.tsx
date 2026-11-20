@@ -6,7 +6,7 @@ import { applyTheme, socialTheme } from "../lib/theme";
 import { Loading, Modal } from "../components/ui";
 
 type T = { id: string; slug: string; name: string; active: boolean };
-const TABS = ["Resumen", "Dormidos", "Miembros", "Meseros", "Carta", "Configuración"] as const;
+const TABS = ["Resumen", "Dormidos", "Miembros", "Reseñas", "Meseros", "Carta", "Configuración"] as const;
 
 export default function Panel() {
   const [session, setSession] = useState<Session | null | undefined>(undefined);
@@ -120,6 +120,7 @@ function TenantView({ t, tab }: { t: T; tab: (typeof TABS)[number] }) {
     case "Resumen": return <Summary s={stats} />;
     case "Dormidos": return <Dormant s={stats} t={t} />;
     case "Miembros": return <Members t={t} cfg={cfg} />;
+    case "Reseñas": return <Reviews t={t} />;
     case "Meseros": return <StaffAdmin t={t} />;
     case "Carta": return <MenuAdmin t={t} />;
     case "Configuración": return <Settings t={t} cfg={cfg} onSaved={reload} />;
@@ -249,6 +250,33 @@ function Members({ t, cfg }: { t: T; cfg: Config }) {
           <button className="btn ghost" onClick={() => setDetail(null)}>Cerrar</button>
         </>}
       </Modal>
+    </div>
+  );
+}
+
+function Reviews({ t }: { t: T }) {
+  const [rows, setRows] = useState<any[] | null>(null);
+  useEffect(() => {
+    supabase.from("feedback").select("id,stars,comment,table_no,created_at").eq("tenant_id", t.id).order("created_at", { ascending: false }).limit(500)
+      .then(({ data }) => setRows(data ?? []));
+  }, [t.id]);
+  if (!rows) return <Loading />;
+  const priv = rows.filter((r) => r.stars < 4);
+  const avg = rows.length ? (rows.reduce((s, r) => s + r.stars, 0) / rows.length).toFixed(1) : "—";
+  return (
+    <div>
+      <h2 className="title-xl">Reseñas</h2>
+      <p className="muted">Las de 4 y 5 estrellas se mandan a Google. Las de 1 a 3 llegan solo aquí, en privado.</p>
+      <div className="kpis">
+        <Kpi l="Calificaciones" v={rows.length} sub="desde la carta" />
+        <Kpi l="Promedio" v={avg} sub="de 5 estrellas" />
+        <Kpi l="Enviadas a Google" v={rows.length - priv.length} sub="4 y 5 estrellas" />
+        <Kpi l="Privadas" v={priv.length} sub="1 a 3 estrellas" />
+      </div>
+      {priv.length === 0 ? <div className="empty"><div className="title-lg">Sin quejas privadas</div><p className="muted">Cuando alguien califique con 1 a 3 estrellas, su comentario aparece aquí.</p></div> : (
+        <table className="tbl"><thead><tr><th>Fecha</th><th>Estrellas</th><th>Mesa</th><th>Comentario</th></tr></thead>
+          <tbody>{priv.map((r) => <tr key={r.id}><td>{fechaCorta(r.created_at)}</td><td>{"★".repeat(r.stars)}</td><td>{r.table_no || "—"}</td><td>{r.comment || <span className="muted">Sin comentario</span>}</td></tr>)}</tbody></table>
+      )}
     </div>
   );
 }
