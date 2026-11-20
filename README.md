@@ -24,3 +24,4 @@ Panel → Marcas → Nueva marca → Configuración (colores, logo, regalos) →
 4. La primera cuenta que entre a `/panel` queda como administradora de SOCIAL.
 
 Mesero de prueba de La Única: **Prueba / 1234** (desactívalo desde el panel cuando arranquen).
+
