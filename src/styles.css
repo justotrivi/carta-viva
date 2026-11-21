@@ -227,7 +227,7 @@ input[type=file]{font-size:13px}
 .cv-spon img{height:44px;width:auto}.cv-spon p{font-size:11.5px;color:#bbb;line-height:1.45}
 .cv-spon .t{font-size:9px;letter-spacing:.2em;color:#777;text-transform:uppercase}
 .cv-legal{font-size:10.5px;color:#666;margin-top:24px;line-height:1.5}
-.cv-card{background:#0e0e0e;border:1px solid var(--line);padding:18px;margin-bottom:12px}
+.cv-card{background:rgba(255,255,255,.03);border:1px solid var(--line);padding:18px;margin-bottom:12px}
 .cv-card h3{font-family:var(--title);font-size:24px;font-weight:500;margin-bottom:6px}
 .cv-card .k{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .cv-card p{font-size:13px;color:#d0d0d0;line-height:1.55}
@@ -239,7 +239,7 @@ input[type=file]{font-size:13px}
 .cv-total{display:flex;justify-content:space-between;font-family:var(--title);font-size:28px;margin-top:14px}
 .cv-stars{display:flex;gap:10px;justify-content:center;margin:10px 0}.cv-stars button{font-size:32px;color:#333;background:none;border:0;cursor:pointer}.cv-stars button.on{color:var(--fg)}
 .cv-sheet{position:absolute;inset:0;z-index:40;background:#000b;display:flex;align-items:flex-end}
-.cv-sheet-in{background:#0e0e0e;border-top:1px solid #333;padding:22px 18px 28px;width:100%;max-height:88%;overflow:auto}
+.cv-sheet-in{background:var(--bg);border-top:1px solid #333;padding:22px 18px 28px;width:100%;max-height:88%;overflow:auto}
 .cv-gal{display:flex;gap:6px;overflow-x:auto;margin:-22px -18px 16px;scroll-snap-type:x mandatory}
 .cv-gal img{height:300px;width:100%;flex:none;object-fit:cover;scroll-snap-align:start}
 .cv-desc{font-size:13px;color:#ccc;margin:10px 0;line-height:1.5}
@@ -247,5 +247,5 @@ input[type=file]{font-size:13px}
 .cv-waiter-k{text-align:center;font-size:10px;letter-spacing:.25em;color:#999;text-transform:uppercase}
 .cv-toast{position:absolute;left:50%;top:84px;transform:translateX(-50%) translateY(-20px);background:#fff;color:#000;font-weight:700;font-size:12px;padding:10px 16px;opacity:0;transition:.3s;z-index:60;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
 .cv-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.cv .card{background:#000}
+.cv .card{background:var(--bg)}
 .cv .by-social{margin-bottom:10px}
