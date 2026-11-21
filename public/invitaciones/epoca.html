@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Época Café · Cartagena</title>
+<meta name="description" content="El primer café de autor de Cartagena: cafés de origen, brunch, cocteles clásicos y una La Pavoni de los años 50.">
+<meta property="og:title" content="Época Café · Cartagena">
+<meta property="og:description" content="El primer café de autor de Cartagena: cafés de origen, brunch, cocteles clásicos y una La Pavoni de los años 50.">
+<meta property="og:image" content="https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F3EEE4">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3EEE4;--bg2:#EAE2D3;--fg:#1C2B4A;--muted:#5E6577;--acc:#1F3156;--acc2:#A8823F;--line:rgba(28,43,74,.18);--btnfg:#F3EEE4;--shade:rgba(12,18,34,.95)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+.eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);font-weight:500}
+h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(2.2rem,8vw,4rem);line-height:1.05;margin:.6rem 0 1rem}
+h2 em{color:var(--acc2);font-style:italic}
+p.lead{color:var(--muted);font-size:1rem;max-width:34rem}
+section{position:relative;padding:5.5rem 1.4rem}
+.wrap{max-width:1100px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font:500 .78rem Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;transition:transform .25s}
+.btn:active{transform:scale(.96)}
+.btn-acc{background:linear-gradient(120deg,var(--acc),var(--acc2) 45%,var(--acc));background-size:220% 100%;color:var(--btnfg);box-shadow:0 10px 30px -12px var(--acc);animation:sheen 4s linear infinite}
+@keyframes sheen{0%{background-position:100% 0}100%{background-position:-120% 0}}
+.btn-ghost{border:1px solid var(--line);color:var(--fg);background:color-mix(in srgb,var(--bg) 40%,transparent);backdrop-filter:blur(8px)}
+.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem;pointer-events:none}
+.top a{pointer-events:auto;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-decoration:none;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);padding:.5rem .8rem;border-radius:99px;border:1px solid rgba(255,255,255,.18)}
+#hero{height:100svh;min-height:600px;padding:0;overflow:hidden;display:flex;align-items:flex-end;color:#fff}
+.slides{position:absolute;inset:0}
+.slides div{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.18);transition:opacity 1.6s ease}
+.slides div.on{opacity:1;animation:kb 8s linear forwards}
+@keyframes kb{from{transform:scale(1.18)}to{transform:scale(1.02) translate(-1.5%,1%)}}
+#hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.3) 55%,var(--shade) 100%)}
+.hero-in{position:relative;z-index:2;padding:0 1.4rem 3.2rem;width:100%;max-width:1100px;margin:0 auto}
+.logo{width:92px;margin-bottom:1.2rem;mix-blend-mode:screen;filter:none}
+.hola{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--acc2);font-size:1.3rem}
+#hero h2{font-size:clamp(2.6rem,11vw,5.4rem);margin:.3rem 0 .9rem;color:#fff}
+#hero p.lead{color:rgba(255,255,255,.85)}
+.hero-in .row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+#hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.35);background:rgba(0,0,0,.25)}
+.dots{position:absolute;right:1.4rem;top:50%;z-index:3;display:flex;flex-direction:column;gap:8px}
+.dots b{width:3px;height:22px;background:rgba(255,255,255,.3);border-radius:3px;transition:.4s}
+.dots b.on{background:var(--acc);height:38px}
+.cinta{border-block:1px solid var(--line);overflow:hidden;padding:1rem 0;background:var(--bg2)}
+.cinta div{display:flex;gap:2.6rem;width:max-content;animation:cinta 28s linear infinite;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-style:italic;color:var(--acc2);white-space:nowrap}
+.cinta span:nth-child(even){color:var(--acc);font-style:normal;font-size:.9rem;align-self:center}
+@keyframes cinta{to{transform:translateX(-50%)}}
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+.hist{display:grid;gap:2.4rem}
+.hist .foto{border-radius:180px 180px 6px 6px;overflow:hidden;aspect-ratio:3/4;max-width:420px}
+.hist .foto img{width:100%;height:120%;object-fit:cover}
+.anios{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap}
+.anios div{border-left:1px solid var(--acc);padding-left:1rem}
+.anios b{display:block;font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:500;color:var(--acc2);line-height:1}
+.anios small{font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+@media(min-width:860px){.hist{grid-template-columns:1fr 1fr;align-items:center}}
+.pila{position:relative;margin-top:1rem}
+.cardx{position:sticky;top:8vh;height:78vh;min-height:480px;margin-bottom:6vh;border-radius:22px;overflow:hidden;box-shadow:0 -20px 50px -20px rgba(0,0,0,.6);color:#fff}
+.cardx .bgi{position:absolute;inset:-8%;background-size:cover;background-position:center}
+.cardx:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.88) 100%)}
+.cardx .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.6rem}
+.cardx .num{font-family:"Cormorant Garamond",serif;color:var(--acc2);font-style:italic}
+.cardx h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2.2rem,9vw,3.6rem);line-height:1;margin:.3rem 0 .6rem}
+.cardx p{color:#e8e1d6;font-size:.9rem;max-width:30rem;margin-bottom:1.1rem}
+.cardx .btn{padding:.8rem 1.2rem;font-size:.68rem}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:.5rem;margin-top:2rem}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:10px;cursor:zoom-in;background:var(--bg2);opacity:0;transition:opacity .8s,transform .5s}
+.gal img.ok{opacity:1}.gal img:hover{transform:scale(1.03)}
+.gal .t{grid-row:span 2}.gal .w{grid-column:span 2}
+@media(min-width:860px){.gal{grid-template-columns:repeat(4,1fr);grid-auto-rows:210px}}
+#lb{position:fixed;inset:0;z-index:90;background:rgba(5,5,5,.95);display:none;align-items:center;justify-content:center;padding:1rem}
+#lb.on{display:flex}#lb img{max-height:86vh;border-radius:8px}
+.info{display:grid;gap:2rem}
+.cerca{list-style:none;margin-top:1.4rem}
+.cerca li{display:flex;justify-content:space-between;gap:1rem;border-bottom:1px solid var(--line);padding:.85rem 0;font-size:.9rem}
+.cerca li b{color:var(--acc2);font-weight:500;text-align:right}
+.sol{position:relative;aspect-ratio:1;max-width:380px;width:100%;margin:0 auto;border-radius:50%;overflow:hidden;border:1px solid var(--line)}
+.sol img{width:100%;height:100%;object-fit:cover;animation:kb 14s linear infinite alternate}
+@media(min-width:860px){.info{grid-template-columns:1fr 1fr;align-items:center}}
+.otros{display:grid;gap:1rem;margin-top:2rem}
+.otro{position:relative;display:block;height:200px;border-radius:18px;overflow:hidden;color:#fff;text-decoration:none}
+.otro div{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s}
+.otro:hover div{transform:scale(1.07)}
+.otro:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.1))}
+.otro span{position:absolute;left:1.3rem;bottom:1.2rem;z-index:2}
+.otro small{display:block;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--acc2)}
+.otro strong{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2rem}
+@media(min-width:860px){.otros{grid-template-columns:1fr 1fr}}
+#final{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;color:#fff}
+#final .bgi{position:absolute;inset:0;background:url(https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg) center/cover;animation:kb 18s linear infinite alternate}
+#final:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(0,0,0,.7),rgba(0,0,0,.93))}
+#final .in{position:relative;z-index:2;max-width:560px}
+#final h2{font-size:clamp(2.8rem,12vw,5.2rem);color:#fff}
+#final p.lead{color:rgba(255,255,255,.8);margin:0 auto}
+#final .col{display:flex;flex-direction:column;gap:.8rem;align-items:center;margin-top:2rem}
+#final .btn-ghost{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(0,0,0,.3)}
+.redes{display:flex;gap:1.6rem;justify-content:center;margin-top:2.4rem;flex-wrap:wrap}
+.redes a{color:rgba(255,255,255,.7);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+.by{margin-top:2.6rem;font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.4)}.by b{color:#F5C518}
+.barra{position:fixed;left:.8rem;right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom));z-index:50;display:flex;gap:.5rem;padding:.5rem;border-radius:999px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);transform:translateY(160%);transition:transform .6s cubic-bezier(.2,.8,.2,1);max-width:520px;margin:0 auto}
+.barra.on{transform:none}
+.barra .btn{flex:1;padding:.85rem .6rem;font-size:.64rem;letter-spacing:.14em}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:60;width:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="top"><a href="/grupodelsol">← Grupo Del Sol</a></div>
+<section id="hero">
+  <div class="slides" id="slides"></div><div class="dots" id="dots"></div>
+  <div class="hero-in">
+    <img class="logo rv" src="https://grupodelsolsas.com/wp-content/uploads/2017/08/epoca_logo.gif" alt="">
+    <div class="hola rv d1" id="hola">Pasa, el café está listo</div>
+    <h2 class="rv d1">El café que <em>Cartagena</em> esperaba</h2>
+    <p class="lead rv d2">All-day café bar en el Centro Histórico: desayuno, almuerzo y cena, cafés especiales de origen y cocteles clásicos.</p>
+    <div class="row rv d3"><a class="btn btn-acc" data-cta="0">Reservar mesa</a><a class="btn btn-ghost" href="#historia">Descubrir</a></div>
+  </div>
+</section>
+<div class="cinta"><div id="cinta"></div></div>
+<section id="historia"><div class="wrap hist">
+  <div class="foto rv"><img data-par=".12" src="https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/02_dUlF.jpg" alt=""></div>
+  <div><div class="eyebrow rv">Desde 2017</div><h2 class="rv d1">El primer café <em>de autor</em> de Cartagena</h2><p class="lead rv d2">Inspirado en los cafés tradicionales europeos, con la herencia colonial de la ciudad. El alma del lugar es una La Pavoni original de los años 50, restaurada, que brilla en su barra de mármol: solo existen 151 en el mundo.</p><div class="anios rv d3" id="anios"></div></div>
+</div></section>
+<section id="experiencias" style="padding-top:1rem"><div class="wrap">
+  <div class="eyebrow rv">Lo que te espera</div><h2 class="rv d1">Un día entero <em>en Época</em></h2><div class="pila" id="pila"></div>
+</div></section>
+<section id="galeria"><div class="wrap"><div class="eyebrow rv">Asómate</div><h2 class="rv d1">Cada taza <em>cuenta algo</em></h2><div class="gal" id="gal"></div></div></section>
+<section id="info"><div class="wrap info">
+  <div class="sol rv"><img src="https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/01_756G.jpg" alt=""></div>
+  <div><div class="eyebrow rv">Para tu visita</div><h2 class="rv d1">Te esperamos <em>todo el día</em></h2><p class="lead rv d2">En el corazón del Centro Histórico de Cartagena.</p><ul class="cerca rv d3" id="cerca"></ul><p style="font-size:.7rem;color:var(--muted);margin-top:.6rem">Horario de Época Cartagena publicado en su web.</p>
+  <div style="margin-top:1.6rem;display:flex;gap:.6rem;flex-wrap:wrap" class="rv"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%C3%89poca+Caf%C3%A9+Cartagena">Cómo llegar</a><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://epocacafe.co/collections/cafe-epoca-con-envio-en-colombia">Café a tu casa</a></div></div>
+</div></section>
+<section id="otros" style="padding-top:1rem"><div class="wrap"><div class="eyebrow rv">Grupo Del Sol</div><h2 class="rv d1">Conoce <em>también</em></h2><div class="otros" id="otros"></div></div></section>
+<section id="final"><div class="bgi"></div><div class="in">
+  <div class="eyebrow rv">Tu mesa te espera</div><h2 class="rv d1">Ven por <em>un café</em></h2><p class="lead rv d2">Brunch, café de origen o un coctel clásico al final del día. Escríbenos y te guardamos la mesa.</p>
+  <div class="col rv d3"><a class="btn btn-acc" data-cta="1">Reservar por WhatsApp</a><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://epocacafe.co/">Ver la web</a></div>
+  <div class="redes"><a target="_blank" rel="noopener" href="https://www.instagram.com/weare.epoca/">Instagram</a><a target="_blank" rel="noopener" href="https://epocacafe.co/collections/cafe-epoca-con-envio-en-colombia">Tienda de café</a></div><div class="by">EXPERIENCIA DIGITAL · <b>SOCIAL</b></div>
+</div></section>
+<div class="barra" id="barra"><a class="btn btn-ghost" href="#experiencias">El día</a><a class="btn btn-acc" data-cta="2">Reservar</a></div>
+<div id="lb"><img alt=""></div>
+<script>
+const C={"wa": "573175098738", "holaN": "pasa, el café está listo", "hero": ["https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg", "https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/01_756G.jpg", "https://synergy.booking-channel.com/api/hotels/2446/medias/109", "https://epocacafe.co/cdn/shop/files/cafe2_2048x.png", "https://synergy.booking-channel.com/api/hotels/2446/medias/118"], "cinta": ["Café de origen", "Brunch", "Cocteles clásicos", "La Pavoni de los 50", "Centro Histórico", "Desde 2017"], "anios": [[2017, "Abrió sus puertas"], [151, "La Pavoni en el mundo"]], "exp": [{"n": "Brunch", "f": "https://synergy.booking-channel.com/api/hotels/2446/medias/113", "d": "Desayunos y brunch con sabores locales, además de platos internacionales, buena música y gran ambiente.", "w": "Hola, quiero reservar para un brunch en Época Café."}, {"n": "Café de origen", "f": "https://epocacafe.co/cdn/shop/files/cafe2_2048x.png", "d": "Especialistas en cafés especiales de origen, preparados con dedicación en cada detalle.", "w": "Hola, quiero ir a Época Café a probar sus cafés de origen."}, {"n": "La Pavoni", "f": "https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg", "d": "Una máquina original de los años 50, restaurada, en el centro de la barra de mármol. Solo hay 151 en el mundo.", "w": "Hola, quiero reservar una mesa en Época Café."}, {"n": "Cocteles clásicos", "f": "https://grupodelsolsas.com/wp-content/uploads/2017/08/epoca_01.jpg", "d": "Al caer la tarde, Época se vuelve bar: cocteles clásicos y buenos tragos.", "w": "Hola, quiero reservar en Época Café para unos cocteles."}, {"n": "Café a tu casa", "f": "https://grupodelsolsas.com/wp-content/uploads/2017/08/epoca_02.jpg", "d": "Café fresco, recién tostado, con envío en Colombia.", "href": "https://epocacafe.co/collections/cafe-epoca-con-envio-en-colombia", "b": "Comprar café"}], "gal": [["https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/02_dUlF.jpg", "t"], ["https://synergy.booking-channel.com/api/hotels/2446/medias/109", ""], ["https://synergy.booking-channel.com/api/hotels/2446/medias/110", ""], ["https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg", "w"], ["https://synergy.booking-channel.com/api/hotels/2446/medias/111", ""], ["https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/03_XdoW.jpg", "t"], ["https://synergy.booking-channel.com/api/hotels/2446/medias/115", ""], ["https://grupodelsolsas.com/wp-content/uploads/2017/08/epoca_02.jpg", "w"], ["https://synergy.booking-channel.com/api/hotels/2446/medias/117", ""], ["https://synergy.booking-channel.com/api/hotels/2446/medias/118", ""]], "info": [["Lunes a miércoles", "7:30 a. m. – 9 p. m."], ["Jueves a sábado", "7:30 a. m. – 10 p. m."], ["Domingos y festivos", "7:30 a. m. – 6 p. m."]], "otros": [{"href": "/arzobispado", "f": "https://synergy.booking-channel.com/api/hotels/2446/medias/101", "k": "Hotel boutique", "n": "Casa del Arzobispado"}, {"href": "/baluarte", "f": "https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_02.jpg", "k": "Bar · Restaurante · Tapas", "n": "El Baluarte"}], "ctas": [{"w": "Hola, recibí la invitación de Época Café y quiero reservar una mesa."}, {"w": "Hola, quiero reservar una mesa en Época Café."}, {"w": "Hola, quiero reservar en Época Café."}]};
+const q=new URLSearchParams(location.search),nombre=(q.get('n')||'').trim().slice(0,30);
+if(nombre)document.getElementById('hola').textContent=`${nombre}, ${C.holaN}`;
+const wa=t=>`https://wa.me/${C.wa}?text=${encodeURIComponent(t+(nombre?` (Soy ${nombre})`:''))}`;
+const S=document.getElementById('slides'),D=document.getElementById('dots');
+C.hero.forEach(u=>{const d=document.createElement('div');d.style.backgroundImage=`url(${u})`;S.appendChild(d);D.appendChild(document.createElement('b'))});
+let hi=0;function show(){[...S.children].forEach((d,i)=>d.classList.toggle('on',i===hi));[...D.children].forEach((d,i)=>d.classList.toggle('on',i===hi));hi=(hi+1)%C.hero.length}show();setInterval(show,5200);
+document.getElementById('cinta').innerHTML=[...C.cinta,...C.cinta].flatMap(t=>[`<span>${t}</span>`,'<span>✦</span>']).join('');
+document.getElementById('anios').innerHTML=C.anios.map(a=>`<div><b data-cnt="${a[0]}">${a[0]}</b><small>${a[1]}</small></div>`).join('');
+document.getElementById('pila').innerHTML=C.exp.map((e,i)=>`<article class="cardx"><div class="bgi" style="background-image:url(${e.f})"></div><div class="tx"><div class="num">0${i+1} / 0${C.exp.length}</div><h3>${e.n}</h3><p>${e.d}</p><a class="btn btn-acc" target="_blank" rel="noopener" href="${e.href||wa(e.w)}">${e.b||'Quiero esto'}</a></div></article>`).join('');
+document.getElementById('gal').innerHTML=C.gal.map(([f,c])=>`<img loading="lazy" class="${c}" onload="this.classList.add('ok')" src="${f}" alt="">`).join('');
+const lb=document.getElementById('lb');document.getElementById('gal').onclick=e=>{if(e.target.tagName==='IMG'){lb.querySelector('img').src=e.target.src;lb.classList.add('on')}};lb.onclick=()=>lb.classList.remove('on');
+document.getElementById('cerca').innerHTML=C.info.map(([a,b])=>`<li>${a} <b>${b}</b></li>`).join('');
+document.getElementById('otros').innerHTML=C.otros.map(o=>`<a class="otro rv" href="${o.href}${nombre?'?n='+encodeURIComponent(nombre):''}"><div style="background-image:url(${o.f})"></div><span><small>${o.k}</small><strong>${o.n} →</strong></span></a>`).join('');
+document.querySelectorAll('[data-cta]').forEach(a=>{const c=C.ctas[+a.dataset.cta];a.href=c.href||wa(c.w);a.target='_blank';a.rel='noopener'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll?.('[data-cnt]').forEach(cnt)}}),{threshold:.15});
+document.querySelectorAll('.rv:not(#hero .rv)').forEach(e=>io.observe(e));
+setTimeout(()=>document.querySelectorAll('#hero .rv').forEach(e=>e.classList.add('in')),200);
+function cnt(b){const to=+b.dataset.cnt;if(!to)return;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1600);b.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
+const par=[...document.querySelectorAll('[data-par]')],bgs=[...document.querySelectorAll('.cardx .bgi')],barra=document.getElementById('barra'),prog=document.getElementById('prog');
+function onScroll(){const y=scrollY,h=innerHeight,H=document.documentElement.scrollHeight;prog.style.width=(y/(H-h)*100)+'%';barra.classList.toggle('on',y>h*.8&&y<H-h*1.6);
+par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${(r.top-h/2)*-el.dataset.par}px)`});
+bgs.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${r.top*.06}px) scale(${1+Math.max(0,-r.top)/4000})`})}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+</script>
+</body>
+</html>

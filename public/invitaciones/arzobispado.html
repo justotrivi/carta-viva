@@ -165,6 +165,16 @@ section{position:relative;padding:5.5rem 1.4rem}
 .redes a{color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
 .by{margin-top:2.6rem;font-size:.6rem;letter-spacing:.2em;color:#6d6457}.by b{color:#F5C518}
 
+.otros{display:grid;gap:1rem;margin-top:2rem}
+.otro{position:relative;display:block;height:200px;border-radius:18px;overflow:hidden;color:#fff;text-decoration:none}
+.otro div{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s}
+.otro:hover div{transform:scale(1.07)}
+.otro:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.1))}
+.otro span{position:absolute;left:1.3rem;bottom:1.2rem;z-index:2}
+.otro small{display:block;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2)}
+.otro strong{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2rem}
+@media(min-width:860px){.otros{grid-template-columns:1fr 1fr}}
+.volver{position:fixed;top:.9rem;left:1.2rem;z-index:40;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-decoration:none;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);padding:.5rem .8rem;border-radius:99px;border:1px solid rgba(255,255,255,.18)}
 /* Barra fija */
 .barra{position:fixed;left:.8rem;right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom));z-index:50;display:flex;gap:.5rem;padding:.5rem;border-radius:999px;background:rgba(20,17,13,.78);backdrop-filter:blur(14px);border:1px solid var(--line);transform:translateY(160%);transition:transform .6s cubic-bezier(.2,.8,.2,1);max-width:520px;margin:0 auto}
 .barra.on{transform:none}
@@ -175,6 +185,7 @@ section{position:relative;padding:5.5rem 1.4rem}
 </head>
 <body>
 <div class="prog" id="prog"></div>
+<a class="volver" href="/grupodelsol">← Grupo Del Sol</a>
 
 <!-- SOBRE -->
 <div id="sobre">
@@ -292,6 +303,14 @@ section{position:relative;padding:5.5rem 1.4rem}
   </div>
 </section>
 
+<section id="otros" style="padding-top:1rem">
+  <div class="wrap"><div class="eyebrow rv">Grupo Del Sol</div><h2 class="rv d1">Conoce <em>también</em></h2>
+  <div class="otros">
+    <a class="otro rv" data-n href="/baluarte"><div style="background-image:url(https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_02.jpg)"></div><span><small>Bar · Restaurante · Tapas</small><strong>El Baluarte →</strong></span></a>
+    <a class="otro rv d1" data-n href="/epoca"><div style="background-image:url(https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg)"></div><span><small>All-day café bar</small><strong>Época Café →</strong></span></a>
+  </div></div>
+</section>
+
 <!-- FINAL -->
 <section id="final">
   <div class="bgi"></div>
@@ -317,7 +336,7 @@ section{position:relative;padding:5.5rem 1.4rem}
 
 <script>
 const IMG=id=>`https://synergy.booking-channel.com/api/hotels/2446/medias/${id}`;
-const WA='573184021573';
+const WA='573175098738';
 const q=new URLSearchParams(location.search), nombre=(q.get('n')||'').trim().slice(0,30);
 const esc=s=>s.replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
 if(nombre){document.getElementById('saludo').innerHTML=`${esc(nombre)}, tienes una invitación`;document.getElementById('hola').textContent=`${nombre}, bienvenido a casa`;}
@@ -372,6 +391,7 @@ document.getElementById('gal').addEventListener('click',e=>{if(e.target.tagName=
 lb.addEventListener('click',()=>lb.classList.remove('on'));
 
 wire();
+if(nombre)document.querySelectorAll('[data-n]').forEach(a=>a.href+='?n='+encodeURIComponent(nombre));
 
 // Reveal + contadores
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll?.('[data-cnt]').forEach(cnt)}}),{threshold:.15});
