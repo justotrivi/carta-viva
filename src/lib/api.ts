@@ -50,6 +50,8 @@ export type Config = {
   unit_singular?: string; unit_plural?: string; birthday_bonus?: boolean; referral_bonus?: boolean;
   reservations_label?: string; logo_width?: number;
   mode?: "restaurante" | "tienda"; search_hint?: string;
+  art?: "pizza"; feed_categories?: string[]; intro_image?: string;
+  builder?: { title: string; intro?: string; base: string; groups: string[] };
 };
 export type Tenant = { id: string; slug: string; name: string; config: Config };
 export type Dish = {

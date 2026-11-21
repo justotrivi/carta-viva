@@ -4,6 +4,7 @@ import { rpc, savedToken, type Card, type Config, type Dish, type Menu as MenuT 
 import { U, W, cop, extras, plural } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
 import { BySocial, Loading, Missing, Stamps } from "../components/ui";
+import { PizzaArt, baseFrom, toppingsFrom } from "../components/pizza";
 
 type Item = Dish & { cat: string; catId: string };
 type Page = "feed" | "list" | "hoy" | "tarjeta" | "mesa";
@@ -22,9 +23,11 @@ export default function Menu() {
   const [sheet, setSheet] = useState<React.ReactNode>(null);
   const [toast, setToast] = useState("");
   const [order, setOrder] = useState<Record<string, number>>(() => { try { return JSON.parse(localStorage.getItem(`cv:order:${slug}`) || "{}"); } catch { return {}; } });
-  useEffect(() => { try { localStorage.setItem(`cv:order:${slug}`, JSON.stringify(order)); } catch { /* */ } }, [order, slug]);
+  const [customs, setCustoms] = useState<Record<string, { name: string; price: number }>>(() => { try { return JSON.parse(localStorage.getItem(`cv:custom:${slug}`) || "{}"); } catch { return {}; } });
+  useEffect(() => { try { localStorage.setItem(`cv:order:${slug}`, JSON.stringify(order)); localStorage.setItem(`cv:custom:${slug}`, JSON.stringify(customs)); } catch { /* */ } }, [order, customs, slug]);
 
   const items = useMemo<Item[]>(() => menu ? menu.categories.flatMap((c) => c.dishes.map((d) => ({ ...d, cat: c.name, catId: c.id }))) : [], [menu]);
+  const allItems = useMemo<Item[]>(() => [...items, ...Object.entries(customs).map(([id, v]) => ({ id, name: v.name, price: v.price, star: false, show: false, cat: "", catId: "" } as Item))], [items, customs]);
   const byName = useCallback((n: string) => items.find((x) => x.name === n), [items]);
 
   if (state === "loading" && !menu) return <Loading />;
@@ -33,7 +36,9 @@ export default function Menu() {
   const t = menu.tenant, c = t.config;
 
   const say = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1700); };
-  const add = (id: string) => { setOrder((o) => ({ ...o, [id]: (o[id] || 0) + 1 })); say(`✓ ${items.find((x) => x.id === id)?.name} · ${W(c).toOrder}`); };
+  const add = (id: string) => { setOrder((o) => ({ ...o, [id]: (o[id] || 0) + 1 })); say(`✓ ${allItems.find((x) => x.id === id)?.name} · ${W(c).toOrder}`); };
+  const addCustom = (name: string, price: number) => { const id = `custom-${Date.now()}`; setCustoms((s) => ({ ...s, [id]: { name, price } })); setOrder((o) => ({ ...o, [id]: 1 })); say(`✓ ${name} · ${W(c).toOrder}`); };
+  const openBuilder = () => c.builder && setSheet(<Builder menu={menu} c={c} onAdd={(n, p) => { addCustom(n, p); setSheet(null); }} onClose={() => setSheet(null)} />);
   const count = Object.values(order).reduce((a, b) => a + b, 0);
   const open = (x: Item) => setSheet(<DishSheet x={x} c={c} pair={c.pairings?.[x.name] ? byName(c.pairings[x.name]) : undefined}
     onAdd={() => { add(x.id); setSheet(null); }} onClose={() => setSheet(null)} />);
@@ -60,11 +65,11 @@ export default function Menu() {
       )}
 
       <div className="cv-wrap">
-        {page === "feed" && <Feed items={items} c={c} mesa={mesa} name={t.name} onAdd={add} onOpen={open} byName={byName} active={!splash} />}
-        {page === "list" && <List menu={menu} c={c} items={items} onAdd={add} onOpen={open} />}
+        {page === "feed" && <Feed items={items} c={c} mesa={mesa} name={t.name} onAdd={add} onOpen={open} byName={byName} active={!splash} onBuild={openBuilder} />}
+        {page === "list" && <List menu={menu} c={c} items={items} onAdd={add} onOpen={open} onBuild={openBuilder} />}
         {page === "hoy" && <Hoy c={c} name={t.name} onOpen={(n) => { const x = byName(n); if (x) open(x); }} />}
         {page === "tarjeta" && <Tarjeta slug={slug} c={c} />}
-        {page === "mesa" && <Mesa slug={slug} c={c} mesa={mesa} items={items} order={order} setOrder={setOrder} setSheet={setSheet} />}
+        {page === "mesa" && <Mesa slug={slug} c={c} mesa={mesa} items={allItems} order={order} setOrder={setOrder} setSheet={setSheet} />}
       </div>
 
       <nav className="cv-nav">
@@ -93,14 +98,14 @@ function Badges({ x, c }: { x: Item; c: Config }) {
   );
 }
 
-function Feed({ items, c, mesa, name, onAdd, onOpen, byName, active }: {
+function Feed({ items, c, mesa, name, onAdd, onOpen, byName, active, onBuild }: {
   items: Item[]; c: Config; mesa: string; name: string; onAdd: (id: string) => void; onOpen: (x: Item) => void;
-  byName: (n: string) => Item | undefined; active: boolean;
+  byName: (n: string) => Item | undefined; active: boolean; onBuild: () => void;
 }) {
   const [cat, setCat] = useState("");
   const [liked, setLiked] = useState<Set<string>>(new Set());
   const ref = useRef<HTMLDivElement>(null);
-  const feed = items.filter((x) => img(x) || x.star);
+  const feed = c.feed_categories ? items.filter((x) => c.feed_categories!.includes(x.cat)) : items.filter((x) => img(x) || x.star);
   const cats = [...new Set(feed.map((x) => x.cat))];
   const shown = feed.filter((x) => !cat || x.cat === cat);
   useEffect(() => { ref.current?.querySelectorAll("video").forEach((v) => { v.muted = true; v.play().catch(() => {}); }); }, [cat, active]);
@@ -127,13 +132,35 @@ function Feed({ items, c, mesa, name, onAdd, onOpen, byName, active }: {
             <div className="cv-hint">DESLIZA ↑</div>
           </div>
         )}
+        {!cat && !c.intro_video && c.intro_image && (
+          <div className="cv-slide cv-slide-art">
+            <img className="cv-art-img" src={c.intro_image} alt="" />
+            <div className="cv-shade" />
+            <div className="cv-info">
+              <div className="cv-badges"><span className="w">{c.intro_tag || name}</span></div>
+              <h2>{c.intro_title}</h2><p>{c.intro_text}</p>
+            </div>
+            <div className="cv-hint">DESLIZA ↑</div>
+          </div>
+        )}
+        {!cat && c.builder && (
+          <div className="cv-slide cv-slide-art">
+            <PizzaArt className="cv-art" seed="builder" base={baseFrom("")} tops={toppingsFrom("pepperoni champiñones maíz burrata")} />
+            <div className="cv-shade" />
+            <div className="cv-info">
+              <div className="cv-badges"><span className="w">Interactivo</span></div>
+              <h2>{c.builder.title}</h2><p>{c.builder.intro}</p>
+              <button className="cv-btn" style={{ width: "auto", padding: "12px 22px" }} onClick={onBuild}>Armar la mía</button>
+            </div>
+          </div>
+        )}
         {shown.map((x) => {
           const pr = c.pairings?.[x.name] ? byName(c.pairings[x.name]) : undefined;
           const im = img(x);
           const lk = liked.has(x.id);
           return (
             <div className="cv-slide" key={x.id}>
-              {im ? <img className="bg" src={im} alt={x.name} loading="lazy" /> : <div className="cv-noimg" />}
+              {im ? <img className="bg" src={im} alt={x.name} loading="lazy" /> : c.art === "pizza" ? <div className="cv-slide-art"><PizzaArt className="cv-art" seed={x.name} base={baseFrom(x.description || "")} tops={toppingsFrom(`${x.name} ${x.description || ""}`)} /></div> : <div className="cv-noimg" />}
               <div className="cv-shade" />
               <div className="cv-info" onClick={() => onOpen(x)}>
                 <Badges x={x} c={c} />
@@ -156,7 +183,8 @@ function Feed({ items, c, mesa, name, onAdd, onOpen, byName, active }: {
   );
 }
 
-function List({ menu, c, items, onAdd, onOpen }: { menu: MenuT; c: Config; items: Item[]; onAdd: (id: string) => void; onOpen: (x: Item) => void }) {
+function List({ menu, c, items, onAdd, onOpen, onBuild }: { menu: MenuT; c: Config; items: Item[]; onAdd: (id: string) => void; onOpen: (x: Item) => void; onBuild: () => void }) {
+  const bcats = c.builder ? [c.builder.base, ...c.builder.groups] : [];
   const [q, setQ] = useState("");
   const s = q.trim().toLowerCase();
   return (
@@ -164,7 +192,15 @@ function List({ menu, c, items, onAdd, onOpen }: { menu: MenuT; c: Config; items
       <h1 className="cv-h1">La carta</h1>
       <div className="cv-sub">Toca un {W(c).item} para verlo y + para sumarlo {W(c).toOrder}.</div>
       <input className="cv-search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={W(c).hint} />
+      {c.builder && !s && (
+        <div className="cv-build-cta" onClick={onBuild}>
+          <PizzaArt className="th" seed="cta" base={baseFrom("")} tops={toppingsFrom("pepperoni champiñones maíz")} />
+          <div><div className="t">Interactivo</div><b>{c.builder.title}</b><p>{c.builder.intro}</p></div>
+          <span className="cv-plus">→</span>
+        </div>
+      )}
       {menu.categories.map((ca, ci) => {
+        if (bcats.includes(ca.name)) return null;
         const its = items.filter((x) => x.catId === ca.id && (!s || `${x.name} ${x.description ?? ""}`.toLowerCase().includes(s)));
         if (!its.length) return null;
         const spk = c.category_sponsor?.[ca.name];
@@ -337,6 +373,39 @@ function DishSheet({ x, c, pair, onAdd, onClose }: { x: Item; c: Config; pair?: 
     <div className="cv-price">{price(x)}</div>
     {pair && <div className="cv-pair">Va perfecto con → <b>{pair.name}</b> · {cop(pair.price)}</div>}
     <button className="cv-btn" onClick={onAdd}>{W(c).addBtn}</button>
+    <button className="cv-btn g" onClick={onClose}>Cerrar</button>
+  </>);
+}
+
+function Builder({ menu, c, onAdd, onClose }: { menu: MenuT; c: Config; onAdd: (name: string, price: number) => void; onClose: () => void }) {
+  const b = c.builder!;
+  const bases = menu.categories.find((x) => x.name === b.base)?.dishes || [];
+  const groups = b.groups.map((g) => ({ name: g, dishes: menu.categories.find((x) => x.name === g)?.dishes || [] })).filter((g) => g.dishes.length);
+  const [base, setBase] = useState(bases[0]?.id || "");
+  const [sel, setSel] = useState<Record<string, number>>({});
+  const all = groups.flatMap((g) => g.dishes);
+  const bd = bases.find((x) => x.id === base);
+  const chosen = all.filter((d) => sel[d.id]);
+  const total = (bd?.price || 0) + chosen.reduce((s, d) => s + (d.price || 0) * sel[d.id], 0);
+  const label = (n: string) => n.replace(/^Toppings\s*/i, "").replace(/^·\s*/, "");
+  const name = `Pizza armada: ${bd?.name ?? ""}${chosen.length ? " + " + chosen.map((d) => (sel[d.id] > 1 ? `${d.name} ×${sel[d.id]}` : d.name)).join(", ") : ""}`;
+  return (<>
+    <div className="cv-builder-art"><PizzaArt seed={`b-${chosen.map((d) => d.id).join()}`} base={baseFrom(bd?.name || "")} cheese={!!bd && !/nutella|arequipe|chocolate/i.test(bd.name)} tops={toppingsFrom(chosen.map((d) => d.name).join(" "))} /></div>
+    <div className="cv-waiter" style={{ textAlign: "left", fontSize: 30 }}>{b.title}</div>
+    <div className="lbl" style={{ marginTop: 14 }}>1 · Escoge la base</div>
+    <div className="cv-chips">{bases.map((x) => <button key={x.id} className={base === x.id ? "on" : ""} onClick={() => setBase(x.id)}>{x.name} · {cop(x.price)}</button>)}</div>
+    {groups.map((g, gi) => (
+      <div key={g.name}>
+        <div className="lbl" style={{ marginTop: 14 }}>{gi + 2} · {label(g.name)}</div>
+        <div className="cv-chips">{g.dishes.map((x) => {
+          const n = sel[x.id] || 0;
+          return <button key={x.id} className={n ? "on" : ""} onClick={() => setSel((s) => ({ ...s, [x.id]: n >= 2 ? 0 : n + 1 }))}>{x.name}{n > 1 ? " ×2" : ""} · +{cop(x.price)}</button>;
+        })}</div>
+      </div>
+    ))}
+    <p className="muted small" style={{ marginTop: 10 }}>Toca un ingrediente para sumarlo; dos veces, doble porción; tres veces, lo quitas.</p>
+    <div className="cv-total"><span>Total</span><span>{cop(total)}</span></div>
+    <button className="cv-btn" disabled={!bd} onClick={() => onAdd(name, total)}>{W(c).addBtn}</button>
     <button className="cv-btn g" onClick={onClose}>Cerrar</button>
   </>);
 }

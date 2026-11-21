@@ -1,0 +1,353 @@
+{
+ "categorias": [
+  {
+   "nombre": "Clásicas",
+   "nota": "Pizza rectangular",
+   "platos": [
+    {
+     "n": "Pollo champiñones",
+     "p": 16000,
+     "d": "Base pasta de tomate, mozzarella cremoso, pechuga de pollo tierna y champiñones salteados."
+    },
+    {
+     "n": "Salami",
+     "p": 18000,
+     "d": "Base pasta de tomate, mozzarella cremoso y salami de selección."
+    },
+    {
+     "n": "Pepperoni",
+     "p": 16000,
+     "d": "Base pasta de tomate, mozzarella cremoso y pepperoni español.",
+     "estrella": true
+    },
+    {
+     "n": "Jamón y queso",
+     "p": 14000,
+     "d": "Base pasta de tomate, mozzarella cremoso y jamón de selección."
+    },
+    {
+     "n": "Cuatro carnes",
+     "p": 18000,
+     "d": "Base pasta de tomate, mozzarella cremoso, chorizo antioqueño, pepperoni español, jamón de selección y tocineta ahumada.",
+     "estrella": true
+    },
+    {
+     "n": "Tocineta maíz",
+     "p": 14000,
+     "d": "Base pasta de tomate, mozzarella cremoso, tocineta ahumada y maíz tierno."
+    },
+    {
+     "n": "Hawaiana",
+     "p": 14000,
+     "d": "Base pasta de tomate, mozzarella cremoso y piña oro miel caramelizada."
+    },
+    {
+     "n": "Caramelizada",
+     "p": 14000,
+     "d": "Base pasta de tomate, mozzarella cremoso y cebolla caramelizada en vinagre de manzana."
+    },
+    {
+     "n": "Manzana verde",
+     "p": 15000,
+     "d": "Base pasta de tomate, mozzarella cremoso, manzana verde caramelizada."
+    },
+    {
+     "n": "Nutella/Oreo",
+     "p": 18000,
+     "d": "Base de Nutella, mozzarella cremoso, galleta Oreo, salsa de chocolate y triangles waffer."
+    },
+    {
+     "n": "Bocadillo",
+     "p": 14000,
+     "d": "Base pasta de tomate, mozzarella cremoso y bocadillo beleño."
+    }
+   ]
+  },
+  {
+   "nombre": "Especiales",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Pollo vegetales",
+     "p": 18000,
+     "d": "Base pasta de tomate, mozzarella cremoso, pollo, maíz y vegetales salteados (champiñón, cebolla, pimentón)."
+    },
+    {
+     "n": "Camarón",
+     "p": 18000,
+     "d": "Base pasta de tomate, mozzarella cremoso y camarones al ajillo."
+    },
+    {
+     "n": "Mariscos",
+     "p": 18000,
+     "d": "Base pasta de tomate, mozzarella cremoso, mix de mariscos marinados en vino blanco."
+    },
+    {
+     "n": "Burrata",
+     "p": 22000,
+     "d": "Base salsa pesto, mozzarella cremoso, jamón serrano, burrata y tomate cherry.",
+     "estrella": true
+    },
+    {
+     "n": "Cuatro quesos",
+     "p": 22000,
+     "d": "Base salsa pesto, mozzarella cremoso, queso español, queso crema y burrata."
+    },
+    {
+     "n": "Boloñesa",
+     "p": 16000,
+     "d": "Base pasta de tomate, mozzarella cremoso y boloñesa."
+    }
+   ]
+  },
+  {
+   "nombre": "Bases",
+   "nota": "Arma tu pizza",
+   "platos": [
+    {
+     "n": "Margarita",
+     "p": 10000
+    },
+    {
+     "n": "Nutella",
+     "p": 14000
+    },
+    {
+     "n": "Arequipe",
+     "p": 12000
+    },
+    {
+     "n": "Chocolate",
+     "p": 12000
+    }
+   ]
+  },
+  {
+   "nombre": "Toppings proteínas",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Jamón",
+     "p": 4000
+    },
+    {
+     "n": "Jamón serrano",
+     "p": 6000
+    },
+    {
+     "n": "Tocineta",
+     "p": 4000
+    },
+    {
+     "n": "Chorizo antioqueño",
+     "p": 5000
+    },
+    {
+     "n": "Pepperoni",
+     "p": 5000
+    },
+    {
+     "n": "Salami",
+     "p": 5000
+    },
+    {
+     "n": "Camarones al ajillo",
+     "p": 5000
+    },
+    {
+     "n": "Mix mariscos marinados",
+     "p": 6000
+    },
+    {
+     "n": "Pollo desmenuzado",
+     "p": 4000
+    },
+    {
+     "n": "Boloñesa",
+     "p": 4000
+    }
+   ]
+  },
+  {
+   "nombre": "Toppings quesos",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Mozzarella",
+     "p": 2000
+    },
+    {
+     "n": "Queso crema",
+     "p": 4000
+    },
+    {
+     "n": "Burrata",
+     "p": 6000
+    },
+    {
+     "n": "Queso español",
+     "p": 4000
+    },
+    {
+     "n": "Parmesano",
+     "p": 4000
+    },
+    {
+     "n": "Queso costeño",
+     "p": 3000
+    }
+   ]
+  },
+  {
+   "nombre": "Toppings vegetales y frutas",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Champiñones salteados",
+     "p": 5000
+    },
+    {
+     "n": "Vegetales salteados",
+     "p": 5000
+    },
+    {
+     "n": "Cebolla caramelizada",
+     "p": 4000
+    },
+    {
+     "n": "Manzana caramelizada",
+     "p": 4000
+    },
+    {
+     "n": "Fresas",
+     "p": 4000
+    },
+    {
+     "n": "Maíz",
+     "p": 3000
+    }
+   ]
+  },
+  {
+   "nombre": "Toppings dulces",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Bocadillo beleño",
+     "p": 4000
+    },
+    {
+     "n": "Nutella",
+     "p": 5000
+    },
+    {
+     "n": "Oreo",
+     "p": 5000
+    },
+    {
+     "n": "M&M's",
+     "p": 3000
+    },
+    {
+     "n": "Mashmello",
+     "p": 3000
+    },
+    {
+     "n": "Arequipe",
+     "p": 4000
+    },
+    {
+     "n": "Chocolate",
+     "p": 4000
+    },
+    {
+     "n": "Chocolate blanco",
+     "p": 4000
+    },
+    {
+     "n": "Salsa chocolate",
+     "p": 4000
+    },
+    {
+     "n": "Barquillos",
+     "p": 3000
+    }
+   ]
+  },
+  {
+   "nombre": "Bebidas",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Coca-Cola original",
+     "p": 8000,
+     "fotos": [
+      "/m/rectangular/cocacola.png"
+     ]
+    },
+    {
+     "n": "Coca-Cola Zero",
+     "p": 8000
+    },
+    {
+     "n": "Kola Román",
+     "p": 8000
+    },
+    {
+     "n": "Agua Manzana",
+     "p": 8000
+    },
+    {
+     "n": "Ginger",
+     "p": 8000
+    },
+    {
+     "n": "Soda",
+     "p": 8000
+    },
+    {
+     "n": "Agua",
+     "p": 8000
+    },
+    {
+     "n": "Agua con gas",
+     "p": 8000
+    }
+   ]
+  },
+  {
+   "nombre": "Cervezas",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Águila original",
+     "p": 6000
+    },
+    {
+     "n": "Águila light",
+     "p": 6000
+    },
+    {
+     "n": "Costeñita",
+     "p": 5000
+    },
+    {
+     "n": "Club Colombia Dorada",
+     "p": 9000
+    },
+    {
+     "n": "Coronita",
+     "p": 7000
+    },
+    {
+     "n": "Heineken",
+     "p": 9000
+    },
+    {
+     "n": "Stella Artois",
+     "p": 10000
+    }
+   ]
+  }
+ ]
+}
