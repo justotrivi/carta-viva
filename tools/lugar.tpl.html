@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:{{BG}};--bg2:{{BG2}};--fg:{{FG}};--muted:{{MUTED}};--acc:{{ACC}};--acc2:{{ACC2}};--line:{{LINE}};--btnfg:{{BTNFG}};--shade:{{SHADE}}}
+:root{--bg:{{BG}};--bg2:{{BG2}};--fg:{{FG}};--muted:{{MUTED}};--acc:{{ACC}};--acc2:{{ACC2}};--line:{{LINE}};--btnfg:{{BTNFG}};--shade:{{SHADE}};--lang-acc:{{ACC2}};--lang-fg:#111}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
@@ -29,8 +29,7 @@ section{position:relative;padding:5.5rem 1.4rem}
 .btn-acc{background:linear-gradient(120deg,var(--acc),var(--acc2) 45%,var(--acc));background-size:220% 100%;color:var(--btnfg);box-shadow:0 10px 30px -12px var(--acc);animation:sheen 4s linear infinite}
 @keyframes sheen{0%{background-position:100% 0}100%{background-position:-120% 0}}
 .btn-ghost{border:1px solid var(--line);color:var(--fg);background:color-mix(in srgb,var(--bg) 40%,transparent);backdrop-filter:blur(8px)}
-.top{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem;pointer-events:none}
-.top a{pointer-events:auto;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:#fff;text-decoration:none;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);padding:.5rem .8rem;border-radius:99px;border:1px solid rgba(255,255,255,.18)}
+.volver{position:fixed;top:.85rem;left:.9rem;z-index:40;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:#fff;text-decoration:none;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);padding:.55rem .85rem;border-radius:99px;border:1px solid rgba(255,255,255,.2)}
 #hero{height:100svh;min-height:600px;padding:0;overflow:hidden;display:flex;align-items:flex-end;color:#fff}
 .slides{position:absolute;inset:0}
 .slides div{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.18);transition:opacity 1.6s ease}
@@ -38,7 +37,7 @@ section{position:relative;padding:5.5rem 1.4rem}
 @keyframes kb{from{transform:scale(1.18)}to{transform:scale(1.02) translate(-1.5%,1%)}}
 .slides:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,.3) 55%,var(--shade) 100%)}
 .hero-in{position:relative;padding:0 1.4rem 3.2rem;width:100%;max-width:1100px;margin:0 auto}
-.logo{width:{{LOGOW}}px;margin-bottom:1.2rem;mix-blend-mode:screen;filter:{{LOGOF}}}
+.logo{width:{{LOGOW}}px;margin-bottom:1.2rem;mix-blend-mode:screen}
 .hola{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--acc2);font-size:1.3rem}
 #hero h2{font-size:clamp(2.6rem,11vw,5.4rem);margin:.3rem 0 .9rem;color:#fff}
 #hero p.lead{color:rgba(255,255,255,.85)}
@@ -46,7 +45,7 @@ section{position:relative;padding:5.5rem 1.4rem}
 #hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.35);background:rgba(0,0,0,.25)}
 .dots{position:absolute;right:1.4rem;top:50%;z-index:3;display:flex;flex-direction:column;gap:8px}
 .dots b{width:3px;height:22px;background:rgba(255,255,255,.3);border-radius:3px;transition:.4s}
-.dots b.on{background:var(--acc);height:38px}
+.dots b.on{background:var(--acc2);height:38px}
 .cinta{border-block:1px solid var(--line);overflow:hidden;padding:1rem 0;background:var(--bg2)}
 .cinta div{display:flex;gap:2.6rem;width:max-content;animation:cinta 28s linear infinite;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-style:italic;color:var(--acc2);white-space:nowrap}
 .cinta span:nth-child(even){color:var(--acc);font-style:normal;font-size:.9rem;align-self:center}
@@ -107,66 +106,75 @@ section{position:relative;padding:5.5rem 1.4rem}
 .barra{position:fixed;left:.8rem;right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom));z-index:50;display:flex;gap:.5rem;padding:.5rem;border-radius:999px;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);transform:translateY(160%);transition:transform .6s cubic-bezier(.2,.8,.2,1);max-width:520px;margin:0 auto}
 .barra.on{transform:none}
 .barra .btn{flex:1;padding:.85rem .6rem;font-size:.64rem;letter-spacing:.14em}
-.prog{position:fixed;top:0;left:0;height:2px;background:var(--acc);z-index:60;width:0}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--acc2);z-index:60;width:0}
+.oculto{display:none!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<script>const T={{T}};const C={{C}};</script>
+<script src="/invitaciones/i18n.js"></script>
 <div class="prog" id="prog"></div>
-<div class="top"><a href="/grupodelsol">← Grupo Del Sol</a></div>
+<a class="volver" id="volver" href="/grupodelsol" data-i="back"></a>
 <section id="hero">
   <div class="slides" id="slides"></div><div class="dots" id="dots"></div>
   <div class="hero-in">
     <img class="logo rv" src="{{LOGO}}" alt="">
-    <div class="hola rv d1" id="hola">{{HOLA}}</div>
-    <h2 class="rv d1">{{H1}}</h2>
-    <p class="lead rv d2">{{SUB}}</p>
-    <div class="row rv d3"><a class="btn btn-acc" data-cta="0">{{CTA}}</a><a class="btn btn-ghost" href="#historia">Descubrir</a></div>
+    <div class="hola rv d1" id="hola"></div>
+    <h2 class="rv d1" data-i="h1"></h2>
+    <p class="lead rv d2" data-i="sub"></p>
+    <div class="row rv d3"><a class="btn btn-acc" data-cta="0" data-i="cta"></a><a class="btn btn-ghost" href="#historia" data-i="descubrir"></a></div>
   </div>
 </section>
 <div class="cinta"><div id="cinta"></div></div>
 <section id="historia"><div class="wrap hist">
   <div class="foto rv"><img data-par=".12" src="{{HISTIMG}}" alt=""></div>
-  <div><div class="eyebrow rv">{{HEYE}}</div><h2 class="rv d1">{{HTIT}}</h2><p class="lead rv d2">{{HTXT}}</p><div class="anios rv d3" id="anios"></div></div>
+  <div><div class="eyebrow rv" data-i="heye"></div><h2 class="rv d1" data-i="htit"></h2><p class="lead rv d2" data-i="htxt"></p><div class="anios rv d3" id="anios"></div></div>
 </div></section>
 <section id="experiencias" style="padding-top:1rem"><div class="wrap">
-  <div class="eyebrow rv">{{EEYE}}</div><h2 class="rv d1">{{ETIT}}</h2><div class="pila" id="pila"></div>
+  <div class="eyebrow rv" data-i="eeye"></div><h2 class="rv d1" data-i="etit"></h2><div class="pila" id="pila"></div>
 </div></section>
-<section id="galeria"><div class="wrap"><div class="eyebrow rv">Asómate</div><h2 class="rv d1">{{GTIT}}</h2><div class="gal" id="gal"></div></div></section>
+<section id="galeria"><div class="wrap"><div class="eyebrow rv" data-i="asoma"></div><h2 class="rv d1" data-i="gtit"></h2><div class="gal" id="gal"></div></div></section>
 <section id="info"><div class="wrap info">
   <div class="sol rv"><img src="{{INFOIMG}}" alt=""></div>
-  <div><div class="eyebrow rv">Para tu visita</div><h2 class="rv d1">{{ITIT}}</h2><p class="lead rv d2">{{ITXT}}</p><ul class="cerca rv d3" id="cerca"></ul><p style="font-size:.7rem;color:var(--muted);margin-top:.6rem">{{INOTA}}</p>
-  <div style="margin-top:1.6rem;display:flex;gap:.6rem;flex-wrap:wrap" class="rv"><a class="btn btn-ghost" target="_blank" rel="noopener" href="{{MAPS}}">Cómo llegar</a>{{EXTRA}}</div></div>
+  <div><div class="eyebrow rv" data-i="visita"></div><h2 class="rv d1" data-i="itit"></h2><p class="lead rv d2" data-i="itxt"></p><ul class="cerca rv d3" id="cerca"></ul><p style="font-size:.7rem;color:var(--muted);margin-top:.6rem" data-i="inota"></p>
+  <div style="margin-top:1.6rem;display:flex;gap:.6rem;flex-wrap:wrap" class="rv"><a class="btn btn-ghost" target="_blank" rel="noopener" href="{{MAPS}}" data-i="llegar"></a><a class="btn btn-ghost" id="extra" target="_blank" rel="noopener" data-i="extra"></a></div></div>
 </div></section>
-<section id="otros" style="padding-top:1rem"><div class="wrap"><div class="eyebrow rv">Grupo Del Sol</div><h2 class="rv d1">Conoce <em>también</em></h2><div class="otros" id="otros"></div></div></section>
+<section id="otros" style="padding-top:1rem"><div class="wrap"><div class="eyebrow rv">Grupo Del Sol</div><h2 class="rv d1" data-i="tambien"></h2><div class="otros" id="otros"></div></div></section>
 <section id="final"><div class="bgi"></div><div class="in">
-  <div class="eyebrow rv">{{FEYE}}</div><h2 class="rv d1">{{FTIT}}</h2><p class="lead rv d2">{{FTXT}}</p>
-  <div class="col rv d3"><a class="btn btn-acc" data-cta="1">{{FCTA}}</a>{{FSEC}}</div>
-  <div class="redes">{{REDES}}</div><div class="by">EXPERIENCIA DIGITAL · <b>SOCIAL</b></div>
+  <div class="eyebrow rv" data-i="feye"></div><h2 class="rv d1" data-i="ftit"></h2><p class="lead rv d2" data-i="ftxt"></p>
+  <div class="col rv d3"><a class="btn btn-acc" data-cta="1" data-i="fcta"></a><a class="btn btn-ghost" id="fsec" target="_blank" rel="noopener" data-i="fsec"></a></div>
+  <div class="redes" id="redes"></div><div class="by" data-i="by"></div>
 </div></section>
-<div class="barra" id="barra"><a class="btn btn-ghost" href="#experiencias">{{BARX}}</a><a class="btn btn-acc" data-cta="2">{{BARC}}</a></div>
+<div class="barra" id="barra"><a class="btn btn-ghost" href="#experiencias" data-i="barx"></a><a class="btn btn-acc" data-cta="2" data-i="barc"></a></div>
 <div id="lb"><img alt=""></div>
 <script>
-const C={{CONFIG}};
-const q=new URLSearchParams(location.search),nombre=(q.get('n')||'').trim().slice(0,30);
-if(nombre)document.getElementById('hola').textContent=`${nombre}, ${C.holaN}`;
-const wa=t=>`https://wa.me/${C.wa}?text=${encodeURIComponent(t+(nombre?` (Soy ${nombre})`:''))}`;
+const wa=t=>waLink(C.wa,t);
 const S=document.getElementById('slides'),D=document.getElementById('dots');
 C.hero.forEach(u=>{const d=document.createElement('div');d.style.backgroundImage=`url(${u})`;S.appendChild(d);D.appendChild(document.createElement('b'))});
 let hi=0;function show(){[...S.children].forEach((d,i)=>d.classList.toggle('on',i===hi));[...D.children].forEach((d,i)=>d.classList.toggle('on',i===hi));hi=(hi+1)%C.hero.length}show();setInterval(show,5200);
-document.getElementById('cinta').innerHTML=[...C.cinta,...C.cinta].flatMap(t=>[`<span>${t}</span>`,'<span>✦</span>']).join('');
-document.getElementById('anios').innerHTML=C.anios.map(a=>`<div><b data-cnt="${a[0]}">${a[0]}</b><small>${a[1]}</small></div>`).join('');
-document.getElementById('pila').innerHTML=C.exp.map((e,i)=>`<article class="cardx"><div class="bgi" style="background-image:url(${e.f})"></div><div class="tx"><div class="num">0${i+1} / 0${C.exp.length}</div><h3>${e.n}</h3><p>${e.d}</p><a class="btn btn-acc" target="_blank" rel="noopener" href="${e.href||wa(e.w)}">${e.b||'Quiero esto'}</a></div></article>`).join('');
 document.getElementById('gal').innerHTML=C.gal.map(([f,c])=>`<img loading="lazy" class="${c}" onload="this.classList.add('ok')" src="${f}" alt="">`).join('');
 const lb=document.getElementById('lb');document.getElementById('gal').onclick=e=>{if(e.target.tagName==='IMG'){lb.querySelector('img').src=e.target.src;lb.classList.add('on')}};lb.onclick=()=>lb.classList.remove('on');
-document.getElementById('cerca').innerHTML=C.info.map(([a,b])=>`<li>${a} <b>${b}</b></li>`).join('');
-document.getElementById('otros').innerHTML=C.otros.map(o=>`<a class="otro rv" href="${o.href}${nombre?'?n='+encodeURIComponent(nombre):''}"><div style="background-image:url(${o.f})"></div><span><small>${o.k}</small><strong>${o.n} →</strong></span></a>`).join('');
-document.querySelectorAll('[data-cta]').forEach(a=>{const c=C.ctas[+a.dataset.cta];a.href=c.href||wa(c.w);a.target='_blank';a.rel='noopener'});
+const ex=document.getElementById('extra');if(C.extraHref)ex.href=C.extraHref;else ex.classList.add('oculto');
+const fs=document.getElementById('fsec');if(C.fsecHref)fs.href=C.fsecHref;else fs.classList.add('oculto');
+let bgs=[];
+function render(){const L=T[LANG]||T.es;
+ document.getElementById('hola').textContent=nombre?`${nombre}, ${L.holaN}`:L.hola;
+ document.getElementById('cinta').innerHTML=[...L.cinta,...L.cinta].flatMap(t=>[`<span>${t}</span>`,'<span>✦</span>']).join('');
+ document.getElementById('anios').innerHTML=C.anios.map((a,i)=>`<div><b data-cnt="${a}">${a}</b><small>${L.anios[i]}</small></div>`).join('');
+ document.getElementById('pila').innerHTML=C.exp.map((e,i)=>{const t=L.exp[i];return `<article class="cardx"><div class="bgi" style="background-image:url(${e.f})"></div><div class="tx"><div class="num">0${i+1} / 0${C.exp.length}</div><h3>${t.n}</h3><p>${t.d}</p><a class="btn btn-acc" target="_blank" rel="noopener" href="${e.href||wa(t.w)}">${t.b||L.quiero}</a></div></article>`}).join('');
+ document.getElementById('cerca').innerHTML=L.info.map(([a,b])=>`<li>${a} <b>${b}</b></li>`).join('');
+ document.getElementById('otros').innerHTML=C.otros.map((o,i)=>`<a class="otro" href="${link(o.href)}"><div style="background-image:url(${o.f})"></div><span><small>${L.otros[i][0]}</small><strong>${L.otros[i][1]} →</strong></span></a>`).join('');
+ document.getElementById('redes').innerHTML=C.redes.map((r,i)=>`<a target="_blank" rel="noopener" href="${r}">${L.redes[i]}</a>`).join('');
+ document.querySelectorAll('[data-cta]').forEach(a=>{a.href=wa(L.ctas[+a.dataset.cta]);a.target='_blank';a.rel='noopener'});
+ document.getElementById('volver').href=link('/grupodelsol');
+ bgs=[...document.querySelectorAll('.cardx .bgi')]}
+setLang(LANG,false);
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll?.('[data-cnt]').forEach(cnt)}}),{threshold:.15});
 document.querySelectorAll('.rv:not(#hero .rv)').forEach(e=>io.observe(e));
 setTimeout(()=>document.querySelectorAll('#hero .rv').forEach(e=>e.classList.add('in')),200);
 function cnt(b){const to=+b.dataset.cnt;if(!to)return;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1600);b.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)}
-const par=[...document.querySelectorAll('[data-par]')],bgs=[...document.querySelectorAll('.cardx .bgi')],barra=document.getElementById('barra'),prog=document.getElementById('prog');
+const par=[...document.querySelectorAll('[data-par]')],barra=document.getElementById('barra'),prog=document.getElementById('prog');
 function onScroll(){const y=scrollY,h=innerHeight,H=document.documentElement.scrollHeight;prog.style.width=(y/(H-h)*100)+'%';barra.classList.toggle('on',y>h*.8&&y<H-h*1.6);
 par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${(r.top-h/2)*-el.dataset.par}px)`});
 bgs.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${r.top*.06}px) scale(${1+Math.max(0,-r.top)/4000})`})}

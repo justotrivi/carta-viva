@@ -1,0 +1,271 @@
+<body>
+<script>
+const IMG=id=>`https://synergy.booking-channel.com/api/hotels/2446/medias/${id}`;
+const WA='573175098738';
+const T={
+es:{
+ soy:' (Soy {n})',back:'← Grupo Del Sol',
+ sTit:'Tienes una invitación',sTitN:'{n}, tienes una invitación',sTxt:'Una casona del siglo XVII en el corazón de Cartagena quiere recibirte.',sTap:'Toca el sello para abrir',
+ hola:'Bienvenido a casa',holaN:'{n}, bienvenido a casa',
+ h1:'Donde Cartagena <em>se vive</em> despacio',sub:'Hotel boutique en el Centro Histórico, frente a la Catedral. Once habitaciones, cada una con su propia magia.',
+ cta:'Quiero vivirlo',descubrir:'Descubrir',
+ cinta:['Siglo XVII','Centro Histórico','Spa Las Indias','Época Café','Isla Bonita','Piscina entre jardines','Mirador'],
+ heye:'Una casa con historia',htit:'Cuatro siglos <em>de huéspedes ilustres</em>',
+ htxt:'Una casona colonial que nació en el siglo XVII. En 2002 fue restaurada por Grupo Del Sol para convertirse en uno de los hoteles boutique más reconocidos de Cartagena.',
+ a1:'Siglo de origen',a2:'Restaurada',a3:'Habitaciones',
+ reye:'Tu refugio',rtit:'Cada habitación <em>es distinta</em>',desliza:'Desliza',hab:'Habitación',reservaEsta:'Reservar esta',
+ rnota:'*Beneficios de la Habitación Clásica según la web oficial del hotel, sujetos a sus condiciones.',
+ habs:[
+  {n:'Clásica',tag:'Con beneficios',d:'Cada detalle tiene una historia propia. Algunas con vista a la calle o bañera de hidromasaje.',i:['King size','Algodón egipcio','Minibar','Masaje 30 min*','Transfer in & out*'],w:'Hola, quiero reservar una Habitación Clásica en Casa del Arzobispado.'},
+  {n:'Superior',tag:'Distinción',d:'Acabados en mármol, madera y coralina, con objetos que nos llevan al recuerdo y un baño de ensueño.',i:['King size','Sofá y escritorio','Baño de ensueño','Amenities premium'],w:'Hola, quiero reservar una Habitación Superior en Casa del Arzobispado.'},
+  {n:'Estándar',tag:'Diseño y descanso',d:'Una experiencia de diseño y descanso, con fresca lencería en algodón egipcio y amenities de alta calidad.',i:['King size','TV HD y audio','Algodón egipcio'],w:'Hola, quiero reservar una Habitación Estándar en Casa del Arzobispado.'}],
+ eeye:'Lo que te espera',etit:'Cinco formas <em>de vivir la casa</em>',quiero:'Quiero esto',
+ exps:[
+  {n:'Piscina entre jardines',d:'Una imponente piscina a cielo abierto rodeada de vegetación, en pleno centro amurallado.',w:'Hola, quiero conocer la piscina y reservar en Casa del Arzobispado.'},
+  {n:'Spa Las Indias',d:'Rituales creados para ti con Biologique Recherche, Loto del Sur y SwissJust. Además, baño turco.',w:'Hola, quiero reservar un ritual en el Spa Las Indias.'},
+  {n:'Época Café',d:'All-day café de cafés especiales de origen, buena cocina y cocteles clásicos.',w:'Hola, quiero reservar en Época Café de Casa del Arzobispado.'},
+  {n:'El mirador',d:'Cartagena desde arriba: tejados coloniales y la cúpula de la Catedral a la vista.',w:'Hola, quiero vivir el mirador de Casa del Arzobispado.'},
+  {n:'Isla Bonita',d:'Casa privada en Isla Grande, Islas del Rosario, para grupos de hasta 16 personas. La lancha La Carlota te lleva desde Manga.',w:'Hola, quiero información de Isla Bonita by Casa del Arzobispado.'}],
+ veye:'Solo reservando directo',vtit:'Lo que <em>te regalamos</em>',vtxt:'Reservando en la web oficial o por WhatsApp con el hotel.',vcta:'Reservar con ventajas',
+ vents:['15 minutos de masaje en el Spa Las Indias','10% de descuento en Época Café','10% de descuento en el Baluarte de San Francisco Javier','10% de descuento en Isla Bonita','Early check-in y late check-out (según disponibilidad)','Upgrade según disponibilidad','Traslado de cortesía','Bebida de bienvenida'],
+ asoma:'Asómate',gtit:'Cada rincón <em>cuenta algo</em>',
+ ueye:'Dónde estamos',utit:'En el corazón <em>amurallado</em>',utxt:'Calle del Arzobispado 34-52, Centro Histórico, Cartagena de Indias. Al lado de la Catedral de Santa Catalina.',
+ cerca:[['Catedral de Santa Catalina','a pasos'],['Torre del Reloj','2 min a pie'],['Murallas','5 min a pie'],['Aeropuerto','traslado de cortesía*']],
+ unota:'*Reservando en la web oficial.',llegar:'Cómo llegar',mapCat:'Catedral',mapTorre:'Torre del Reloj',mapMur:'MURALLA',
+ gds:'Grupo Del Sol',tambien:'Conoce <em>también</em>',o1k:'Bar · Restaurante · Tapas',o2k:'All-day café bar',
+ feye:'Tu invitación sigue abierta',ftit:'Ven a <em>vivirlo</em>',ftxt:'Escríbenos y te ayudamos a armar tu estadía: fechas, habitación, spa y una tarde en Isla Bonita.',
+ fcta:'Reservar por WhatsApp',fsec:'Ver fechas y tarifas',llamar:'Llamar',correo:'Correo',by:'EXPERIENCIA DIGITAL · <b>SOCIAL</b>',
+ barx:'Experiencias',barc:'Reservar',
+ wHero:'Hola, recibí la invitación de Casa del Arzobispado y quiero vivir la experiencia. ¿Me ayudan con disponibilidad?',
+ wVent:'Hola, quiero reservar directo con Casa del Arzobispado y recibir las ventajas. ¿Qué disponibilidad tienen?',
+ wFin:'Hola, recibí la invitación de Casa del Arzobispado. Quiero reservar mi estadía.',
+ wBar:'Hola, recibí la invitación de Casa del Arzobispado y quiero reservar.',
+ reservar:'https://www.hotelcasadelarzobispado.com/reservar.html'},
+en:{
+ soy:' (My name is {n})',back:'← Grupo Del Sol',
+ sTit:'You have an invitation',sTitN:'{n}, you have an invitation',sTxt:'A 17th-century mansion in the heart of Cartagena would love to welcome you.',sTap:'Tap the seal to open',
+ hola:'Welcome home',holaN:'{n}, welcome home',
+ h1:'Where Cartagena <em>slows down</em>',sub:'A boutique hotel in the Historic Center, facing the Cathedral. Eleven rooms, each with its own magic.',
+ cta:'I want to stay',descubrir:'Discover',
+ cinta:['17th century','Historic Center','Spa Las Indias','Época Café','Isla Bonita','Garden pool','Rooftop lookout'],
+ heye:'A house with a story',htit:'Four centuries <em>of distinguished guests</em>',
+ htxt:'A colonial mansion born in the 17th century. In 2002 it was restored by Grupo Del Sol to become one of Cartagena’s most renowned boutique hotels.',
+ a1:'Century of origin',a2:'Restored',a3:'Rooms',
+ reye:'Your retreat',rtit:'Every room <em>is different</em>',desliza:'Swipe',hab:'Room',reservaEsta:'Book this room',
+ rnota:'*Classic Room perks as listed on the hotel’s official website, subject to its terms.',
+ habs:[
+  {n:'Classic',tag:'With perks',d:'Every detail has its own story. Some rooms have street views or a whirlpool tub.',i:['King size','Egyptian cotton','Minibar','30-min massage*','Round-trip transfer*'],w:'Hi, I’d like to book a Classic Room at Casa del Arzobispado.'},
+  {n:'Superior',tag:'Distinction',d:'Marble, wood and coral-stone finishes, objects full of memories and a dreamy bathroom.',i:['King size','Sofa and desk','Dreamy bathroom','Premium amenities'],w:'Hi, I’d like to book a Superior Room at Casa del Arzobispado.'},
+  {n:'Standard',tag:'Design and rest',d:'An experience of design and rest, with crisp Egyptian cotton linens and high-quality amenities.',i:['King size','HD TV and audio','Egyptian cotton'],w:'Hi, I’d like to book a Standard Room at Casa del Arzobispado.'}],
+ eeye:'What awaits you',etit:'Five ways <em>to live the house</em>',quiero:'I want this',
+ exps:[
+  {n:'Garden pool',d:'A striking open-air pool surrounded by greenery, right inside the walled city.',w:'Hi, I’d like to see the pool and book at Casa del Arzobispado.'},
+  {n:'Spa Las Indias',d:'Rituals created just for you with Biologique Recherche, Loto del Sur and SwissJust. Plus a steam room.',w:'Hi, I’d like to book a ritual at Spa Las Indias.'},
+  {n:'Época Café',d:'All-day café with single-origin specialty coffee, great food and classic cocktails.',w:'Hi, I’d like to book at Época Café at Casa del Arzobispado.'},
+  {n:'The lookout',d:'Cartagena from above: colonial rooftops and the Cathedral dome in full view.',w:'Hi, I’d like to experience the lookout at Casa del Arzobispado.'},
+  {n:'Isla Bonita',d:'A private house on Isla Grande, Rosario Islands, for groups of up to 16. The boat La Carlota takes you from Manga.',w:'Hi, I’d like information about Isla Bonita by Casa del Arzobispado.'}],
+ veye:'Only when you book direct',vtit:'Our <em>gifts to you</em>',vtxt:'When you book on the official website or with the hotel on WhatsApp.',vcta:'Book with perks',
+ vents:['15-minute massage at Spa Las Indias','10% off at Época Café','10% off at El Baluarte San Francisco Javier','10% off at Isla Bonita','Early check-in and late check-out (subject to availability)','Upgrade subject to availability','Complimentary transfer','Welcome drink'],
+ asoma:'Take a look',gtit:'Every corner <em>tells a story</em>',
+ ueye:'Where we are',utit:'In the heart of <em>the walled city</em>',utxt:'Calle del Arzobispado 34-52, Historic Center, Cartagena de Indias. Next to the Santa Catalina Cathedral.',
+ cerca:[['Santa Catalina Cathedral','steps away'],['Clock Tower','2-min walk'],['City walls','5-min walk'],['Airport','complimentary transfer*']],
+ unota:'*When booking on the official website.',llegar:'Get directions',mapCat:'Cathedral',mapTorre:'Clock Tower',mapMur:'CITY WALLS',
+ gds:'Grupo Del Sol',tambien:'Discover <em>more</em>',o1k:'Bar · Restaurant · Tapas',o2k:'All-day café bar',
+ feye:'Your invitation is still open',ftit:'Come <em>live it</em>',ftxt:'Message us and we’ll help you plan your stay: dates, room, spa and an afternoon on Isla Bonita.',
+ fcta:'Book on WhatsApp',fsec:'See dates and rates',llamar:'Call',correo:'Email',by:'DIGITAL EXPERIENCE · <b>SOCIAL</b>',
+ barx:'Experiences',barc:'Book',
+ wHero:'Hi, I received the Casa del Arzobispado invitation and I’d like to live the experience. Could you help me with availability?',
+ wVent:'Hi, I’d like to book direct with Casa del Arzobispado and receive the perks. What availability do you have?',
+ wFin:'Hi, I received the Casa del Arzobispado invitation. I’d like to book my stay.',
+ wBar:'Hi, I received the Casa del Arzobispado invitation and I’d like to book.',
+ reservar:'https://www.hotelcasadelarzobispado.com/en/reservar.html'}
+};
+</script>
+<script src="/invitaciones/i18n.js"></script>
+<div class="prog" id="prog"></div>
+<a class="volver" id="volver" href="/grupodelsol" data-i="back"></a>
+
+<div id="sobre">
+  <div class="polvo" id="polvo"></div>
+  <div class="sello" id="abrir" role="button" aria-label="Abrir / Open"><span>CA</span></div>
+  <h1 id="saludo"></h1>
+  <p data-i="sTxt"></p>
+  <div class="tap" data-i="sTap"></div>
+</div>
+
+<section id="hero">
+  <div class="slides" id="slides"></div>
+  <div class="dots" id="dots"></div>
+  <div class="hero-in">
+    <img class="logo rv" src="https://www.hotelcasadelarzobispado.com/templates/cadenas/air/images/hotels/SYN2446/logo-blanco.svg" alt="Hotel Casa del Arzobispado">
+    <div class="hola rv d1" id="hola"></div>
+    <h2 class="rv d1" data-i="h1"></h2>
+    <p class="lead rv d2" data-i="sub"></p>
+    <div class="row rv d3"><a class="btn btn-gold" data-w="wHero" data-i="cta"></a><a class="btn btn-ghost" href="#historia" data-i="descubrir"></a></div>
+  </div>
+  <div class="scroll"></div>
+</section>
+
+<div class="cinta"><div id="cinta"></div></div>
+
+<section id="historia">
+  <div class="wrap hist">
+    <div class="foto rv"><img data-par="0.12" src="https://synergy.booking-channel.com/api/hotels/2446/medias/124" alt=""></div>
+    <div>
+      <div class="eyebrow rv" data-i="heye"></div>
+      <h2 class="rv d1" data-i="htit"></h2>
+      <p class="lead rv d2" data-i="htxt"></p>
+      <div class="anios rv d3">
+        <div><b data-cnt="17">XVII</b><small data-i="a1"></small></div>
+        <div><b data-cnt="2002">2002</b><small data-i="a2"></small></div>
+        <div><b data-cnt="11">11</b><small data-i="a3"></small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habitaciones" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i="reye"></div>
+    <h2 class="rv d1" data-i="rtit"></h2>
+    <div class="swipe rv d2"><span data-i="desliza"></span> <i></i></div>
+    <div class="carril" id="carril"></div>
+    <p style="font-size:.68rem;color:var(--muted)" data-i="rnota"></p>
+  </div>
+</section>
+
+<section class="exp" id="experiencias">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i="eeye"></div>
+    <h2 class="rv d1" data-i="etit"></h2>
+    <div class="pila" id="pila"></div>
+  </div>
+</section>
+
+<section class="vent" id="ventajas">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i="veye"></div>
+    <h2 class="rv d1" data-i="vtit"></h2>
+    <p class="lead rv d2" data-i="vtxt"></p>
+    <div class="lista" id="lista"></div>
+    <div style="margin-top:2rem" class="rv"><a class="btn btn-gold" data-w="wVent" data-i="vcta"></a></div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="eyebrow rv" data-i="asoma"></div>
+    <h2 class="rv d1" data-i="gtit"></h2>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<section id="ubicacion">
+  <div class="wrap ubi">
+    <div class="mapa rv">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <defs><pattern id="cal" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(18)"><path d="M0 0H40M0 0V40" stroke="rgba(194,164,114,.16)" stroke-width="1"/></pattern><clipPath id="cc"><circle cx="200" cy="200" r="199"/></clipPath></defs>
+        <g clip-path="url(#cc)"><rect width="400" height="400" fill="#191510"/><rect width="400" height="400" fill="url(#cal)"/>
+        <path d="M40 120 L120 60 L250 50 L340 110 L360 230 L300 330 L170 350 L70 300 Z" fill="none" stroke="#C2A472" stroke-width="1.4" stroke-dasharray="6 6"/>
+        <text x="66" y="96" fill="#B9AE9C" font-size="10" letter-spacing="3" font-family="Montserrat" data-i="mapMur"></text>
+        <circle cx="232" cy="162" r="5" fill="none" stroke="#E2CC9F"/><text x="242" y="158" fill="#E2CC9F" font-size="11" font-family="Cormorant Garamond" font-style="italic" data-i="mapCat"></text>
+        <circle cx="150" cy="270" r="5" fill="none" stroke="#E2CC9F"/><text x="160" y="284" fill="#E2CC9F" font-size="11" font-family="Cormorant Garamond" font-style="italic" data-i="mapTorre"></text>
+        <text x="200" y="232" fill="#F4EDE1" font-size="10" letter-spacing="2" text-anchor="middle" font-family="Montserrat">CASA DEL ARZOBISPADO</text></g>
+      </svg>
+      <span class="onda"></span><span class="onda b"></span>
+      <div class="pin"><b></b></div>
+    </div>
+    <div>
+      <div class="eyebrow rv" data-i="ueye"></div>
+      <h2 class="rv d1" data-i="utit"></h2>
+      <p class="lead rv d2" data-i="utxt"></p>
+      <ul class="cerca rv d3" id="cerca"></ul>
+      <p style="font-size:.7rem;color:var(--muted);margin-top:.6rem" data-i="unota"></p>
+      <div style="margin-top:1.6rem" class="rv"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Casa+del+Arzobispado+Cartagena" data-i="llegar"></a></div>
+    </div>
+  </div>
+</section>
+
+<section id="otros" style="padding-top:1rem">
+  <div class="wrap"><div class="eyebrow rv" data-i="gds"></div><h2 class="rv d1" data-i="tambien"></h2>
+  <div class="otros">
+    <a class="otro rv" id="o1" href="/baluarte"><div style="background-image:url(https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_02.jpg)"></div><span><small data-i="o1k"></small><strong>El Baluarte →</strong></span></a>
+    <a class="otro rv d1" id="o2" href="/epoca"><div style="background-image:url(https://grupodelsolsas.com/wp-content/uploads/2017/10/slider03.jpg)"></div><span><small data-i="o2k"></small><strong>Época Café →</strong></span></a>
+  </div></div>
+</section>
+
+<section id="final">
+  <div class="bgi"></div>
+  <div class="in">
+    <div class="eyebrow rv" data-i="feye"></div>
+    <h2 class="rv d1" data-i="ftit"></h2>
+    <p class="lead rv d2" style="margin:0 auto" data-i="ftxt"></p>
+    <div class="col rv d3">
+      <a class="btn btn-gold" data-w="wFin" data-i="fcta"></a>
+      <a class="btn btn-ghost" id="reservarWeb" target="_blank" rel="noopener" data-i="fsec"></a>
+    </div>
+    <div class="redes"><a target="_blank" rel="noopener" href="https://www.instagram.com/casadelarzobispado/">Instagram</a><a href="tel:+573184021573" data-i="llamar"></a><a href="mailto:reservas@hotelcasadelarzobispado.com" data-i="correo"></a></div>
+    <div class="by" data-i="by"></div>
+  </div>
+</section>
+
+<div class="barra" id="barra">
+  <a class="btn btn-ghost" href="#experiencias" data-i="barx"></a>
+  <a class="btn btn-gold" data-w="wBar" data-i="barc"></a>
+</div>
+
+<div id="lb"><button aria-label="Cerrar / Close">×</button><img alt=""></div>
+
+<script>
+const wa=t=>waLink(WA,t);
+// Sobre
+const polvo=document.getElementById('polvo');
+for(let i=0;i<40;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.top=(60+Math.random()*50)+'%';p.style.animationDuration=(6+Math.random()*8)+'s';p.style.animationDelay=(-Math.random()*10)+'s';polvo.appendChild(p)}
+const sobre=document.getElementById('sobre');document.body.style.overflow='hidden';
+function abrir(){if(sobre.classList.contains('abierto'))return;sobre.classList.add('abierto');document.body.style.overflow='';setTimeout(()=>document.querySelectorAll('#hero .rv').forEach(e=>e.classList.add('in')),500)}
+sobre.addEventListener('click',abrir);
+// Hero
+const HERO=[101,195,121,103,298];const S=document.getElementById('slides'),D=document.getElementById('dots');
+HERO.forEach(id=>{const d=document.createElement('div');d.style.backgroundImage=`url(${IMG(id)})`;S.appendChild(d);D.appendChild(document.createElement('b'))});
+let hi=0;function show(){[...S.children].forEach((d,i)=>d.classList.toggle('on',i===hi));[...D.children].forEach((d,i)=>d.classList.toggle('on',i===hi));hi=(hi+1)%HERO.length}
+show();setInterval(show,5200);
+// Datos fijos (fotos)
+const HABF=[[32,73,31,33],[69,70,57,55],[36,42,52,75]];
+const EXPF=[101,28,113,121,284];
+const G=[[195,'t'],[93,''],[109,''],[24,''],[63,'t'],[123,''],[118,''],[292,'w'],[59,''],[105,''],[289,'w'],[272,''],[234,''],[96,''],[110,'']];
+document.getElementById('gal').innerHTML=G.map(([f,c])=>`<img loading="lazy" class="${c}" onload="this.classList.add('ok')" src="${IMG(f)}" alt="">`).join('');
+const lb=document.getElementById('lb');
+document.getElementById('gal').addEventListener('click',e=>{if(e.target.tagName==='IMG'){lb.querySelector('img').src=e.target.src;lb.classList.add('on')}});
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+const ck='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>';
+const car=document.getElementById('carril');
+let bgs=[];
+function render(){const L=T[LANG]||T.es;
+ document.getElementById('saludo').textContent=nombre?L.sTitN.replace('{n}',nombre):L.sTit;
+ document.getElementById('hola').textContent=nombre?L.holaN.replace('{n}',nombre):L.hola;
+ document.getElementById('cinta').innerHTML=[...L.cinta,...L.cinta].flatMap(t=>[`<span>${t}</span>`,'<span>✦</span>']).join('');
+ car.innerHTML=L.habs.map((h,k)=>`<article class="hab in"><div class="ph"><span class="tag">${h.tag}</span>${HABF[k].map((f,i)=>`<img loading="lazy" class="${i===ht%HABF[k].length?'on':''}" src="${IMG(f)}" alt="">`).join('')}</div><div class="tx"><div class="eyebrow">${L.hab}</div><h3>${h.n}</h3><p>${h.d}</p><ul>${h.i.map(x=>`<li>${x}</li>`).join('')}</ul><a class="btn btn-gold" target="_blank" rel="noopener" href="${wa(h.w)}">${L.reservaEsta}</a></div></article>`).join('')+'<div style="flex:0 0 1px"></div>';
+ document.getElementById('pila').innerHTML=L.exps.map((e,i)=>`<article class="cardx"><div class="bgi" style="background-image:url(${IMG(EXPF[i])})"></div><div class="tx"><div class="num">0${i+1} / 05</div><h3>${e.n}</h3><p>${e.d}</p><a class="btn btn-gold" target="_blank" rel="noopener" href="${wa(e.w)}">${L.quiero}</a></div></article>`).join('');
+ document.getElementById('lista').innerHTML=L.vents.map(v=>`<div class="it in"><div class="ic">${ck}</div><span>${v}</span></div>`).join('');
+ document.getElementById('cerca').innerHTML=L.cerca.map(([a,b])=>`<li>${a} <b>${b}</b></li>`).join('');
+ document.querySelectorAll('[data-w]').forEach(a=>{a.href=wa(L[a.dataset.w]);a.target='_blank';a.rel='noopener'});
+ document.getElementById('reservarWeb').href=L.reservar;
+ document.getElementById('volver').href=link('/grupodelsol');document.getElementById('o1').href=link('/baluarte');document.getElementById('o2').href=link('/epoca');
+ bgs=[...document.querySelectorAll('.cardx .bgi')]}
+let ht=0;
+setLang(LANG,false);
+setInterval(()=>{ht++;car.querySelectorAll('.ph').forEach(ph=>{const im=ph.querySelectorAll('img');im.forEach((m,i)=>m.classList.toggle('on',i===ht%im.length))})},3400);
+// Reveal + contadores
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll?.('[data-cnt]').forEach(cnt)}}),{threshold:.15});
+document.querySelectorAll('.rv:not(#hero .rv)').forEach(e=>io.observe(e));
+function cnt(b){const to=+b.dataset.cnt,t0=performance.now(),dur=1600;(function f(t){const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);let v=Math.round(to*e);b.textContent=to===17?(['I','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII'][v]):v;if(k<1)requestAnimationFrame(f)})(t0)}
+// Parallax, progreso y barra
+const par=[...document.querySelectorAll('[data-par]')],barra=document.getElementById('barra'),prog=document.getElementById('prog');
+function onScroll(){const y=scrollY,h=innerHeight,H=document.documentElement.scrollHeight;prog.style.width=(y/(H-h)*100)+'%';
+ barra.classList.toggle('on',y>h*.8&&y<H-h*1.6);
+ par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${(r.top-h/2)*-+el.dataset.par}px)`});
+ bgs.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${r.top*.06}px) scale(${1+Math.max(0,-r.top)/4000})`});}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+</script>
+</body>
+</html>
