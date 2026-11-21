@@ -47,6 +47,9 @@ export type Config = {
   pairings?: Record<string, string>;
   today?: { img?: string; tag?: string; title: string; text?: string; dish?: string }[];
   google_review_url?: string; phone?: string; legal?: string;
+  unit_singular?: string; unit_plural?: string; birthday_bonus?: boolean; referral_bonus?: boolean;
+  reservations_label?: string; logo_width?: number;
+  mode?: "restaurante" | "tienda"; search_hint?: string;
 };
 export type Tenant = { id: string; slug: string; name: string; config: Config };
 export type Dish = {

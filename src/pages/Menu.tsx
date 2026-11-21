@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { rpc, savedToken, type Card, type Config, type Dish, type Menu as MenuT } from "../lib/api";
-import { cop, plural } from "../lib/format";
+import { U, W, cop, extras, plural } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
 import { BySocial, Loading, Missing, Stamps } from "../components/ui";
 
@@ -33,7 +33,7 @@ export default function Menu() {
   const t = menu.tenant, c = t.config;
 
   const say = (m: string) => { setToast(m); setTimeout(() => setToast(""), 1700); };
-  const add = (id: string) => { setOrder((o) => ({ ...o, [id]: (o[id] || 0) + 1 })); say(`✓ ${items.find((x) => x.id === id)?.name} · a tu mesa`); };
+  const add = (id: string) => { setOrder((o) => ({ ...o, [id]: (o[id] || 0) + 1 })); say(`✓ ${items.find((x) => x.id === id)?.name} · ${W(c).toOrder}`); };
   const count = Object.values(order).reduce((a, b) => a + b, 0);
   const open = (x: Item) => setSheet(<DishSheet x={x} c={c} pair={c.pairings?.[x.name] ? byName(c.pairings[x.name]) : undefined}
     onAdd={() => { add(x.id); setSheet(null); }} onClose={() => setSheet(null)} />);
@@ -43,7 +43,7 @@ export default function Menu() {
     ["list", "Carta", <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M5 6h14M5 12h14M5 18h9" /></svg>],
     ["tarjeta", "Tarjeta", <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="6" width="18" height="12" rx="2" /><circle cx="8" cy="12" r="1.5" fill="currentColor" /><circle cx="12" cy="12" r="1.5" /><circle cx="16" cy="12" r="1.5" /></svg>],
     ["hoy", "Hoy", <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" /></svg>],
-    ["mesa", "Mi mesa", <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 10h16M6 10v9M18 10v9M8 6h8l2 4H6z" /></svg>],
+    ["mesa", W(c).tab, <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 10h16M6 10v9M18 10v9M8 6h8l2 4H6z" /></svg>],
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function Menu() {
         <div className="cv-splash">
           {c.intro_video && <video src={c.intro_video} poster={c.intro_poster} autoPlay muted loop playsInline />}
           <div className="cv-splash-in">
-            {c.logo_url ? <img className="cv-logo-big" src={c.logo_url} alt={t.name} /> : <div className="title-xl">{t.name}</div>}
+            {c.logo_url ? <img className="cv-logo-big" src={c.logo_url} alt={t.name} style={c.logo_width ? { width: c.logo_width } : undefined} /> : <div className="title-xl">{t.name}</div>}
             <div className="cv-mesa">{mesa ? `Bienvenidos a la mesa ${mesa}` : "Bienvenidos"}</div>
             <button className="cv-cta" onClick={() => { setSplash(false); try { sessionStorage.setItem(`cv:in:${slug}`, "1"); } catch { /* */ } }}>Ver la carta</button>
           </div>
@@ -162,8 +162,8 @@ function List({ menu, c, items, onAdd, onOpen }: { menu: MenuT; c: Config; items
   return (
     <section className="cv-page">
       <h1 className="cv-h1">La carta</h1>
-      <div className="cv-sub">Toca un plato para verlo y + para sumarlo a tu mesa.</div>
-      <input className="cv-search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Buscar: taco, lomo, mezcal…" />
+      <div className="cv-sub">Toca un {W(c).item} para verlo y + para sumarlo {W(c).toOrder}.</div>
+      <input className="cv-search" value={q} onChange={(e) => setQ(e.target.value)} placeholder={W(c).hint} />
       {menu.categories.map((ca, ci) => {
         const its = items.filter((x) => x.catId === ca.id && (!s || `${x.name} ${x.description ?? ""}`.toLowerCase().includes(s)));
         if (!its.length) return null;
@@ -210,12 +210,12 @@ function Hoy({ c, name, onOpen }: { c: Config; name: string; onOpen: (dish: stri
           {h.img && <img className="ph" src={h.img} alt="" />}
           {h.tag && <div className="k">{h.tag}</div>}
           <h3>{h.title}</h3>{h.text && <p>{h.text}</p>}
-          {h.dish && <button className="cv-btn" onClick={() => onOpen(h.dish!)}>Ver el plato</button>}
+          {h.dish && <button className="cv-btn" onClick={() => onOpen(h.dish!)}>Ver el {W(c).item}</button>}
         </div>
       ))}
       {c.reservations_url && (
-        <div className="cv-card"><div className="k">Reservas</div><h3>¿Vuelves con más gente?</h3><p>Reserva por WhatsApp en un mensaje.</p>
-          <a className="cv-btn" href={c.reservations_url} target="_blank" rel="noreferrer">Reservar por WhatsApp</a></div>
+        <div className="cv-card"><div className="k">Reservas</div><h3>{c.reservations_label ? "Escríbenos" : "¿Vuelves con más gente?"}</h3><p>{c.reservations_label ? "Pedidos y preguntas por WhatsApp." : "Reserva por WhatsApp en un mensaje."}</p>
+          <a className="cv-btn" href={c.reservations_url} target="_blank" rel="noreferrer">{c.reservations_label || "Reservar por WhatsApp"}</a></div>
       )}
       <div className="cv-card"><div className="k">Dónde estamos</div>
         <p>{c.address}{c.phone && <><br />Tel. {c.phone}</>}{c.instagram && <> · @{c.instagram.replace("@", "")}</>}</p>
@@ -235,18 +235,18 @@ function Tarjeta({ slug, c }: { slug: string; c: Config }) {
   if (!card) return (
     <section className="cv-page">
       <div className="lbl">{c.card_name}</div>
-      <h1 className="cv-h1">Cada visita suma</h1>
-      <div className="cv-sub">{c.card_size} visitas por tarjeta, sin app y sin papel. Te registras una vez y queda en tu celular.</div>
+      <h1 className="cv-h1">Cada {U(c).s} suma</h1>
+      <div className="cv-sub">{U(c).n(c.card_size)} por tarjeta, sin app y sin papel. Te registras una vez y queda en tu celular.</div>
       <div className="card">
         <div className="row-between"><div className="title-lg">{c.card_name}</div><div className="big-num">0/{c.card_size}</div></div>
         <Stamps stamps={0} size={c.card_size} rewards={gifts} />
       </div>
       <div className="block">
-        <div className="lbl">Regalos por cada vez que nos visitas</div>
+        <div className="lbl">Tus regalos</div>
         {c.rewards.map((r) => <div key={r.visit} className="li"><div className="n">{r.visit}</div><div className="grow"><b>{r.title}</b><small>{r.desc}</small></div></div>)}
       </div>
-      <div className="cv-card" style={{ marginTop: 16 }}><div className="k">Sellos extra</div>
-        <p>Doble sello de lunes a miércoles y cuando traes a alguien nuevo. En tu mes de cumpleaños: {c.birthday_gift.toLowerCase()} y un sello extra.</p></div>
+      {extras(c).length > 0 && <div className="cv-card" style={{ marginTop: 16 }}><div className="k">Sellos extra</div>
+        {extras(c).map((x) => <p key={x.t}><b>{x.t}:</b> {x.d}</p>)}</div>}
       <Link className="cv-btn" to={`/${slug}/tarjeta`}>Crear mi tarjeta</Link>
       <Link className="cv-btn g" to={`/${slug}/tarjeta?ya=1`}>Ya tengo tarjeta</Link>
       <BySocial />
@@ -261,7 +261,7 @@ function Tarjeta({ slug, c }: { slug: string; c: Config }) {
       <div className="card">
         <div className="row-between"><div className="title-lg">{c.card_name}</div><div className="big-num">{card.stamps}/{card.card_size}</div></div>
         <Stamps stamps={card.stamps} size={card.card_size} rewards={gifts} />
-        <div className="lbl tiny">{next ? `${plural(f, "Te falta 1 visita", `Te faltan ${f} visitas`)} para: ${next.title}` : "Tarjeta completa. Canjea tu regalo."}</div>
+        <div className="lbl tiny">{next ? `${U(c).falta(f)} para: ${next.title}` : "Tarjeta completa. Canjea tu regalo."}</div>
       </div>
       {ready > 0 && <div className="msg">Tienes {ready} {plural(ready, "regalo listo", "regalos listos")} para canjear.</div>}
       <Link className="cv-btn" to={`/${slug}/t/${token}`}>Ver mi tarjeta y mostrar mi código</Link>
@@ -281,14 +281,14 @@ function Mesa({ slug, c, mesa, items, order, setOrder, setSheet }: {
   const [fb, setFb] = useState("");
   const [sent, setSent] = useState(false);
   const big = (title: string) => setSheet(<>
-    <div className="cv-waiter-k">{mesa ? `Mesa ${mesa}` : "Para el mesero"}</div>
+    <div className="cv-waiter-k">{mesa ? `Mesa ${mesa}` : W(c).tienda ? "Para la caja" : "Para el mesero"}</div>
     <div className="cv-waiter">{title}</div>
     <p className="muted small center" style={{ marginTop: 10 }}>Muéstrale esta pantalla al mesero o levanta el celular.</p>
     <button className="cv-btn" onClick={() => setSheet(null)}>Cerrar</button></>);
   return (
     <section className="cv-page">
-      <h1 className="cv-h1">Tu mesa</h1>
-      <div className="cv-sub">Arma tu pedido y muéstraselo al mesero.</div>
+      <h1 className="cv-h1">{W(c).title}</h1>
+      <div className="cv-sub">Arma tu pedido y muéstraselo {W(c).staff}.</div>
       <div className="cv-card">
         {!ids.length ? <p>Todavía no has elegido nada. Desliza en Descubre o abre la Carta y toca +.</p> : <>
           {ids.map((k) => (
@@ -300,14 +300,14 @@ function Mesa({ slug, c, mesa, items, order, setOrder, setSheet }: {
           <button className="cv-btn" onClick={() => setSheet(<>
             <div className="cv-waiter-k">Pedido{mesa ? ` · mesa ${mesa}` : ""}</div>
             {ids.map((k) => <div key={k} className="cv-waiter" style={{ margin: "12px 0" }}>{order[k]} × {it(k).name}</div>)}
-            <button className="cv-btn" onClick={() => setSheet(null)}>Cerrar</button></>)}>Mostrar al mesero</button>
+            <button className="cv-btn" onClick={() => setSheet(null)}>Cerrar</button></>)}>Mostrar {W(c).staff}</button>
           <button className="cv-btn g" onClick={() => setOrder({})}>Vaciar</button>
         </>}
       </div>
-      <div className="cv-card">
+      {!W(c).tienda && <div className="cv-card">
         <button className="cv-btn g" onClick={() => big("Necesito al mesero")}>Llamar al mesero</button>
         <button className="cv-btn g" onClick={() => big("La cuenta, por favor")}>Pedir la cuenta</button>
-      </div>
+      </div>}
       <div className="cv-card">
         <div className="k">Al terminar</div><h3>¿Cómo estuvo todo?</h3>
         <div className="cv-stars">{[1, 2, 3, 4, 5].map((i) => <button key={i} className={i <= stars ? "on" : ""} onClick={() => { setStars(i); setSent(false); }}>★</button>)}</div>
@@ -336,7 +336,7 @@ function DishSheet({ x, c, pair, onAdd, onClose }: { x: Item; c: Config; pair?: 
     {x.description && <p className="cv-desc">{x.description}</p>}
     <div className="cv-price">{price(x)}</div>
     {pair && <div className="cv-pair">Va perfecto con → <b>{pair.name}</b> · {cop(pair.price)}</div>}
-    <button className="cv-btn" onClick={onAdd}>Agregar a la mesa</button>
+    <button className="cv-btn" onClick={onAdd}>{W(c).addBtn}</button>
     <button className="cv-btn g" onClick={onClose}>Cerrar</button>
   </>);
 }

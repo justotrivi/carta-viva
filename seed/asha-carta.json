@@ -1,0 +1,266 @@
+{
+ "categorias": [
+  {
+   "nombre": "Panes",
+   "nota": "Masa madre y fermentación lenta",
+   "platos": [
+    {
+     "n": "Masa madre de la casa",
+     "p": 14500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Masamadredelacasa.png?width=900"
+     ]
+    },
+    {
+     "n": "Pan pueblo",
+     "p": 15200,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PanPueblo.png?width=900"
+     ]
+    },
+    {
+     "n": "Pan costeño",
+     "p": 21900,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PanCosteno.png?width=900"
+     ]
+    },
+    {
+     "n": "Pan Muesli",
+     "p": 26100,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Muesli.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Piñitas cartageneras",
+     "p": 15300,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PinitasCartageneras.png?width=900"
+     ],
+     "g": "x 8 unidades"
+    },
+    {
+     "n": "Brioche de queso 40%",
+     "p": 16500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Briochedequeso.png?width=900"
+     ]
+    },
+    {
+     "n": "Molde brioche 40%",
+     "p": 29000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PanMoldeBrioche40.png?width=900"
+     ]
+    },
+    {
+     "n": "Barra de queso paipa y mozarella",
+     "p": 12000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/BarradeQuesoPaipayMozarella.png?width=900"
+     ]
+    },
+    {
+     "n": "Pan piedra",
+     "p": 13200,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PanPiedra.png?width=900"
+     ],
+     "g": "x 3"
+    },
+    {
+     "n": "Ciabattas",
+     "p": 12000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Ciabatta.png?width=900"
+     ],
+     "g": "x 4 unidades"
+    },
+    {
+     "n": "Hamburguesas de papa",
+     "p": 17400,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/PanHamburguesa.png?width=900"
+     ],
+     "g": "x 6 unidades"
+    }
+   ]
+  },
+  {
+   "nombre": "Bollería",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Croissant de mantequilla",
+     "p": 11000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CroissantdeMantequilla.png?width=900"
+     ]
+    },
+    {
+     "n": "Croissant de almendras",
+     "p": 16500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CroissantdeAlmendras.png?width=900"
+     ]
+    },
+    {
+     "n": "Croissant de chocolate",
+     "p": 16500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CROISSAND-DE-CHOCOLATE.png?width=900"
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Salado",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Empanada de la casa",
+     "p": 13500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/EmpanadadelaCasa.png?width=900"
+     ]
+    },
+    {
+     "n": "Dedito integral semillas",
+     "p": 8000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/DeditoIntegralSemillas.png?width=900"
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Pastelería",
+   "nota": null,
+   "platos": [
+    {
+     "n": "Torta de la abuela · porción",
+     "p": 11000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Tortadelaabuelaporcion.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Torta de la abuela · entera",
+     "p": 124000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Tortadelaabuela.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Cheesecake de chocolate blanco y uva Isabella · porción",
+     "p": 19800,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CheesecakedeChocolateBlancoyUvaIsabellaPorcion.png?width=900"
+     ]
+    },
+    {
+     "n": "Cheesecake de chocolate blanco y uva Isabella · entero",
+     "p": 140800,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CheesecakedeChocolateBlancoyUvaIsabellaEntera.png?width=900"
+     ]
+    },
+    {
+     "n": "Torta de banano integral · porción",
+     "p": 9300,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/Torta-de-Banana_porcion.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Torta de banano integral · entera",
+     "p": 60000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/TortadeBanana.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Financier de arándanos",
+     "p": 11000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/FinancieredeArandanos.png?width=900"
+     ]
+    },
+    {
+     "n": "Brownie de centeno",
+     "p": 9000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/BrowniedeCenteno.png?width=900"
+     ]
+    },
+    {
+     "n": "Galleta de avena y pasas rubias",
+     "p": 9000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/GalletadeAvenayPasasRubias.png?width=900"
+     ]
+    },
+    {
+     "n": "Galleta de chips de chocolate 80%",
+     "p": 9900,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/DSC_9069.jpg?width=900"
+     ]
+    }
+   ]
+  },
+  {
+   "nombre": "Despensa",
+   "nota": "Para llevar a casa",
+   "platos": [
+    {
+     "n": "Café origen Planadas honey rojo",
+     "p": 49500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CAFE_HONEY_ROJO.png?width=900"
+     ],
+     "g": "340 g"
+    },
+    {
+     "n": "Café origen Sierra Nevada lavado",
+     "p": 42300,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/CAFE_SIERRA_NEVADA.png?width=900"
+     ],
+     "g": "340 g"
+    },
+    {
+     "n": "Queso paipa",
+     "p": 46200,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/QUESO_PAIPA.jpg?width=900"
+     ],
+     "g": "x libra"
+    },
+    {
+     "n": "Confituras",
+     "p": 29000,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/MERMELADAS.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Confituras con stevia",
+     "p": 38500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/MERMELADAS_2.jpg?width=900"
+     ]
+    },
+    {
+     "n": "Infusión de frutas deshidratadas",
+     "p": 38500,
+     "fotos": [
+      "https://cdn.shopify.com/s/files/1/0739/4138/5464/files/INFUSION_2.jpg?width=900"
+     ],
+     "g": "x 8 unidades"
+    }
+   ]
+  }
+ ]
+}

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { rpc, type Card } from "../lib/api";
-import { cop, hora } from "../lib/format";
+import { rpc, type Card, type Config } from "../lib/api";
+import { U, cop, hora } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
 import { BySocial, Loading, Logo, Missing, Modal, Stamps } from "../components/ui";
 
@@ -25,14 +25,14 @@ export default function Staff() {
   return (
     <div className="page narrow staff">
       <div className="center" style={{ margin: "10px 0 18px" }}><Logo tenant={menu.tenant} size="sm" /></div>
-      {sess ? <Desk slug={slug} sess={sess} onLogout={logout} min={menu.tenant.config.min_amount} gifts={menu.tenant.config.rewards.map((r) => r.visit)} />
-            : <Login slug={slug} onIn={(s) => { localStorage.setItem(SKEY(slug), JSON.stringify(s)); setSess(s); }} />}
+      {sess ? <Desk slug={slug} sess={sess} onLogout={logout} min={menu.tenant.config.min_amount} gifts={menu.tenant.config.rewards.map((r) => r.visit)} cfg={menu.tenant.config} />
+            : <Login tienda={menu.tenant.config.mode === "tienda"} slug={slug} onIn={(s) => { localStorage.setItem(SKEY(slug), JSON.stringify(s)); setSess(s); }} />}
       <BySocial />
     </div>
   );
 }
 
-function Login({ slug, onIn }: { slug: string; onIn: (s: Sess) => void }) {
+function Login({ slug, onIn, tienda }: { slug: string; onIn: (s: Sess) => void; tienda: boolean }) {
   const [name, setName] = useState("");
   const [pin, setPin] = useState("");
   const [err, setErr] = useState("");
@@ -46,7 +46,7 @@ function Login({ slug, onIn }: { slug: string; onIn: (s: Sess) => void }) {
         onIn({ session: r.session, name: r.name, exp: Date.now() + 12 * 3600e3 });
       } catch { setErr("Sin conexión."); } finally { setBusy(false); }
     }}>
-      <div className="lbl">Pantalla del mesero</div>
+      <div className="lbl">{tienda ? "Pantalla de caja" : "Pantalla del mesero"}</div>
       <h1 className="title-xl">Entrar al turno</h1>
       <label className="field"><span className="lbl">Tu nombre</span><input value={name} onChange={(e) => setName(e.target.value)} required autoComplete="username" /></label>
       <label className="field"><span className="lbl">PIN</span><input value={pin} onChange={(e) => setPin(e.target.value.replace(/\D/g, "").slice(0, 4))} inputMode="numeric" type="password" required autoComplete="current-password" /></label>
@@ -58,7 +58,8 @@ function Login({ slug, onIn }: { slug: string; onIn: (s: Sess) => void }) {
 
 type Found = { card: Card; stamped_today: boolean };
 
-function Desk({ slug, sess, onLogout, min, gifts }: { slug: string; sess: Sess; onLogout: () => void; min: number; gifts: number[] }) {
+function Desk({ slug, sess, onLogout, min, gifts, cfg }: { slug: string; sess: Sess; onLogout: () => void; min: number; gifts: number[]; cfg: Config }) {
+  const u = U(cfg);
   const [q, setQ] = useState("");
   const [found, setFound] = useState<Found | null>(null);
   const [err, setErr] = useState("");
@@ -140,17 +141,17 @@ function Desk({ slug, sess, onLogout, min, gifts }: { slug: string; sess: Sess; 
         <div className="form">
           <div className="card">
             <div className="row-between">
-              <div><div className="title-lg">{c.name}</div><div className="lbl tiny">{c.code} · Nivel {c.level.tier?.name} · {c.total_visits} visitas</div></div>
+              <div><div className="title-lg">{c.name}</div><div className="lbl tiny">{c.code} · Nivel {c.level.tier?.name} · {u.n(c.total_visits)}</div></div>
               <div className="big-num">{c.stamps}/{c.card_size}</div>
             </div>
             <Stamps stamps={c.stamps} size={c.card_size} rewards={gifts} />
           </div>
 
-          {c.birthday_pending && <div className="msg">Cumpleaños este mes: la próxima visita suma +1.</div>}
+          {c.birthday_pending && <div className="msg">Cumpleaños este mes: la próxima {u.s} suma +1.</div>}
 
           {result?.ok && (
             <div className="msg big">
-              <b>{result.added > 0 ? `${result.added > 1 ? `${result.added} sellos registrados` : "Sello registrado"}. Va ${result.stamps}/${result.card_size}.` : "Visita registrada. La tarjeta ya está completa: canjea el regalo final."}</b>
+              <b>{result.added > 0 ? `${result.added > 1 ? `${result.added} sellos registrados` : "Sello registrado"}. Va ${result.stamps}/${result.card_size}.` : `${u.cap(u.s)} registrada. La tarjeta ya está completa: canjea el regalo final.`}</b>
               {result.birthday && <div style={{ marginTop: 6 }}>Cumpleaños: {result.birthday_gift}.</div>}
               {result.unlocked?.length > 0 && <div className="unlock">Desbloqueó: {result.unlocked.map((u: any) => u.title).join(" y ")}</div>}
             </div>
@@ -171,15 +172,15 @@ function Desk({ slug, sess, onLogout, min, gifts }: { slug: string; sess: Sess; 
             <div className="msg err">Ya sumó sello hoy. Puedes canjear regalos, pero no sellar otra vez.</div>
           ) : !result?.ok && (
             <form onSubmit={(e) => { e.preventDefault(); stamp(); }} className="block">
-              <div className="lbl">Sellar visita</div>
-              <label className="field"><span className="lbl tiny">Valor de la cuenta sin impuesto al consumo (mínimo {cop(min)})</span>
+              <div className="lbl">Sellar {u.s}</div>
+              <label className="field"><span className="lbl tiny">{min > 0 ? `Valor de la cuenta sin impuesto al consumo (mínimo ${cop(min)})` : "Valor de la compra"}</span>
                 <input value={amount ? cop(+amount.replace(/\D/g, "")) : ""} onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))} inputMode="numeric" placeholder="$0" required /></label>
               <div className="row2">
                 <label className="field"><span className="lbl tiny">Mesa (opcional)</span><input value={table} onChange={(e) => setTable(e.target.value)} /></label>
-                <label className="field"><span className="lbl tiny">WhatsApp invitado nuevo</span><input value={guest} onChange={(e) => setGuest(e.target.value)} inputMode="tel" placeholder="Opcional" /></label>
+                {cfg.referral_bonus !== false && <label className="field"><span className="lbl tiny">WhatsApp invitado nuevo</span><input value={guest} onChange={(e) => setGuest(e.target.value)} inputMode="tel" placeholder="Opcional" /></label>}
               </div>
               {err && <div className="msg err">{err}</div>}
-              <button className="btn" disabled={busy}>Sellar visita</button>
+              <button className="btn" disabled={busy}>Sellar {u.s}</button>
             </form>
           )}
           {err && (found.stamped_today || result?.ok) && <div className="msg err">{err}</div>}

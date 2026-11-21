@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { rpc, saveToken } from "../lib/api";
-import { MESES, cop, diasDoble } from "../lib/format";
+import { MESES, U, reglas } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
 import { BySocial, Loading, Logo, Missing } from "../components/ui";
 
@@ -48,10 +48,10 @@ export default function Join() {
       <div className="center" style={{ margin: "8px 0 26px" }}><Logo tenant={t} size="sm" /></div>
 
       <div className="lbl">{c.card_name}</div>
-      <h1 className="title-xl">{mode === "nuevo" ? "Cada visita suma" : "Recupera tu tarjeta"}</h1>
+      <h1 className="title-xl">{mode === "nuevo" ? `Cada ${U(c).s} suma` : "Recupera tu tarjeta"}</h1>
       {mode === "nuevo" && (
         <p className="muted" style={{ marginTop: 8 }}>
-          {c.card_size} visitas por tarjeta y regalos en el camino: {c.rewards.map((r) => `visita ${r.visit}, ${r.title.toLowerCase()}`).join("; ")}.
+          {U(c).n(c.card_size)} por tarjeta. {c.rewards.map((r) => `${U(c).cap(U(c).s)} ${r.visit}: ${r.title.toLowerCase()}`).join(" · ")}.
           Sin app y sin papel.
         </p>
       )}
@@ -97,7 +97,7 @@ export default function Join() {
       {mode === "nuevo" && (
         <div className="small-rules">
           <div className="lbl">Cómo funciona</div>
-          <p>Un sello por visita con consumo desde {cop(c.min_amount)}. De {diasDoble(c.double_days)} tu visita vale doble, y si traes a alguien nuevo que se registre, también. En tu mes de cumpleaños hay sorpresa.</p>
+          <p>{reglas(c)}</p>
         </div>
       )}
       <BySocial />

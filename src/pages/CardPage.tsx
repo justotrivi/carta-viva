@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import QRCode from "qrcode";
 import { clearToken, rpc, saveToken, type Card } from "../lib/api";
-import { REASON, cop, diasDoble, fecha, fechaCorta, plural } from "../lib/format";
+import { REASON, U, W, extras, fecha, fechaCorta, plural, reglas } from "../lib/format";
 import { useMenu } from "../lib/useTenant";
 import { BySocial, Loading, Logo, Missing, Modal, Stamps } from "../components/ui";
 
@@ -65,21 +65,21 @@ export default function CardPage() {
           </div>
           <div className="right">
             <div className="big-num">{card.stamps}/{card.card_size}</div>
-            <div className="lbl tiny">visitas</div>
+            <div className="lbl tiny">{U(c).p}</div>
           </div>
         </div>
         <Stamps stamps={card.stamps} size={card.card_size} rewards={giftVisits} />
         <div className="lbl tiny">
-          {next ? `${plural(faltan, "Te falta 1 visita", `Te faltan ${faltan} visitas`)} para: ${next.title}` : "Tarjeta completa. Canjea tu regalo."}
+          {next ? `${U(c).falta(faltan)} para: ${next.title}` : "Tarjeta completa. Canjea tu regalo."}
         </div>
         <div className="bar"><i style={{ width: `${(card.stamps / card.card_size) * 100}%` }} /></div>
       </div>
 
       {card.birthday_pending && (
-        <div className="msg">Es tu mes de cumpleaños: en tu próxima visita tienes un sello extra y {c.birthday_gift.toLowerCase()}.</div>
+        <div className="msg">Es tu mes de cumpleaños: en tu próxima {U(c).s} tienes un sello extra y {c.birthday_gift.toLowerCase()}.</div>
       )}
 
-      <button className="btn" onClick={() => setQr(true)}>Mostrar mi código al mesero</button>
+      <button className="btn" onClick={() => setQr(true)}>{W(c).tienda ? "Mostrar mi código en caja" : "Mostrar mi código al mesero"}</button>
       {ready > 0 && <p className="center muted small" style={{ marginTop: 8 }}>Tienes {ready} {plural(ready, "regalo listo", "regalos listos")}. Muéstrale tu código al mesero para canjear.</p>}
 
       <section className="block">
@@ -104,30 +104,28 @@ export default function CardPage() {
         ))}
       </section>
 
-      <section className="block">
-        <div className="lbl">Niveles · {card.level.visits_year} {plural(card.level.visits_year, "visita", "visitas")} este año</div>
+      {c.tiers.length > 1 && <section className="block">
+        <div className="lbl">Niveles · {U(c).n(card.level.visits_year)} este año</div>
         <div className="tiers">
           {c.tiers.map((tr) => (
             <div key={tr.name} className={`tier ${card.level.tier?.name === tr.name ? "cur" : ""}`}>
-              <div className="lbl tiny">{tr.min}+ visitas{card.level.tier?.name === tr.name ? " · tú" : ""}</div>
+              <div className="lbl tiny">{tr.min}+ {U(c).p}{card.level.tier?.name === tr.name ? " · tú" : ""}</div>
               <div className="title-md">{tr.name}</div>
               <ul>{tr.benefits.map((b) => <li key={b}>{b}</li>)}</ul>
             </div>
           ))}
         </div>
-      </section>
+      </section>}
 
       <section className="block">
-        <div className="lbl">Sellos extra</div>
-        <div className="li"><div className="n">×2</div><div className="grow"><b>Trae a alguien nuevo</b><small>Si se registra en la mesa ese día, tu visita vale doble.</small></div></div>
-        <div className="li"><div className="n">×2</div><div className="grow"><b>De {diasDoble(c.double_days)}</b><small>Tu visita vale doble.</small></div></div>
-        <div className="li"><div className="n">+1</div><div className="grow"><b>Tu mes de cumpleaños</b><small>{c.birthday_gift} y un sello extra.</small></div></div>
-        <p className="muted small" style={{ marginTop: 10 }}>Un sello por día con consumo desde {cop(c.min_amount)} (sin impuesto al consumo). Los regalos vencen {c.reward_days} días después de ganarlos.</p>
+        {extras(c).length > 0 && <div className="lbl">Sellos extra</div>}
+        {extras(c).map((x) => <div key={x.t} className="li"><div className="n">{x.n}</div><div className="grow"><b>{x.t}</b><small>{x.d}</small></div></div>)}
+        <p className="muted small" style={{ marginTop: 10 }}>{reglas(c)}</p>
       </section>
 
       <section className="block">
         <div className="lbl">Tu historial</div>
-        {card.history.length === 0 && <p className="muted small">Aún sin visitas. La primera cuenta.</p>}
+        {card.history.length === 0 && <p className="muted small">Aún sin sellos. La primera cuenta.</p>}
         <div className="hist">
           {card.history.map((h, i) => (
             <div key={i}><span>{fechaCorta(h.at)}</span><span>{h.reasons.map((r) => REASON[r] ?? r).join(" + ")} · +{h.stamps}</span></div>
@@ -142,7 +140,7 @@ export default function CardPage() {
       </section>
       <BySocial />
 
-      <QrModal open={qr} onClose={() => setQr(false)} token={token} code={card.code} />
+      <QrModal open={qr} onClose={() => setQr(false)} token={token} code={card.code} who={W(c).staff} />
 
       <Modal open={help} onClose={() => setHelp(false)}>
         <div className="lbl">Listo, {card.name.split(" ")[0]}</div>
@@ -163,7 +161,7 @@ export default function CardPage() {
   );
 }
 
-function QrModal({ open, onClose, token, code }: { open: boolean; onClose: () => void; token: string; code: string }) {
+function QrModal({ open, onClose, token, code, who }: { open: boolean; onClose: () => void; token: string; code: string; who: string }) {
   const [img, setImg] = useState("");
   const [left, setLeft] = useState(60);
   const [err, setErr] = useState(false);
@@ -186,10 +184,10 @@ function QrModal({ open, onClose, token, code }: { open: boolean; onClose: () =>
 
   return (
     <Modal open={open} onClose={onClose}>
-      <div className="lbl center">Muéstrale esto al mesero</div>
+      <div className="lbl center">Muéstralo {who}</div>
       <div className="qr">{img ? <img src={img} alt="Código QR" /> : <span className="lbl pulse">Generando</span>}</div>
       <div className="title-xl center">{code}</div>
-      <div className="center muted small">{err ? "Sin conexión: dile al mesero tu código." : `El código cambia en ${Math.max(0, left)} s`}</div>
+      <div className="center muted small">{err ? `Sin conexión: dile tu código ${who === "en caja" ? "a la caja" : "al mesero"}.` : `El código cambia en ${Math.max(0, left)} s`}</div>
       <button className="btn" onClick={onClose}>Listo</button>
     </Modal>
   );

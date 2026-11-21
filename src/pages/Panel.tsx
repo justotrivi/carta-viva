@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { rpc, supabase, type Config } from "../lib/api";
-import { DIAS, MESES, cop, diasDoble, fecha, fechaCorta, plural, waLink } from "../lib/format";
+import { DIAS, MESES, U, cop, diasDoble, fecha, fechaCorta, plural, waLink } from "../lib/format";
 import { applyTheme, socialTheme } from "../lib/theme";
 import { Loading, Modal } from "../components/ui";
 
@@ -174,7 +174,7 @@ const Kpi = ({ l, v, sub }: { l: string; v: any; sub: string }) => (
 function dormantMsg(name: string, stamps: number, cfg: Config, tname: string) {
   const next = cfg.rewards.find((r) => r.visit > stamps) ?? cfg.rewards[cfg.rewards.length - 1];
   const f = next.visit - stamps;
-  return `Hola ${name.split(" ")[0]}, te extrañamos en ${tname}. Llevas ${stamps} de ${cfg.card_size} sellos en tu tarjeta. ${f === 1 ? "Te falta 1 visita" : `Te faltan ${f} visitas`} para tu regalo: ${next.title}. ${cfg.double_days.length ? `De ${diasDoble(cfg.double_days)} tu visita vale doble. ` : ""}¿Te guardamos mesa? Responde este mensaje y te reservamos.`;
+  return `Hola ${name.split(" ")[0]}, te extrañamos en ${tname}. Llevas ${stamps} de ${cfg.card_size} sellos en tu tarjeta. ${U(cfg).falta(f)} para tu regalo: ${next.title}. ${cfg.double_days.length ? `De ${diasDoble(cfg.double_days)} tu visita vale doble. ` : ""}¿Te guardamos mesa? Responde este mensaje y te reservamos.`;
 }
 
 function Dormant({ s, t }: { s: any; t: T }) {
@@ -478,6 +478,14 @@ function Settings({ t, cfg, onSaved }: { t: T; cfg: Config; onSaved: () => void 
           <div className="checks">{[1, 2, 3, 4, 5, 6, 7].map((d) => (
             <label key={d}><input type="checkbox" checked={c.double_days.includes(d)} onChange={(e) => set("double_days", e.target.checked ? [...c.double_days, d].sort() : c.double_days.filter((x) => x !== d))} /> {DIAS[d]}</label>
           ))}</div>
+        </div>
+        <div className="row3">
+          <label className="field"><span className="lbl tiny">Cada sello es una… (singular)</span><input value={c.unit_singular || "visita"} onChange={(e) => set("unit_singular", e.target.value)} /></label>
+          <label className="field"><span className="lbl tiny">Plural</span><input value={c.unit_plural || "visitas"} onChange={(e) => set("unit_plural", e.target.value)} /></label>
+          <div className="checks" style={{ alignSelf: "end", paddingBottom: 12 }}>
+            <label><input type="checkbox" checked={c.birthday_bonus !== false} onChange={(e) => set("birthday_bonus", e.target.checked)} /> Sello de cumpleaños</label>
+            <label><input type="checkbox" checked={c.referral_bonus !== false} onChange={(e) => set("referral_bonus", e.target.checked)} /> Doble por invitado</label>
+          </div>
         </div>
         <label className="field"><span className="lbl tiny">Cortesía de cumpleaños</span><input value={c.birthday_gift} onChange={(e) => set("birthday_gift", e.target.value)} /></label>
         <div className="lbl tiny" style={{ marginTop: 10 }}>Regalos ({c.card_size} sellos por tarjeta; el último reinicia la tarjeta)</div>
