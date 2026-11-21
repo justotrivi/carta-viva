@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Casa del Arzobispado · Una invitación especial</title>
+<meta name="description" content="Una casona del siglo XVII en el corazón de Cartagena te espera. Piscina entre jardines, Spa Las Indias, Época Café e Isla Bonita.">
+<meta property="og:title" content="Casa del Arzobispado · Una invitación especial">
+<meta property="og:description" content="Una casona del siglo XVII en el corazón de Cartagena te espera. Ábrela y vive la experiencia.">
+<meta property="og:image" content="https://synergy.booking-channel.com/api/hotels/2446/medias/101">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#14110D">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14110D;--bg2:#1C1812;--ivory:#F4EDE1;--muted:#B9AE9C;--gold:#C2A472;--gold2:#E2CC9F;--green:#2B3626;--line:rgba(194,164,114,.28)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ivory);font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+img{display:block;max-width:100%}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(2.2rem,8vw,4rem);line-height:1.05;margin:.6rem 0 1rem}
+h2 em{color:var(--gold2);font-style:italic}
+p.lead{color:var(--muted);font-size:1rem;max-width:34rem}
+section{position:relative;padding:5.5rem 1.4rem}
+.wrap{max-width:1100px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font:500 .78rem Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:active{transform:scale(.96)}
+.btn-gold{background:linear-gradient(120deg,#B8955C,#E2CC9F 45%,#B8955C);background-size:220% 100%;color:#1A140B;box-shadow:0 10px 30px -10px rgba(194,164,114,.7);animation:sheen 4s linear infinite}
+@keyframes sheen{0%{background-position:100% 0}100%{background-position:-120% 0}}
+.btn-ghost{border:1px solid var(--line);color:var(--ivory);background:rgba(20,17,13,.35);backdrop-filter:blur(8px)}
+.btn svg{width:18px;height:18px}
+
+/* Sobre de invitación */
+#sobre{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse at 50% 30%,#2a2219,#0d0b08 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;transition:opacity .9s .4s,visibility 0s 1.3s}
+#sobre.abierto{opacity:0;visibility:hidden}
+#sobre .sello{width:118px;height:118px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#E2CC9F,#A9844C 60%,#7a5c2e);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(194,164,114,.15),0 20px 50px -10px #000;animation:late 2.4s ease-in-out infinite;cursor:pointer}
+#sobre .sello span{font-family:"Cormorant Garamond",serif;font-size:2.6rem;color:#2a1e0e;font-style:italic;font-weight:600}
+@keyframes late{50%{transform:scale(1.06);box-shadow:0 0 0 14px rgba(194,164,114,.08),0 20px 50px -10px #000}}
+#sobre.abierto .sello{transform:scale(.2) rotate(-40deg);opacity:0;transition:all .6s}
+#sobre h1{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:clamp(1.9rem,7vw,3rem);margin:2.2rem 0 .4rem;line-height:1.1}
+#sobre p{color:var(--muted);font-size:.9rem;max-width:20rem}
+#sobre .tap{margin-top:2rem;font-size:.66rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.35}}
+.polvo{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.polvo i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--gold2);opacity:0;animation:flota linear infinite}
+@keyframes flota{0%{transform:translateY(20px);opacity:0}20%{opacity:.8}100%{transform:translateY(-120vh);opacity:0}}
+
+/* Hero */
+#hero{height:100svh;min-height:600px;padding:0;overflow:hidden;display:flex;align-items:flex-end}
+.slides{position:absolute;inset:0}
+.slides div{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.18);transition:opacity 1.6s ease}
+.slides div.on{opacity:1;animation:kb 8s linear forwards}
+@keyframes kb{from{transform:scale(1.18) translate(0,0)}to{transform:scale(1.02) translate(-1.5%,1%)}}
+#hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,11,8,.55) 0%,rgba(13,11,8,0) 30%,rgba(13,11,8,.25) 55%,rgba(13,11,8,.95) 100%)}
+.hero-in{position:relative;z-index:2;padding:0 1.4rem 3.2rem;width:100%;max-width:1100px;margin:0 auto}
+.logo{width:74px;opacity:.95;margin-bottom:1.4rem}
+.hola{font-family:"Cormorant Garamond",serif;font-style:italic;color:var(--gold2);font-size:1.3rem}
+#hero h2{font-size:clamp(2.6rem,11vw,5.4rem);margin:.3rem 0 .9rem}
+.hero-in .row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.dots{position:absolute;right:1.4rem;top:50%;z-index:3;display:flex;flex-direction:column;gap:8px}
+.dots b{width:3px;height:22px;background:rgba(244,237,225,.3);border-radius:3px;transition:.4s}
+.dots b.on{background:var(--gold);height:38px}
+.scroll{position:absolute;left:50%;bottom:.9rem;z-index:3;transform:translateX(-50%);width:22px;height:36px;border:1px solid var(--line);border-radius:12px}
+.scroll:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold);animation:rueda 1.6s infinite}
+@keyframes rueda{to{transform:translateY(12px);opacity:0}}
+
+/* Cinta */
+.cinta{border-block:1px solid var(--line);overflow:hidden;padding:1rem 0;background:var(--bg2)}
+.cinta div{display:flex;gap:2.6rem;width:max-content;animation:cinta 28s linear infinite;font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-style:italic;color:var(--gold2);white-space:nowrap}
+.cinta span:nth-child(even){color:var(--gold);font-style:normal;font-size:.9rem;align-self:center}
+@keyframes cinta{to{transform:translateX(-50%)}}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* Historia */
+.hist{display:grid;gap:2.4rem}
+.hist .foto{position:relative;border-radius:180px 180px 6px 6px;overflow:hidden;aspect-ratio:3/4;max-width:420px}
+.hist .foto img{width:100%;height:120%;object-fit:cover;will-change:transform}
+.anios{display:flex;gap:2rem;margin-top:2rem}
+.anios div{border-left:1px solid var(--gold);padding-left:1rem}
+.anios b{display:block;font-family:"Cormorant Garamond",serif;font-size:2.6rem;font-weight:500;color:var(--gold2);line-height:1}
+.anios small{font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+@media(min-width:860px){.hist{grid-template-columns:1fr 1fr;align-items:center}}
+
+/* Habitaciones */
+.carril{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:1rem 1.4rem 1.6rem;margin:0 -1.4rem;scrollbar-width:none}
+.carril::-webkit-scrollbar{display:none}
+.hab{flex:0 0 82%;max-width:380px;scroll-snap-align:center;background:var(--bg2);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .4s}
+.hab .ph{position:relative;aspect-ratio:4/5;overflow:hidden}
+.hab .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .9s,transform 6s linear;transform:scale(1.1)}
+.hab .ph img.on{opacity:1;transform:scale(1)}
+.hab .tag{position:absolute;left:1rem;top:1rem;z-index:2;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;background:rgba(20,17,13,.6);backdrop-filter:blur(6px);padding:.4rem .7rem;border-radius:99px;color:var(--gold2)}
+.hab .tx{padding:1.3rem 1.3rem 1.5rem}
+.hab h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:1.8rem;line-height:1.1}
+.hab p{color:var(--muted);font-size:.86rem;margin:.6rem 0 1rem}
+.hab ul{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.hab li{font-size:.66rem;border:1px solid var(--line);border-radius:99px;padding:.3rem .65rem;color:var(--ivory)}
+.hab .btn{padding:.8rem 1.2rem;font-size:.68rem}
+.swipe{font-size:.66rem;letter-spacing:.25em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:.6rem}
+.swipe i{display:inline-block;width:30px;height:1px;background:var(--gold);animation:swipe 1.6s infinite}
+@keyframes swipe{50%{transform:translateX(10px)}}
+
+/* Experiencias: pila de tarjetas pegajosas */
+.exp{padding-bottom:2rem}
+.pila{position:relative}
+.cardx{position:sticky;top:8vh;height:78vh;min-height:480px;margin-bottom:6vh;border-radius:22px;overflow:hidden;box-shadow:0 -20px 50px -20px rgba(0,0,0,.8)}
+.cardx .bgi{position:absolute;inset:-8%;background-size:cover;background-position:center;transition:transform .2s linear}
+.cardx:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,11,8,.1) 35%,rgba(13,11,8,.92) 100%)}
+.cardx .tx{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:1.6rem}
+.cardx .num{font-family:"Cormorant Garamond",serif;font-size:1rem;color:var(--gold);font-style:italic}
+.cardx h3{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2.2rem,9vw,3.6rem);line-height:1;margin:.3rem 0 .6rem}
+.cardx p{color:#ddd3c3;font-size:.9rem;max-width:30rem;margin-bottom:1.1rem}
+.cardx .btn{padding:.8rem 1.2rem;font-size:.68rem}
+
+/* Ventajas */
+.vent{background:linear-gradient(180deg,var(--bg),var(--green) 140%)}
+.lista{display:grid;gap:.7rem;margin-top:2rem}
+.it{display:flex;gap:1rem;align-items:center;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:14px;background:rgba(20,17,13,.45);backdrop-filter:blur(6px)}
+.it .ic{flex:0 0 38px;height:38px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold2)}
+.it .ic svg{width:18px;height:18px}
+.it.in .ic{animation:pop .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:scale(0)}100%{transform:scale(1)}}
+.it span{font-size:.92rem}
+@media(min-width:860px){.lista{grid-template-columns:1fr 1fr}}
+
+/* Galería */
+.gal{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:.5rem;margin-top:2rem}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:10px;cursor:zoom-in;transition:transform .5s,filter .5s;filter:saturate(.9)}
+.gal img:hover{transform:scale(1.03);filter:saturate(1.1)}
+.gal .t{grid-row:span 2}.gal .w{grid-column:span 2}
+@media(min-width:860px){.gal{grid-template-columns:repeat(4,1fr);grid-auto-rows:210px}}
+#lb{position:fixed;inset:0;z-index:90;background:rgba(8,7,5,.95);display:none;align-items:center;justify-content:center;padding:1rem}
+#lb.on{display:flex;animation:fade .3s}
+#lb img{max-height:86vh;border-radius:8px}
+#lb button{position:absolute;top:1rem;right:1rem;background:none;border:1px solid var(--line);color:var(--ivory);width:44px;height:44px;border-radius:50%;font-size:1.3rem}
+@keyframes fade{from{opacity:0}}
+
+/* Ubicación */
+.ubi{display:grid;gap:2rem}
+.mapa{position:relative;aspect-ratio:1;max-width:440px;border-radius:50%;border:1px solid var(--line);margin:0 auto;width:100%}
+.mapa svg{width:100%;height:100%}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%)}
+.pin b{display:block;width:22px;height:22px;background:var(--gold);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 0 0 6px rgba(194,164,114,.2)}
+.onda{position:absolute;left:50%;top:50%;width:20px;height:20px;margin:-10px;border-radius:50%;border:1px solid var(--gold);animation:onda 2.4s infinite}
+.onda.b{animation-delay:1.2s}
+@keyframes onda{to{transform:scale(14);opacity:0}}
+.cerca{list-style:none;margin-top:1.4rem}
+.cerca li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:.8rem 0;font-size:.9rem}
+.cerca li b{color:var(--gold2);font-weight:500}
+@media(min-width:860px){.ubi{grid-template-columns:1fr 1fr;align-items:center}}
+
+/* Final */
+#final{min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+#final .bgi{position:absolute;inset:0;background:url(https://synergy.booking-channel.com/api/hotels/2446/medias/195) center/cover;animation:kb 18s linear infinite alternate}
+#final:before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,rgba(13,11,8,.55),rgba(13,11,8,.92))}
+#final .in{position:relative;z-index:2;max-width:560px}
+#final h2{font-size:clamp(2.8rem,12vw,5.2rem)}
+#final .col{display:flex;flex-direction:column;gap:.8rem;align-items:center;margin-top:2rem}
+.redes{display:flex;gap:1.6rem;justify-content:center;margin-top:2.4rem}
+.redes a{color:var(--muted);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none}
+.by{margin-top:2.6rem;font-size:.6rem;letter-spacing:.2em;color:#6d6457}.by b{color:#F5C518}
+
+/* Barra fija */
+.barra{position:fixed;left:.8rem;right:.8rem;bottom:calc(.8rem + env(safe-area-inset-bottom));z-index:50;display:flex;gap:.5rem;padding:.5rem;border-radius:999px;background:rgba(20,17,13,.78);backdrop-filter:blur(14px);border:1px solid var(--line);transform:translateY(160%);transition:transform .6s cubic-bezier(.2,.8,.2,1);max-width:520px;margin:0 auto}
+.barra.on{transform:none}
+.barra .btn{flex:1;justify-content:center;padding:.85rem .6rem;font-size:.64rem;letter-spacing:.14em}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:60;width:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+
+<!-- SOBRE -->
+<div id="sobre">
+  <div class="polvo" id="polvo"></div>
+  <div class="sello" id="abrir" role="button" aria-label="Abrir invitación"><span>CA</span></div>
+  <h1 id="saludo">Tienes una invitación</h1>
+  <p>Una casona del siglo XVII en el corazón de Cartagena quiere recibirte.</p>
+  <div class="tap">Toca el sello para abrir</div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="slides" id="slides"></div>
+  <div class="dots" id="dots"></div>
+  <div class="hero-in">
+    <img class="logo rv" src="https://www.hotelcasadelarzobispado.com/templates/cadenas/air/images/hotels/SYN2446/logo-blanco.svg" alt="Hotel Casa del Arzobispado">
+    <div class="hola rv d1" id="hola">Bienvenido a casa</div>
+    <h2 class="rv d1">Donde Cartagena <em>se vive</em> despacio</h2>
+    <p class="lead rv d2">Hotel boutique en el Centro Histórico, frente a la Catedral. Once habitaciones, cada una con su propia magia.</p>
+    <div class="row rv d3">
+      <a class="btn btn-gold" data-wa="Hola, recibí la invitación de Casa del Arzobispado y quiero vivir la experiencia. ¿Me ayudan con disponibilidad?">Quiero vivirlo</a>
+      <a class="btn btn-ghost" href="#historia">Descubrir</a>
+    </div>
+  </div>
+  <div class="scroll"></div>
+</section>
+
+<div class="cinta"><div id="cinta"></div></div>
+
+<!-- HISTORIA -->
+<section id="historia">
+  <div class="wrap hist">
+    <div class="foto rv"><img data-par="0.12" src="https://synergy.booking-channel.com/api/hotels/2446/medias/124" alt="Portón colonial del hotel"></div>
+    <div>
+      <div class="eyebrow rv">Una casa con historia</div>
+      <h2 class="rv d1">Cuatro siglos <em>de huéspedes ilustres</em></h2>
+      <p class="lead rv d2">Una casona colonial que nació en el siglo XVII. En 2002 fue restaurada por Grupo Del Sol para convertirse en uno de los hoteles boutique más reconocidos de Cartagena.</p>
+      <div class="anios rv d3">
+        <div><b data-cnt="17" data-suf="">0</b><small>SIGLO DE ORIGEN</small></div>
+        <div><b data-cnt="2002">0</b><small>RESTAURADA</small></div>
+        <div><b data-cnt="11">0</b><small>HABITACIONES</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HABITACIONES -->
+<section id="habitaciones" style="padding-top:2rem">
+  <div class="wrap">
+    <div class="eyebrow rv">Tu refugio</div>
+    <h2 class="rv d1">Cada habitación <em>es distinta</em></h2>
+    <div class="swipe rv d2">Desliza <i></i></div>
+    <div class="carril" id="carril"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCIAS -->
+<section class="exp" id="experiencias">
+  <div class="wrap">
+    <div class="eyebrow rv">Lo que te espera</div>
+    <h2 class="rv d1">Cinco formas <em>de vivir la casa</em></h2>
+    <div class="pila" id="pila"></div>
+  </div>
+</section>
+
+<!-- VENTAJAS -->
+<section class="vent" id="ventajas">
+  <div class="wrap">
+    <div class="eyebrow rv">Solo reservando directo</div>
+    <h2 class="rv d1">Lo que <em>te regalamos</em></h2>
+    <p class="lead rv d2">Reservando en la web oficial o por WhatsApp con el hotel.</p>
+    <div class="lista" id="lista"></div>
+    <div style="margin-top:2rem" class="rv"><a class="btn btn-gold" data-wa="Hola, quiero reservar directo con Casa del Arzobispado y recibir las ventajas. ¿Qué disponibilidad tienen?">Reservar con ventajas</a></div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="wrap">
+    <div class="eyebrow rv">Asómate</div>
+    <h2 class="rv d1">Cada rincón <em>cuenta algo</em></h2>
+    <div class="gal" id="gal"></div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section id="ubicacion">
+  <div class="wrap ubi">
+    <div class="mapa rv">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <defs><pattern id="cal" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(18)"><path d="M0 0H40M0 0V40" stroke="rgba(194,164,114,.16)" stroke-width="1"/></pattern><clipPath id="cc"><circle cx="200" cy="200" r="199"/></clipPath></defs>
+        <g clip-path="url(#cc)"><rect width="400" height="400" fill="#191510"/><rect width="400" height="400" fill="url(#cal)"/>
+        <path d="M40 120 L120 60 L250 50 L340 110 L360 230 L300 330 L170 350 L70 300 Z" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="6 6" id="muralla"/>
+        <text x="66" y="96" fill="#B9AE9C" font-size="10" letter-spacing="3" font-family="Montserrat">MURALLA</text>
+        <circle cx="232" cy="162" r="5" fill="none" stroke="#E2CC9F"/><text x="242" y="158" fill="#E2CC9F" font-size="11" font-family="Cormorant Garamond" font-style="italic">Catedral</text>
+        <circle cx="150" cy="270" r="5" fill="none" stroke="#E2CC9F"/><text x="160" y="284" fill="#E2CC9F" font-size="11" font-family="Cormorant Garamond" font-style="italic">Torre del Reloj</text>
+        <text x="200" y="232" fill="#F4EDE1" font-size="10" letter-spacing="2" text-anchor="middle" font-family="Montserrat">CASA DEL ARZOBISPADO</text></g>
+      </svg>
+      <span class="onda"></span><span class="onda b"></span>
+      <div class="pin"><b></b></div>
+    </div>
+    <div>
+      <div class="eyebrow rv">Dónde estamos</div>
+      <h2 class="rv d1">En el corazón <em>amurallado</em></h2>
+      <p class="lead rv d2">Calle del Arzobispado 34-52, Centro Histórico, Cartagena de Indias. Al lado de la Catedral de Santa Catalina.</p>
+      <ul class="cerca rv d3">
+        <li>Catedral de Santa Catalina <b>a pasos</b></li>
+        <li>Torre del Reloj <b>2 min a pie</b></li>
+        <li>Murallas <b>5 min a pie</b></li>
+        <li>Aeropuerto <b>traslado de cortesía*</b></li>
+      </ul>
+      <p style="font-size:.7rem;color:var(--muted);margin-top:.6rem">*Reservando en la web oficial.</p>
+      <div style="margin-top:1.6rem" class="rv"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Hotel+Casa+del+Arzobispado+Cartagena">Cómo llegar</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section id="final">
+  <div class="bgi"></div>
+  <div class="in">
+    <div class="eyebrow rv">Tu invitación sigue abierta</div>
+    <h2 class="rv d1">Ven a <em>vivirlo</em></h2>
+    <p class="lead rv d2" style="margin:0 auto">Escríbenos y te ayudamos a armar tu estadía: fechas, habitación, spa y una tarde en Isla Bonita.</p>
+    <div class="col rv d3">
+      <a class="btn btn-gold" data-wa="Hola, recibí la invitación de Casa del Arzobispado. Quiero reservar mi estadía.">Reservar por WhatsApp</a>
+      <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.hotelcasadelarzobispado.com/reservar.html">Ver fechas y tarifas</a>
+    </div>
+    <div class="redes"><a target="_blank" rel="noopener" href="https://www.instagram.com/casadelarzobispado/">Instagram</a><a href="tel:+573184021573">Llamar</a><a href="mailto:reservas@hotelcasadelarzobispado.com">Correo</a></div>
+    <div class="by">EXPERIENCIA DIGITAL · <b>SOCIAL</b></div>
+  </div>
+</section>
+
+<div class="barra" id="barra">
+  <a class="btn btn-ghost" href="#experiencias">Experiencias</a>
+  <a class="btn btn-gold" data-wa="Hola, recibí la invitación de Casa del Arzobispado y quiero reservar.">Reservar</a>
+</div>
+
+<div id="lb"><button aria-label="Cerrar">×</button><img alt=""></div>
+
+<script>
+const IMG=id=>`https://synergy.booking-channel.com/api/hotels/2446/medias/${id}`;
+const WA='573184021573';
+const q=new URLSearchParams(location.search), nombre=(q.get('n')||'').trim().slice(0,30);
+const esc=s=>s.replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+if(nombre){document.getElementById('saludo').innerHTML=`${esc(nombre)}, tienes una invitación`;document.getElementById('hola').textContent=`${nombre}, bienvenido a casa`;}
+function wire(root=document){root.querySelectorAll('[data-wa]').forEach(a=>{let t=a.dataset.wa;if(nombre)t+=` (Soy ${nombre})`;a.href=`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;a.target='_blank';a.rel='noopener'})}
+
+// Sobre
+const polvo=document.getElementById('polvo');
+for(let i=0;i<40;i++){const p=document.createElement('i');p.style.left=Math.random()*100+'%';p.style.top=(60+Math.random()*50)+'%';p.style.animationDuration=(6+Math.random()*8)+'s';p.style.animationDelay=(-Math.random()*10)+'s';polvo.appendChild(p)}
+const sobre=document.getElementById('sobre');document.body.style.overflow='hidden';
+function abrir(){if(sobre.classList.contains('abierto'))return;sobre.classList.add('abierto');document.body.style.overflow='';setTimeout(()=>document.querySelectorAll('#hero .rv').forEach(e=>e.classList.add('in')),500)}
+sobre.addEventListener('click',abrir);
+
+// Hero slides
+const HERO=[101,195,121,103,298];const S=document.getElementById('slides'),D=document.getElementById('dots');
+HERO.forEach((id,i)=>{const d=document.createElement('div');d.style.backgroundImage=`url(${IMG(id)})`;S.appendChild(d);D.appendChild(document.createElement('b'))});
+let hi=0;function show(){[...S.children].forEach((d,i)=>{d.classList.toggle('on',i===hi)});[...D.children].forEach((d,i)=>d.classList.toggle('on',i===hi));hi=(hi+1)%HERO.length}
+show();setInterval(show,5200);
+
+// Cinta
+const C=['Siglo XVII','✦','Centro Histórico','✦','Spa Las Indias','✦','Época Café','✦','Isla Bonita','✦','Piscina entre jardines','✦','Mirador','✦'];
+document.getElementById('cinta').innerHTML=[...C,...C].map(t=>`<span>${t}</span>`).join('');
+
+// Habitaciones
+const HAB=[
+ {n:'Clásica',tag:'Con beneficios',f:[32,73,31,33],d:'Cada detalle tiene una historia propia. Algunas con vista a la calle o bañera de hidromasaje.',i:['King size','Algodón egipcio','Minibar','Masaje 30 min*','Transfer in & out*'],w:'Hola, quiero reservar una Habitación Clásica en Casa del Arzobispado.'},
+ {n:'Superior',tag:'Distinción',f:[69,70,57,55],d:'Acabados en mármol, madera y coralina, con objetos que nos llevan al recuerdo y un baño de ensueño.',i:['King size','Sofá y escritorio','Baño de ensueño','Amenities premium'],w:'Hola, quiero reservar una Habitación Superior en Casa del Arzobispado.'},
+ {n:'Estándar',tag:'Diseño y descanso',f:[36,42,52,75],d:'Una experiencia de diseño y descanso, con fresca lencería en algodón egipcio y amenities de alta calidad.',i:['King size','TV HD y audio','Algodón egipcio'],w:'Hola, quiero reservar una Habitación Estándar en Casa del Arzobispado.'}];
+const car=document.getElementById('carril');
+car.innerHTML=HAB.map(h=>`<article class="hab rv"><div class="ph"><span class="tag">${h.tag}</span>${h.f.map((f,i)=>`<img loading="lazy" class="${i?'':'on'}" src="${IMG(f)}" alt="Habitación ${h.n}">`).join('')}</div><div class="tx"><div class="eyebrow">Habitación</div><h3>${h.n}</h3><p>${h.d}</p><ul>${h.i.map(x=>`<li>${x}</li>`).join('')}</ul><a class="btn btn-gold" data-wa="${h.w}">Reservar esta</a></div></article>`).join('')+'<div style="flex:0 0 1px"></div>';
+car.insertAdjacentHTML('afterend','<p style="font-size:.68rem;color:var(--muted)">*Beneficios de la Habitación Clásica según la web oficial del hotel, sujetos a sus condiciones.</p>');
+let ht=0;setInterval(()=>{ht++;car.querySelectorAll('.ph').forEach(ph=>{const im=ph.querySelectorAll('img');im.forEach((m,i)=>m.classList.toggle('on',i===ht%im.length))})},3400);
+
+// Experiencias
+const EXP=[
+ {n:'Piscina entre jardines',f:101,d:'Una imponente piscina a cielo abierto rodeada de vegetación, en pleno centro amurallado.',w:'Hola, quiero conocer la piscina y reservar en Casa del Arzobispado.'},
+ {n:'Spa Las Indias',f:28,d:'Rituales creados para ti con Biologique Recherche, Loto del Sur y SwissJust. Además, baño turco.',w:'Hola, quiero reservar un ritual en el Spa Las Indias.'},
+ {n:'Época Café',f:113,d:'All-day café de cafés especiales de origen, buena cocina y cocteles clásicos.',w:'Hola, quiero reservar en Época Café de Casa del Arzobispado.'},
+ {n:'El mirador',f:121,d:'Cartagena desde arriba: tejados coloniales y la cúpula de la Catedral a la vista.',w:'Hola, quiero vivir el mirador de Casa del Arzobispado.'},
+ {n:'Isla Bonita',f:284,d:'Casa privada en Isla Grande, Islas del Rosario, para grupos de hasta 16 personas. La lancha La Carlota te lleva desde Manga.',w:'Hola, quiero información de Isla Bonita by Casa del Arzobispado.'}];
+document.getElementById('pila').innerHTML=EXP.map((e,i)=>`<article class="cardx"><div class="bgi" style="background-image:url(${IMG(e.f)})"></div><div class="tx"><div class="num">0${i+1} / 05</div><h3>${e.n}</h3><p>${e.d}</p><a class="btn btn-gold" data-wa="${e.w}">Quiero esto</a></div></article>`).join('');
+
+// Ventajas
+const V=['15 minutos de masaje en el Spa Las Indias','10% de descuento en Época Café','10% de descuento en el Baluarte de San Francisco Javier','10% de descuento en Isla Bonita','Early check-in y late check-out (según disponibilidad)','Upgrade según disponibilidad','Traslado de cortesía','Bebida de bienvenida'];
+const ck='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>';
+document.getElementById('lista').innerHTML=V.map((v,i)=>`<div class="it rv" style="transition-delay:${i*.07}s"><div class="ic">${ck}</div><span>${v}</span></div>`).join('');
+
+// Galería
+const G=[[195,'t'],[93,''],[109,''],[24,''],[63,'t'],[123,''],[118,''],[292,'w'],[59,''],[105,''],[289,'w'],[272,''],[234,''],[96,''],[110,'']];
+document.getElementById('gal').innerHTML=G.map(([f,c])=>`<img loading="lazy" class="rv ${c}" src="${IMG(f)}" alt="Casa del Arzobispado">`).join('');
+const lb=document.getElementById('lb');
+document.getElementById('gal').addEventListener('click',e=>{if(e.target.tagName==='IMG'){lb.querySelector('img').src=e.target.src;lb.classList.add('on')}});
+lb.addEventListener('click',()=>lb.classList.remove('on'));
+
+wire();
+
+// Reveal + contadores
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);e.target.querySelectorAll?.('[data-cnt]').forEach(cnt)}}),{threshold:.15});
+document.querySelectorAll('.rv:not(#hero .rv)').forEach(e=>io.observe(e));
+function cnt(b){const to=+b.dataset.cnt,t0=performance.now(),dur=1600;(function f(t){const k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);let v=Math.round(to*e);b.textContent=to===17?(['','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII'][v]||'I'):v;if(k<1)requestAnimationFrame(f)})(t0)}
+
+// Parallax, progreso y barra
+const par=[...document.querySelectorAll('[data-par]')],bgs=[...document.querySelectorAll('.cardx .bgi')],barra=document.getElementById('barra'),prog=document.getElementById('prog');
+function onScroll(){const y=scrollY,h=innerHeight;prog.style.width=(y/(document.documentElement.scrollHeight-h)*100)+'%';
+ barra.classList.toggle('on',y>h*.8&&y<document.documentElement.scrollHeight-h*1.6);
+ par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${(r.top-h/2)*-+el.dataset.par}px)`});
+ bgs.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${r.top*.06}px) scale(${1+Math.max(0,-r.top)/4000})`});}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});onScroll();
+</script>
+</body>
+</html>
