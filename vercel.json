@@ -1,7 +1,14 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
+      "destination": "/inicio",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/inicio",
       "destination": "/landing/index.html"
     },
     {
