@@ -1,7 +1,28 @@
-{ "rewrites": [
-  { "source": "/grupodelsol", "destination": "/invitaciones/grupodelsol.html" },
-  { "source": "/arzobispado", "destination": "/invitaciones/arzobispado.html" },
-  { "source": "/baluarte", "destination": "/invitaciones/baluarte.html" },
-  { "source": "/epoca", "destination": "/invitaciones/epoca.html" },
-  { "source": "/(.*)", "destination": "/index.html" }
-] }
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/landing/index.html"
+    },
+    {
+      "source": "/grupodelsol",
+      "destination": "/invitaciones/grupodelsol.html"
+    },
+    {
+      "source": "/arzobispado",
+      "destination": "/invitaciones/arzobispado.html"
+    },
+    {
+      "source": "/baluarte",
+      "destination": "/invitaciones/baluarte.html"
+    },
+    {
+      "source": "/epoca",
+      "destination": "/invitaciones/epoca.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
