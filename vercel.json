@@ -21,6 +21,10 @@
       "destination": "/invitaciones/epoca.html"
     },
     {
+      "source": "/social",
+      "destination": "/social/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
