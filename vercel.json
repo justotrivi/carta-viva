@@ -32,6 +32,10 @@
       "destination": "/social/index.html"
     },
     {
+      "source": "/elbaluarte",
+      "destination": "/elbaluarte/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

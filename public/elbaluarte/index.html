@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El Baluarte San Francisco Javier · Bar, restaurante y tapas sobre la muralla · Cartagena</title>
+<meta name="description" content="Bar, restaurante y tapas sobre la muralla de Cartagena, frente al mar Caribe. Atardeceres, cocteles de autor, música en vivo, bodas y eventos privados desde 1987.">
+<meta property="og:title" content="El Baluarte San Francisco Javier · Cartagena">
+<meta property="og:description" content="Atardeceres sobre la muralla, cocteles de autor, tapas del Caribe, música en vivo, bodas y eventos.">
+<meta property="og:image" content="https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_02.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0D1119">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D1119;--bg2:#151B26;--bg3:#1B2230;--fg:#F3ECE2;--muted:#A9A7A3;--acc:#E07A3F;--acc2:#F2B27A;--line:rgba(224,122,63,.28);--btnfg:#1A0D05;--lang-acc:#F2B27A;--lang-fg:#111}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.eyebrow{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--acc);font-weight:500}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05}
+h2{font-size:clamp(2.2rem,6.5vw,3.9rem);margin:.6rem 0 1rem}
+h2 em,h1 em{color:var(--acc2);font-style:italic}
+h3{font-size:1.7rem}
+p.lead{color:var(--muted);font-size:1rem;max-width:36rem}
+section{position:relative;padding:6rem 1.4rem}
+.wrap{max-width:1140px;margin:0 auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.6rem;border-radius:999px;font:500 .74rem Montserrat,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;transition:transform .2s,background .3s,color .3s}
+.btn:active{transform:scale(.96)}
+.btn-acc{background:linear-gradient(120deg,var(--acc),var(--acc2) 45%,var(--acc));background-size:220% 100%;color:var(--btnfg);box-shadow:0 10px 30px -12px var(--acc);animation:sheen 5s linear infinite}
+@keyframes sheen{0%{background-position:100% 0}100%{background-position:-120% 0}}
+.btn-ghost{border:1px solid rgba(243,236,226,.35);color:var(--fg);background:rgba(0,0,0,.15)}
+.btn-ghost:hover{border-color:var(--acc2);color:var(--acc2)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.7rem 7.2rem .7rem 1.2rem;transition:background .4s,backdrop-filter .4s}
+header.sc{background:rgba(13,17,25,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .marca{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+header .marca img{height:38px;width:auto}
+header .marca span{font-family:"Cormorant Garamond",serif;font-size:1.15rem;letter-spacing:.06em}
+nav.menu{display:flex;gap:1.6rem}
+nav.menu a{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:rgba(243,236,226,.8)}
+nav.menu a:hover{color:var(--acc2)}
+.hamb{display:none;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:99px;width:40px;height:40px;cursor:pointer}
+@media(max-width:900px){nav.menu{position:fixed;inset:0;background:rgba(13,17,25,.97);flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;pointer-events:none;transition:opacity .35s}nav.menu.on{opacity:1;pointer-events:auto}nav.menu a{font-size:.95rem}.hamb{display:grid;place-items:center;position:relative;z-index:101}header .marca span{display:none}}
+
+/* hero */
+#inicio{min-height:100svh;display:flex;align-items:flex-end;padding:0;overflow:hidden}
+.slides{position:absolute;inset:0}
+.slides div{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.08);transition:opacity 1.6s ease,transform 8s ease}
+.slides div.on{opacity:1;transform:scale(1)}
+#inicio::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,17,25,.55) 0%,rgba(13,17,25,.1) 35%,rgba(13,17,25,.75) 72%,var(--bg) 100%)}
+.sol{position:absolute;right:-8vmax;top:8vh;width:42vmax;height:42vmax;border-radius:50%;background:radial-gradient(circle,rgba(242,178,122,.35),rgba(224,122,63,.08) 55%,transparent 70%);z-index:1;animation:late 7s ease-in-out infinite}
+@keyframes late{50%{transform:scale(1.07)}}
+.hero-in{position:relative;z-index:2;padding:0 1.4rem 4.5rem;max-width:1140px;margin:0 auto;width:100%}
+.hero-in img.logo{width:92px;margin-bottom:1.4rem}
+h1{font-size:clamp(2.8rem,10vw,6.2rem);max-width:12ch}
+.hero-in p{color:rgba(243,236,226,.85);max-width:32rem;margin:1.1rem 0 1.8rem}
+.row{display:flex;gap:.7rem;flex-wrap:wrap}
+.hechos{display:flex;gap:2.4rem;margin-top:2.6rem;flex-wrap:wrap}
+.hechos div b{display:block;font-family:"Cormorant Garamond",serif;font-size:2.2rem;font-weight:500;color:var(--acc2);line-height:1}
+.hechos div span{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+/* cinta */
+.cinta{overflow:hidden;border-block:1px solid var(--line);background:var(--bg2);padding:1rem 0}
+.cinta div{display:flex;gap:2.6rem;white-space:nowrap;animation:cin 38s linear infinite;width:max-content}
+.cinta span{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1.35rem;color:var(--acc2)}
+.cinta span::after{content:"✦";font-style:normal;color:var(--acc);margin-left:2.6rem;font-size:.8rem}
+@keyframes cin{to{transform:translateX(-50%)}}
+
+/* historia */
+.hist{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hist .foto{aspect-ratio:4/5;overflow:hidden;border-radius:220px 220px 6px 6px;border:1px solid var(--line)}
+.hist .foto img{width:100%;height:115%;object-fit:cover}
+.linea{margin-top:2rem;border-left:1px solid var(--line);padding-left:1.4rem}
+.linea div{position:relative;margin-bottom:1.3rem}
+.linea div::before{content:"";position:absolute;left:-1.72rem;top:.45rem;width:9px;height:9px;border-radius:50%;background:var(--acc)}
+.linea b{font-family:"Cormorant Garamond",serif;font-size:1.6rem;font-weight:500;color:var(--acc2);margin-right:.6rem}
+.linea span{color:var(--muted);font-size:.92rem}
+@media(max-width:820px){.hist{grid-template-columns:1fr;gap:2.4rem}}
+
+/* experiencia */
+#experiencia{background:var(--bg2)}
+.momentos{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.6rem}
+.mom{position:relative;aspect-ratio:3/4.4;overflow:hidden;border-radius:6px;border:1px solid var(--line)}
+.mom img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.mom:hover img{transform:scale(1.06)}
+.mom::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(13,17,25,.95))}
+.mom .tx{position:absolute;left:0;right:0;bottom:0;padding:1.3rem;z-index:1}
+.mom .n{font-size:.6rem;letter-spacing:.25em;color:var(--acc2)}
+.mom h3{margin:.3rem 0 .4rem}
+.mom p{font-size:.84rem;color:rgba(243,236,226,.78)}
+@media(max-width:900px){.momentos{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.momentos{grid-template-columns:1fr}.mom{aspect-ratio:4/3.6}}
+
+/* carta */
+.carta{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.6rem}
+.carta>div{background:var(--bg);padding:2rem 1.5rem}
+.carta .ico{font-family:"Cormorant Garamond",serif;font-size:2.6rem;color:var(--acc);line-height:1}
+.carta h3{margin:.8rem 0 .5rem}
+.carta p{font-size:.88rem;color:var(--muted)}
+.cartaPie{display:flex;justify-content:space-between;align-items:center;gap:1.2rem;flex-wrap:wrap;margin-top:1.6rem;padding:1.4rem 1.6rem;border:1px dashed var(--line);border-radius:6px}
+.cartaPie p{font-size:.9rem;color:var(--muted);max-width:40rem}
+@media(max-width:900px){.carta{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.carta{grid-template-columns:1fr}}
+
+/* eventos */
+#eventos{background:linear-gradient(180deg,var(--bg2),var(--bg))}
+.ev{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5rem;align-items:start}
+.tipos{display:grid;gap:.8rem;margin-top:1.8rem}
+.tipo{display:flex;gap:1rem;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.02)}
+.tipo b{font-family:"Cormorant Garamond",serif;font-size:1.35rem;font-weight:500;display:block}
+.tipo span{font-size:.86rem;color:var(--muted)}
+.tipo i{font-style:normal;color:var(--acc);font-size:1.3rem}
+form.cot{background:var(--bg3);border:1px solid var(--line);border-radius:8px;padding:1.8rem}
+form.cot h3{margin-bottom:.4rem}
+form.cot p{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem}
+form.cot label{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc2);margin:1rem 0 .4rem}
+form.cot input,form.cot select,form.cot textarea{width:100%;background:var(--bg);border:1px solid rgba(243,236,226,.18);border-radius:4px;color:var(--fg);font:300 .95rem Montserrat,sans-serif;padding:.8rem .9rem}
+form.cot textarea{min-height:80px;resize:vertical}
+form.cot .dos{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+form.cot .btn{width:100%;margin-top:1.4rem}
+.fin{margin-top:2.6rem;display:grid;grid-template-columns:auto 1fr auto;gap:1.4rem;align-items:center;padding:1.4rem;border:1px solid var(--acc);border-radius:8px;background:linear-gradient(120deg,rgba(224,122,63,.14),transparent)}
+.fin .an{font-family:"Cormorant Garamond",serif;font-size:3rem;color:var(--acc2);line-height:1}
+.fin p{color:rgba(243,236,226,.85);font-size:.92rem}
+@media(max-width:820px){.ev{grid-template-columns:1fr}.fin{grid-template-columns:1fr}}
+
+/* galeria */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:.6rem;margin-top:2.4rem}
+.gal div{background-size:cover;background-position:center;border-radius:4px;cursor:zoom-in;transition:filter .4s}
+.gal div:hover{filter:brightness(1.15)}
+.gal .w{grid-column:span 2}.gal .t{grid-row:span 2}
+@media(max-width:700px){.gal{grid-template-columns:1fr 1fr;grid-auto-rows:160px}}
+#lb{position:fixed;inset:0;z-index:300;background:rgba(5,7,10,.95);display:none;align-items:center;justify-content:center;padding:1rem;cursor:zoom-out}
+#lb.on{display:flex}#lb img{max-height:90vh;border-radius:4px}
+
+/* visitanos */
+.vis{display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:stretch}
+.datos{display:grid;gap:1rem;margin-top:1.6rem}
+.datos div{border-bottom:1px solid var(--line);padding-bottom:.9rem}
+.datos small{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acc2)}
+.datos span{font-size:.98rem}
+.mapa{border-radius:8px;overflow:hidden;border:1px solid var(--line);min-height:380px;filter:grayscale(.35) contrast(1.05)}
+.mapa iframe{width:100%;height:100%;min-height:380px;border:0}
+@media(max-width:820px){.vis{grid-template-columns:1fr}}
+
+/* grupo */
+#grupo{background:var(--bg2);padding-block:4.5rem}
+.otros{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+.otro{position:relative;height:230px;border-radius:6px;overflow:hidden;text-decoration:none;border:1px solid var(--line)}
+.otro div{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1s}
+.otro:hover div{transform:scale(1.05)}
+.otro::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(13,17,25,.92))}
+.otro span{position:absolute;left:1.2rem;bottom:1.1rem;z-index:1}
+.otro small{display:block;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--acc2)}
+.otro b{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:500}
+@media(max-width:600px){.otros{grid-template-columns:1fr}}
+
+/* final */
+#reservar{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+#reservar .bgi{position:absolute;inset:0;background:url(https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_02.jpg) center/cover;filter:brightness(.4)}
+#reservar .in{position:relative;max-width:40rem}
+#reservar p.lead{margin:0 auto 1.8rem}
+footer{padding:2.4rem 1.4rem 6rem;text-align:center;font-size:.72rem;color:var(--muted);border-top:1px solid var(--line)}
+footer a{color:var(--acc2);text-decoration:none}
+footer .redes{display:flex;justify-content:center;gap:1.4rem;margin-bottom:1rem;letter-spacing:.2em;text-transform:uppercase;font-size:.66rem}
+.by{margin-top:1rem;letter-spacing:.25em;font-size:.6rem}
+.flot{position:fixed;right:1rem;bottom:1rem;z-index:150;display:flex;align-items:center;gap:.5rem;background:#25D366;color:#06260f;font:600 .72rem Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 1.1rem;border-radius:99px;text-decoration:none;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)}
+.flot svg{width:20px;height:20px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<script>
+const G='https://grupodelsolsas.com/wp-content/uploads/2017/',H=i=>`https://synergy.booking-channel.com/api/hotels/2446/medias/${i}`,E='https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/';
+const WA='573174288954';
+const T={
+es:{soy:' (Soy {n})',
+ nInicio:'Inicio',nExp:'La experiencia',nCarta:'Carta',nEv:'Eventos y bodas',nGal:'Galería',nVis:'Visítanos',nRes:'Reservar',
+ eyeHero:'Bar · Restaurante · Tapas · Desde 1987',h1:'Donde el sol <em>se despide</em> de Cartagena',
+ heroP:'Sobre el trozo más hermoso de la muralla, frente al mar Caribe: atardeceres, cocteles de autor, tapas del Caribe y música en vivo.',
+ cta1:'Reservar mesa',cta2:'Cotizar un evento',
+ hecho1:'Construido',hecho2:'Abre El Baluarte',hecho3:'Frente al mar',
+ cinta:['Desde 1630','Atardeceres sobre la muralla','Cocteles de autor','Tapas del Caribe','Música en vivo','Bodas y eventos','Frente al mar Caribe'],
+ heye:'Nuestra historia',htit:'Una fortaleza de 1630, <em>vivida cada noche</em>',
+ htxt:'El Gobernador Francisco de Murga levantó este baluarte para defender la ciudad de los ataques enemigos. Hoy, desde lo alto de la muralla, se ven las torres del Centro Histórico, la Plaza Santa Teresa y la bahía, todo en una sola mirada.',
+ hitos:[['1630','Se construye el Baluarte de San Francisco Javier para defender la ciudad.'],['1987','Grupo Del Sol abre El Baluarte: noches de música, cocteles y eventos sobre la muralla.'],['Hoy','Un mirador gastronómico para ver caer el sol frente al Caribe.']],
+ eeye:'La experiencia',etit:'La noche <em>en cuatro tiempos</em>',
+ moms:[['El atardecer','Las puestas de sol más mágicas de Cartagena, vistas desde lo alto de la muralla.'],['Cocteles de autor','Coctelería de autor y una extensa carta de licores, con el mar al frente.'],['Tapas del Caribe','La propuesta del chef parte de la cocina colombiana, con sabores del Caribe para compartir.'],['Música en vivo','Cuando cae la noche sale la banda: ritmos colombianos y caribeños hasta tarde.']],
+ ceye:'Carta',ctit:'Para compartir <em>frente al mar</em>',
+ cartas:[['Tapas del Caribe','Bocados para compartir con sabores de la costa, pensados para la hora del atardecer.'],['Platos de la casa','Cocina colombiana de mar y tierra, con el toque del chef.'],['Cocteles de autor','Creaciones de la casa con frutas tropicales y destilados de la región.'],['Licores y vinos','Una carta amplia de rones, whiskies, tequilas, vinos y cervezas frías.']],
+ cartaNota:'¿Quieres ver la carta del día con precios? Escríbenos y te la enviamos por WhatsApp antes de venir.',cartaBtn:'Pedir la carta',
+ wCarta:'Hola, ¿me envían la carta de El Baluarte con precios?',
+ vEye:'Eventos privados',vTit:'Tu celebración <em>sobre la muralla</em>',
+ vTxt:'El Baluarte abre sus puertas para bodas, cumpleaños, cenas de empresa y celebraciones privadas, con el atardecer de Cartagena como escenario.',
+ tipos:[['Bodas','Ceremonia y fiesta frente al mar, con la ciudad amurallada de fondo.'],['Celebraciones','Cumpleaños, aniversarios y despedidas con música en vivo.'],['Corporativos','Cócteles de bienvenida, cenas de empresa e incentivos para grupos.']],
+ fTit:'Cotiza tu evento',fTxt:'Cuéntanos lo básico y te respondemos por WhatsApp.',
+ fTipo:'Tipo de evento',fFecha:'Fecha',fInv:'Invitados',fNom:'Tu nombre',fNota:'Algo más',fBtn:'Enviar por WhatsApp',
+ tipoOpts:['Boda','Cumpleaños','Evento corporativo','Cena privada','Otro'],
+ wEv:'Hola, quiero cotizar un evento en El Baluarte.\n• Tipo: {t}\n• Fecha: {f}\n• Invitados: {i}\n• Nombre: {n}\n• Nota: {x}',
+ finK:'Fin de año',finTxt:'Recibe el 2027 con música, gastronomía y la magia de Cartagena sobre la muralla.',finB1:'Ver la información',finB2:'Quiero mi cupo',
+ wFin:'Hola, quiero información y reserva para la fiesta de fin de año en El Baluarte.',
+ geye:'Galería',gtit:'Así se vive <em>El Baluarte</em>',
+ veye:'Visítanos',vtit:'Llega <em>antes del atardecer</em>',
+ vtxt:'Estamos sobre la muralla del Centro Histórico, frente a la Plaza Santa Teresa y el mar. Un paseo por la ciudad antigua con el sol cayendo al fondo: así empieza la noche.',
+ datos:[['Dónde','Baluarte de San Francisco Javier, sobre la muralla · Centro Histórico, Cartagena'],['Mejor momento','Al atardecer. Recomendamos reservar, sobre todo fines de semana y temporada.'],['Reservas','WhatsApp +57 317 428 8954'],['Instagram','@baluartesfj']],
+ llegar:'Cómo llegar',
+ oeye:'Grupo Del Sol',otit:'Conoce <em>también</em>',
+ otros:[['Hotel boutique · Siglo XVII','Casa del Arzobispado'],['All-day café bar','Época Café']],
+ reye:'Tu mesa frente al mar',rtit:'Ven a ver <em>caer el sol</em>',rtxt:'Escríbenos y te guardamos la mejor mesa para el atardecer, una celebración o un evento privado.',rbtn:'Reservar por WhatsApp',
+ wRes:'Hola, quiero reservar una mesa en El Baluarte San Francisco Javier.',flot:'Reservar',
+ pie:'El Baluarte San Francisco Javier · Grupo Del Sol · Cartagena de Indias',ley:'El exceso de alcohol es perjudicial para la salud. Prohíbase el expendio de bebidas embriagantes a menores de edad.',by:'SITIO WEB · <b>SOCIAL</b>'},
+en:{soy:' (My name is {n})',
+ nInicio:'Home',nExp:'The experience',nCarta:'Menu',nEv:'Events & weddings',nGal:'Gallery',nVis:'Visit us',nRes:'Book',
+ eyeHero:'Bar · Restaurant · Tapas · Since 1987',h1:'Where the sun <em>says goodbye</em> to Cartagena',
+ heroP:'On the most beautiful stretch of the city walls, facing the Caribbean Sea: sunsets, signature cocktails, Caribbean tapas and live music.',
+ cta1:'Book a table',cta2:'Plan an event',
+ hecho1:'Built',hecho2:'El Baluarte opens',hecho3:'By the sea',
+ cinta:['Since 1630','Sunsets on the city walls','Signature cocktails','Caribbean tapas','Live music','Weddings & events','Facing the Caribbean'],
+ heye:'Our story',htit:'A 1630 fortress, <em>alive every night</em>',
+ htxt:'Governor Francisco de Murga raised this bastion to defend the city from enemy attacks. Today, from the top of the wall, you can see the towers of the Historic Center, Plaza Santa Teresa and the bay in a single glance.',
+ hitos:[['1630','The San Francisco Javier bastion is built to defend the city.'],['1987','Grupo Del Sol opens El Baluarte: nights of music, cocktails and events on the walls.'],['Today','A dining lookout to watch the sun go down over the Caribbean.']],
+ eeye:'The experience',etit:'The night <em>in four moments</em>',
+ moms:[['The sunset','Cartagena’s most magical sunsets, seen from the top of the colonial wall.'],['Signature cocktails','Signature mixology and an extensive spirits list, with the sea in front of you.'],['Caribbean tapas','The chef’s menu is rooted in Colombian cooking, with Caribbean flavors to share.'],['Live music','When night falls the band comes out: Colombian and Caribbean rhythms until late.']],
+ ceye:'Menu',ctit:'To share <em>by the sea</em>',
+ cartas:[['Caribbean tapas','Bites to share with coastal flavors, made for sunset hour.'],['House plates','Colombian surf and turf with the chef’s touch.'],['Signature cocktails','House creations with tropical fruit and regional spirits.'],['Spirits & wine','A wide list of rums, whiskies, tequilas, wines and cold beers.']],
+ cartaNota:'Want to see today’s menu with prices? Message us and we’ll send it on WhatsApp before you come.',cartaBtn:'Ask for the menu',
+ wCarta:'Hi, could you send me El Baluarte’s menu with prices?',
+ vEye:'Private events',vTit:'Your celebration <em>on the city walls</em>',
+ vTxt:'El Baluarte opens its doors for weddings, birthdays, company dinners and private celebrations, with Cartagena’s sunset as the backdrop.',
+ tipos:[['Weddings','Ceremony and party by the sea, with the walled city behind you.'],['Celebrations','Birthdays, anniversaries and send-offs with live music.'],['Corporate','Welcome cocktails, company dinners and group incentives.']],
+ fTit:'Get a quote',fTxt:'Tell us the basics and we’ll reply on WhatsApp.',
+ fTipo:'Type of event',fFecha:'Date',fInv:'Guests',fNom:'Your name',fNota:'Anything else',fBtn:'Send on WhatsApp',
+ tipoOpts:['Wedding','Birthday','Corporate event','Private dinner','Other'],
+ wEv:'Hi, I’d like a quote for an event at El Baluarte.\n• Type: {t}\n• Date: {f}\n• Guests: {i}\n• Name: {n}\n• Note: {x}',
+ finK:'New Year’s Eve',finTxt:'Ring in 2027 with music, great food and the magic of Cartagena on the city walls.',finB1:'See the details',finB2:'Save my spot',
+ wFin:'Hi, I’d like information and a reservation for the New Year’s Eve party at El Baluarte.',
+ geye:'Gallery',gtit:'This is <em>El Baluarte</em>',
+ veye:'Visit us',vtit:'Arrive <em>before sunset</em>',
+ vtxt:'We are on the walls of the Historic Center, facing Plaza Santa Teresa and the sea. A stroll through the old city with the sun going down: that’s how the night begins.',
+ datos:[['Where','San Francisco Javier bastion, on the city walls · Historic Center, Cartagena'],['Best time','At sunset. We recommend booking ahead, especially on weekends and in high season.'],['Bookings','WhatsApp +57 317 428 8954'],['Instagram','@baluartesfj']],
+ llegar:'Get directions',
+ oeye:'Grupo Del Sol',otit:'Discover <em>more</em>',
+ otros:[['Boutique hotel · 17th century','Casa del Arzobispado'],['All-day café bar','Época Café']],
+ reye:'Your table by the sea',rtit:'Come watch <em>the sun go down</em>',rtxt:'Message us and we’ll save you the best table for sunset, a celebration or a private event.',rbtn:'Book on WhatsApp',
+ wRes:'Hi, I’d like to book a table at El Baluarte San Francisco Javier.',flot:'Book',
+ pie:'El Baluarte San Francisco Javier · Grupo Del Sol · Cartagena de Indias',ley:'Drink responsibly. Sale of alcohol to minors is prohibited.',by:'WEBSITE · <b>SOCIAL</b>'}};
+</script>
+<script src="/invitaciones/i18n.js"></script>
+
+<header id="hdr">
+  <a class="marca" href="#inicio"><img src="https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_logo.gif" alt="El Baluarte San Francisco Javier"><span>El Baluarte</span></a>
+  <nav class="menu" id="menu">
+    <a href="#inicio" data-i="nInicio"></a><a href="#experiencia" data-i="nExp"></a><a href="#carta" data-i="nCarta"></a><a href="#eventos" data-i="nEv"></a><a href="#galeria" data-i="nGal"></a><a href="#visitanos" data-i="nVis"></a><a href="#reservar" data-i="nRes"></a>
+  </nav>
+  <button class="hamb" id="hamb" aria-label="Menú">☰</button>
+</header>
+
+<section id="inicio">
+  <div class="slides" id="slides"></div>
+  <div class="sol"></div>
+  <div class="hero-in">
+    <img class="logo rv" src="https://grupodelsolsas.com/wp-content/uploads/2017/08/baluarte_logo.gif" alt="">
+    <div class="eyebrow rv d1" data-i="eyeHero"></div>
+    <h1 class="rv d1" data-i="h1"></h1>
+    <p class="rv d2" data-i="heroP"></p>
+    <div class="row rv d3"><a class="btn btn-acc" target="_blank" rel="noopener" id="ctaRes" data-i="cta1"></a><a class="btn btn-ghost" href="#eventos" data-i="cta2"></a></div>
+    <div class="hechos rv d3"><div><b>1630</b><span data-i="hecho1"></span></div><div><b>1987</b><span data-i="hecho2"></span></div><div><b>Caribe</b><span data-i="hecho3"></span></div></div>
+  </div>
+</section>
+<div class="cinta"><div id="cinta"></div></div>
+
+<section id="historia"><div class="wrap hist">
+  <div class="foto rv"><img data-par=".1" src="https://synergy.booking-channel.com/api/hotels/2446/medias/355" alt="El Baluarte de noche"></div>
+  <div><div class="eyebrow rv" data-i="heye"></div><h2 class="rv d1" data-i="htit"></h2><p class="lead rv d2" data-i="htxt"></p><div class="linea rv d3" id="linea"></div></div>
+</div></section>
+
+<section id="experiencia"><div class="wrap">
+  <div class="eyebrow rv" data-i="eeye"></div><h2 class="rv d1" data-i="etit"></h2>
+  <div class="momentos" id="momentos"></div>
+</div></section>
+
+<section id="carta"><div class="wrap">
+  <div class="eyebrow rv" data-i="ceye"></div><h2 class="rv d1" data-i="ctit"></h2>
+  <div class="carta rv d2" id="cartaGrid"></div>
+  <div class="cartaPie rv"><p data-i="cartaNota"></p><a class="btn btn-ghost" target="_blank" rel="noopener" id="ctaCarta" data-i="cartaBtn"></a></div>
+</div></section>
+
+<section id="eventos"><div class="wrap">
+  <div class="ev">
+    <div><div class="eyebrow rv" data-i="vEye"></div><h2 class="rv d1" data-i="vTit"></h2><p class="lead rv d2" data-i="vTxt"></p><div class="tipos" id="tipos"></div></div>
+    <form class="cot rv d2" id="cot">
+      <h3 data-i="fTit"></h3><p data-i="fTxt"></p>
+      <label for="fTipo" data-i="fTipo"></label><select id="fTipo"></select>
+      <div class="dos"><div><label for="fFecha" data-i="fFecha"></label><input id="fFecha" type="date"></div><div><label for="fInv" data-i="fInv"></label><input id="fInv" type="number" min="1" placeholder="50"></div></div>
+      <label for="fNom" data-i="fNom"></label><input id="fNom" autocomplete="name">
+      <label for="fNota" data-i="fNota"></label><textarea id="fNota"></textarea>
+      <button class="btn btn-acc" type="submit" data-i="fBtn"></button>
+    </form>
+  </div>
+  <div class="fin rv"><div class="an">2027</div><div><div class="eyebrow" data-i="finK"></div><p data-i="finTxt"></p></div><div class="row"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.hotelcasadelarzobispado.com/templates/cadenas/air/images/hotels/SYN2446/fiesta_info_es.pdf" data-i="finB1"></a><a class="btn btn-acc" target="_blank" rel="noopener" id="ctaFin" data-i="finB2"></a></div></div>
+</div></section>
+
+<section id="galeria"><div class="wrap">
+  <div class="eyebrow rv" data-i="geye"></div><h2 class="rv d1" data-i="gtit"></h2>
+  <div class="gal" id="gal"></div>
+</div></section>
+<div id="lb"><img alt=""></div>
+
+<section id="visitanos"><div class="wrap vis">
+  <div><div class="eyebrow rv" data-i="veye"></div><h2 class="rv d1" data-i="vtit"></h2><p class="lead rv d2" data-i="vtxt"></p><div class="datos rv d3" id="datos"></div>
+    <div class="row rv" style="margin-top:1.6rem"><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=El+Baluarte+San+Francisco+Javier+Cartagena" data-i="llegar"></a><a class="btn btn-ghost" target="_blank" rel="noopener" href="https://www.instagram.com/baluartesfj/">Instagram</a></div></div>
+  <div class="mapa rv d2"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa El Baluarte" src="https://www.google.com/maps?q=El+Baluarte+San+Francisco+Javier,+Cartagena&output=embed"></iframe></div>
+</div></section>
+
+<section id="grupo"><div class="wrap">
+  <div class="eyebrow rv" data-i="oeye"></div><h2 class="rv d1" data-i="otit"></h2>
+  <div class="otros" id="otros"></div>
+</div></section>
+
+<section id="reservar"><div class="bgi"></div><div class="in">
+  <div class="eyebrow rv" data-i="reye"></div><h2 class="rv d1" data-i="rtit"></h2><p class="lead rv d2" data-i="rtxt"></p>
+  <a class="btn btn-acc rv d3" target="_blank" rel="noopener" id="ctaFinal" data-i="rbtn"></a>
+</div></section>
+
+<footer>
+  <div class="redes"><a href="https://www.instagram.com/baluartesfj/" target="_blank" rel="noopener">Instagram</a><a href="/grupodelsol">Grupo Del Sol</a><a id="ftWa" target="_blank" rel="noopener">WhatsApp</a></div>
+  <div data-i="pie"></div><div style="margin-top:.5rem;font-size:.62rem" data-i="ley"></div>
+  <div class="by" data-i="by"></div>
+</footer>
+<a class="flot" id="flot" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.1.1.7-.1 1.3z"/></svg><span data-i="flot"></span></a>
+
+<script>
+const HERO=[G+'08/baluarte_02.jpg',G+'10/slider04-1.jpg',G+'08/baluarte_01.jpg',H(355)];
+const MOMF=[G+'08/baluarte_01.jpg',G+'08/header01-1.jpg',H(365),G+'10/slider04-1.jpg'];
+const GAL=[[G+'08/baluarte_02.jpg','t'],[G+'10/slider04-1.jpg','w'],[G+'08/baluarte_01.jpg',''],[H(355),''],[G+'08/header01-1.jpg','w'],[H(365),'w']];
+const OTROS=[{href:'/arzobispado',f:H(101)},{href:'/epoca',f:G+'10/slider03.jpg'}];
+const ICO=['✦','◈','❋','◎'];
+const wa=t=>waLink(WA,t);
+document.getElementById('slides').innerHTML=HERO.map((f,i)=>`<div class="${i?'':'on'}" style="background-image:url(${f})"></div>`).join('');
+let si=0;setInterval(()=>{const s=document.querySelectorAll('#slides div');s[si].classList.remove('on');si=(si+1)%s.length;s[si].classList.add('on')},5500);
+document.getElementById('gal').innerHTML=GAL.map(([f,c])=>`<div class="${c} rv" data-f="${f}" style="background-image:url(${f})"></div>`).join('');
+document.getElementById('gal').onclick=e=>{const d=e.target.closest('[data-f]');if(!d)return;const lb=document.getElementById('lb');lb.querySelector('img').src=d.dataset.f;lb.classList.add('on')};
+document.getElementById('lb').onclick=()=>document.getElementById('lb').classList.remove('on');
+function render(){const L=T[LANG]||T.es;
+ document.getElementById('cinta').innerHTML=[...L.cinta,...L.cinta].map(c=>`<span>${c}</span>`).join('');
+ document.getElementById('linea').innerHTML=L.hitos.map(([a,t])=>`<div><b>${a}</b><span>${t}</span></div>`).join('');
+ document.getElementById('momentos').innerHTML=L.moms.map(([n,d],i)=>`<article class="mom rv in"><img src="${MOMF[i]}" alt="" loading="lazy"><div class="tx"><div class="n">0${i+1}</div><h3>${n}</h3><p>${d}</p></div></article>`).join('');
+ document.getElementById('cartaGrid').innerHTML=L.cartas.map(([n,d],i)=>`<div><div class="ico">${ICO[i]}</div><h3>${n}</h3><p>${d}</p></div>`).join('');
+ document.getElementById('tipos').innerHTML=L.tipos.map(([n,d])=>`<div class="tipo rv in"><i>✦</i><div><b>${n}</b><span>${d}</span></div></div>`).join('');
+ document.getElementById('fTipo').innerHTML=L.tipoOpts.map(o=>`<option>${o}</option>`).join('');
+ document.getElementById('datos').innerHTML=L.datos.map(([k,v])=>`<div><small>${k}</small><span>${v}</span></div>`).join('');
+ document.getElementById('otros').innerHTML=L.otros.map(([k,n],i)=>`<a class="otro rv in" href="${link(OTROS[i].href)}"><div style="background-image:url(${OTROS[i].f})"></div><span><small>${k}</small><b>${n}</b></span></a>`).join('');
+ ['ctaRes','ctaFinal','flot','ftWa'].forEach(id=>document.getElementById(id).href=wa(L.wRes));
+ document.getElementById('ctaCarta').href=wa(L.wCarta);
+ document.getElementById('ctaFin').href=wa(L.wFin);
+}
+document.getElementById('cot').addEventListener('submit',e=>{e.preventDefault();const L=T[LANG]||T.es,v=id=>document.getElementById(id).value.trim()||'—';
+ const msg=L.wEv.replace('{t}',v('fTipo')).replace('{f}',v('fFecha')).replace('{i}',v('fInv')).replace('{n}',v('fNom')).replace('{x}',v('fNota'));
+ const a=document.createElement('a');a.href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()});
+const hdr=document.getElementById('hdr'),menu=document.getElementById('menu');
+document.getElementById('hamb').onclick=()=>menu.classList.toggle('on');
+menu.addEventListener('click',e=>{if(e.target.tagName==='A')menu.classList.remove('on')});
+const par=document.querySelectorAll('[data-par]');
+addEventListener('scroll',()=>{hdr.classList.toggle('sc',scrollY>40);par.forEach(el=>{const r=el.parentElement.getBoundingClientRect();el.style.transform=`translateY(${(r.top-innerHeight/2)*-+el.dataset.par}px)`})},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+setLang(LANG,false);
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
