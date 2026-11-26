@@ -361,6 +361,8 @@ $('#cform').onsubmit=e=>{e.preventDefault();const v=$('#cmsg').value.trim();if(!
 let chatOn=false;function startChat(){if(chatOn)return;chatOn=true;bot('¡Hola! 👋 Soy el asistente de Época Café.\nTe ayudo a reservar, te cuento el horario, la carta, el café para llevar y eventos. ¿Qué necesitas?')}
 document.addEventListener('click',e=>{if(e.target.closest('#qr button')&&/activar mi tarjeta/i.test(e.target.textContent)){setTimeout(()=>go('Card'),400)}});
 
+/* fotos que no cargan: se quitan de la lista y en el feed se cambian por la portada */
+document.addEventListener('error',e=>{const i=e.target;if(i.tagName!=='IMG')return;if(i.classList.contains('bg')){if(i.src!==PORTADA)i.src=PORTADA}else i.remove()},true);
 /* UI */
 function sheet(h){$('#sheetIn').innerHTML=h;$('#sheet').classList.add('on')}
 function closeSheet(){$('#sheet').classList.remove('on')}
