@@ -40,6 +40,14 @@
       "destination": "/epoca-cafe/index.html"
     },
     {
+      "source": "/baluarte-carta",
+      "destination": "/baluarte-carta/index.html"
+    },
+    {
+      "source": "/carta-baluarte",
+      "destination": "/baluarte-carta/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
