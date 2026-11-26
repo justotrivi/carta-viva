@@ -4,7 +4,8 @@ R = pathlib.Path('/home/claude/carta-viva'); tpl = (R/'tools/lugar.tpl.html').re
 G = 'https://grupodelsolsas.com/wp-content/uploads/2017/'
 H = lambda i: f'https://synergy.booking-channel.com/api/hotels/2446/medias/{i}'
 E = 'https://cdn.shopify.com/s/files/1/0270/8193/2865/t/2/assets/'
-WA = '573175098738'
+# WhatsApp de reservas de cada lugar (confirmados por Justo, 26 nov 2026)
+WA = {'baluarte.html': '573174288954', 'epoca.html': '573008656816'}
 
 COMUN = {
  'es': dict(back='← Grupo Del Sol', descubrir='Descubrir', asoma='Asómate', visita='Para tu visita', llegar='Cómo llegar',
@@ -21,7 +22,7 @@ OTROS_C = {'arz': {'href': '/arzobispado', 'f': H(101)}, 'bal': {'href': '/balua
            'epo': {'href': '/epoca', 'f': G+'10/slider03.jpg'}}
 
 def build(out, theme, C, T, otros):
-    C = dict(C, wa=WA, otros=[OTROS_C[o] for o in otros])
+    C = dict(C, wa=WA[out], otros=[OTROS_C[o] for o in otros])
     for l in ('es', 'en'):
         T[l] = {**COMUN[l], **T[l], 'otros': [OTROS_T[o][l] for o in otros]}
         assert len(T[l]['exp']) == len(C['exp']) and len(T[l]['anios']) == len(C['anios']) and len(T[l]['redes']) == len(C['redes']), (out, l)
