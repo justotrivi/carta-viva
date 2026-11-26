@@ -36,6 +36,10 @@
       "destination": "/elbaluarte/index.html"
     },
     {
+      "source": "/epoca-cafe",
+      "destination": "/epoca-cafe/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

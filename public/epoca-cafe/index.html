@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Época Café · Carta Viva</title>
+<meta name="description" content="Época All Day Café · Cartagena. Carta, tarjeta de la casa y reservas por WhatsApp.">
+<meta name="theme-color" content="#14213F">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14213F;--navy2:#1D2D55;--sky:#CFE5EC;--cream:#F5EFDF;--cream2:#EAE1C8;--ink:#14213F;--mut:#6B7590;--line:#D9D1B8;--gold:#B8945A}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#0B1328}
+body{font-family:Montserrat,system-ui,sans-serif;color:var(--ink);display:flex;justify-content:center}
+.phone{position:relative;width:100%;max-width:430px;height:100vh;height:100dvh;background:var(--cream);overflow:hidden}
+@media(min-width:600px){body{align-items:center;background:radial-gradient(circle at 50% 30%,#1D2D55,#0B1328 70%)}.phone{height:min(900px,96vh);border-radius:36px;box-shadow:0 30px 80px rgba(0,0,0,.5)}}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.serif{font-family:'Cormorant Garamond',serif}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:600;letter-spacing:.18em;line-height:1;text-align:center}
+.logo small{display:block;font-family:Montserrat;font-weight:500;letter-spacing:.22em;font-size:.32em;margin-top:.45em}
+.logo small i{font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:.04em;font-size:1.25em;text-transform:none}
+/* splash */
+#splash{position:absolute;inset:0;z-index:50;background:var(--navy);color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;transition:opacity .5s}
+#splash.out{opacity:0;pointer-events:none}
+#splash .media{position:absolute;inset:0;opacity:.35}
+#splash .media img,#splash .media video{width:100%;height:100%;object-fit:cover}
+#splash .in{position:relative}
+#splash .frame{border:1.5px solid var(--cream);padding:18px 26px;outline:1px solid var(--cream);outline-offset:5px}
+#splash .mesa{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;margin:36px 0 24px}
+.cta{background:var(--cream);color:var(--navy);font-weight:700;padding:15px 34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+/* layout */
+.wrap{position:absolute;inset:0;bottom:62px}
+.page{position:absolute;inset:0;overflow-y:auto;display:none}
+.page.on{display:block}
+.pad{padding:22px 18px 30px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:34px;line-height:1.05;color:var(--navy)}
+.sub{color:var(--mut);font-size:12.5px;margin:6px 0 16px;line-height:1.5}
+.k{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.card{background:#fff;border:1px solid var(--line);padding:18px;margin-bottom:12px}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--navy);margin:4px 0 6px}
+.card p{font-size:13px;color:#3d4660;line-height:1.55}
+.btn{display:block;width:100%;text-align:center;background:var(--navy);color:var(--cream);font-weight:700;padding:13px;margin-top:12px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
+.btn.g{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+/* nav */
+.nav{position:absolute;left:0;right:0;bottom:0;z-index:25;display:flex;background:var(--navy);padding:7px 4px calc(8px + env(safe-area-inset-bottom))}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#8994B3;padding:4px;position:relative}
+.nav button svg{width:20px;height:20px}
+.nav button.on{color:var(--cream)}
+.nav .cnt{position:absolute;top:0;right:calc(50% - 20px);background:var(--cream);color:var(--navy);font-size:10px;font-weight:700;border-radius:10px;padding:1px 6px}
+/* feed */
+#pFeed{background:#000}
+.top{position:absolute;top:0;left:0;right:0;z-index:20;padding:14px 14px 10px;background:linear-gradient(rgba(20,33,63,.9),rgba(20,33,63,0));color:var(--cream)}
+.top .row{display:flex;justify-content:space-between;align-items:center}
+.pill{font-size:10px;letter-spacing:.15em;text-transform:uppercase;border:1px solid rgba(245,239,223,.5);padding:6px 10px}
+.cats{display:flex;gap:6px;overflow-x:auto;margin-top:12px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats button{white-space:nowrap;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;background:rgba(20,33,63,.55);border:1px solid rgba(245,239,223,.35);color:var(--cream)}
+.cats button.on{background:var(--cream);color:var(--navy);font-weight:700}
+#feed{position:absolute;inset:0;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none}
+#feed::-webkit-scrollbar{display:none}
+.slide{position:relative;height:100%;scroll-snap-align:start;overflow:hidden;background:var(--navy)}
+.slide .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,33,63,0) 38%,rgba(20,33,63,.82) 68%,var(--navy) 100%)}
+.info{position:absolute;left:0;right:66px;bottom:26px;padding:0 18px;color:var(--cream)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badges span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;background:rgba(20,33,63,.6);border:1px solid rgba(245,239,223,.4)}
+.badges span.w{background:var(--cream);color:var(--navy);font-weight:700;border-color:var(--cream)}
+.info h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:38px;line-height:1.02}
+.info p{font-size:13px;color:#E4DECB;margin:9px 0 10px;line-height:1.5}
+.price{font-weight:700;font-size:19px}
+.pair{margin-top:10px;font-size:11.5px;color:#C9CFDF}
+.pair b{color:var(--cream)}
+.side{position:absolute;right:10px;bottom:34px;display:flex;flex-direction:column;gap:16px;align-items:center}
+.side button{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--cream)}
+.side .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(20,33,63,.6);border:1px solid rgba(245,239,223,.4)}
+.side .ic svg{width:21px;height:21px}
+.side .add .ic{background:var(--cream);color:var(--navy);border-color:var(--cream)}
+.hint{position:absolute;left:50%;bottom:6px;transform:translateX(-50%);font-size:9px;color:rgba(245,239,223,.7);letter-spacing:.25em}
+/* list */
+.search{width:100%;background:#fff;border:1px solid var(--line);padding:12px 14px;font:inherit;font-size:13px;margin-bottom:4px;color:var(--ink)}
+.chips{display:flex;gap:6px;overflow-x:auto;margin:10px 0 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{white-space:nowrap;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border:1px solid var(--navy);color:var(--navy);text-decoration:none}
+.lsec{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:600;color:var(--navy);margin:26px 0 0;padding-top:4px;border-top:2px solid var(--navy)}
+.lnote{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:4px 0 6px;font-weight:600}
+.litem{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center;cursor:pointer}
+.litem .th{width:62px;height:62px;flex-shrink:0;object-fit:cover;background:var(--cream2)}
+.litem .tx{flex:1;min-width:0}
+.litem .n{font-weight:600;font-size:13.5px;color:var(--navy)}
+.litem .n .rec{font-size:9px;letter-spacing:.14em;text-transform:uppercase;background:var(--navy);color:var(--cream);padding:2px 6px;margin-left:6px;vertical-align:2px}
+.litem .d{font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.litem .tg{font-size:9.5px;color:var(--gold);letter-spacing:.1em;margin-top:3px;font-weight:600}
+.litem .p{font-size:13px;font-weight:700;white-space:nowrap;color:var(--navy)}
+.plus{width:30px;height:30px;border:1px solid var(--navy);color:var(--navy);font-size:18px;line-height:27px;text-align:center;flex-shrink:0}
+/* tarjeta */
+.tcard{background:var(--navy);color:var(--cream);padding:22px 20px;position:relative;overflow:hidden}
+.tcard::after{content:"É";position:absolute;right:-10px;bottom:-40px;font-family:'Cormorant Garamond',serif;font-size:220px;color:rgba(245,239,223,.06);line-height:1}
+.tcard .nm{font-family:'Cormorant Garamond',serif;font-size:28px;margin-top:4px}
+.tcard .lv{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9CFDF}
+.sellos{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:20px 0 6px;position:relative;z-index:1}
+.sello{aspect-ratio:1;border-radius:50%;border:1.5px dashed rgba(245,239,223,.5);display:grid;place-items:center;font-size:12px;font-weight:700;color:rgba(245,239,223,.7);transition:.4s}
+.sello.on{background:var(--cream);border:1.5px solid var(--cream);color:var(--navy);transform:scale(1.05)}
+.sello.gift{border-style:solid;border-color:var(--gold);color:var(--gold)}
+.sello.on.gift{background:var(--gold);color:var(--navy)}
+.regalo{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.regalo .v{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--cream);display:grid;place-items:center;font-weight:700;font-size:13px;flex-shrink:0}
+.regalo b{font-size:13.5px;color:var(--navy);display:block}
+.regalo span{font-size:11.5px;color:var(--mut)}
+label.f{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin:12px 0 5px}
+input.f,select.f{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;font:inherit;font-size:14px;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ok{display:flex;gap:8px;align-items:flex-start;margin-top:12px;font-size:11.5px;color:var(--mut);line-height:1.45}
+.wapre{background:#E7DECA;padding:14px;margin-top:10px}
+.wab{background:#fff;padding:10px 12px;font-size:13px;line-height:1.45;max-width:90%;box-shadow:0 1px 1px rgba(0,0,0,.08);color:#1a1a1a}
+.wab small{display:block;text-align:right;color:#999;font-size:10px;margin-top:4px}
+/* chat */
+#pChat{background:#E7DECA;display:none;flex-direction:column}
+#pChat.on{display:flex}
+.chead{background:var(--navy);color:var(--cream);padding:12px 14px;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.chead .av{width:40px;height:40px;border-radius:50%;background:var(--cream);color:var(--navy);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px}
+.chead b{font-size:14px;display:block}
+.chead span{font-size:11px;color:#C9CFDF}
+#msgs{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:84%;padding:9px 12px 6px;font-size:13.5px;line-height:1.45;box-shadow:0 1px 1px rgba(0,0,0,.08);white-space:pre-line;animation:pop .25s ease}
+.m.bot{background:#fff;align-self:flex-start;border-radius:0 10px 10px 10px}
+.m.me{background:#D7E8EE;align-self:flex-end;border-radius:10px 0 10px 10px}
+.m small{display:block;text-align:right;color:#8a8a8a;font-size:10px;margin-top:3px}
+.m a{color:var(--navy);font-weight:700}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.typing{align-self:flex-start;background:#fff;border-radius:0 10px 10px 10px;padding:10px 14px;display:flex;gap:4px}
+.typing i{width:6px;height:6px;border-radius:50%;background:#999;animation:bl 1s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes bl{50%{opacity:.25}}
+.qr{display:flex;gap:6px;flex-wrap:wrap;padding:6px 12px 2px;flex-shrink:0}
+.qr button{font-size:11.5px;padding:7px 11px;background:#fff;border:1px solid var(--navy);color:var(--navy);font-weight:600}
+.cin{display:flex;gap:8px;padding:8px 10px 10px;flex-shrink:0}
+.cin input{flex:1;border:0;padding:12px 14px;font:inherit;font-size:14px;border-radius:22px;background:#fff}
+.cin button{width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--cream);display:grid;place-items:center}
+.cnote{font-size:10px;text-align:center;color:#7a7360;padding:0 10px 4px;flex-shrink:0}
+/* stars & sheet */
+.stars{display:flex;gap:10px;justify-content:center;margin:10px 0}
+.stars button{font-size:32px;color:var(--cream2)}
+.stars button.on{color:var(--navy)}
+textarea.f{width:100%;border:1px solid var(--line);padding:12px;font:inherit;font-size:13px;min-height:80px;margin-top:10px}
+#toast{position:absolute;left:50%;top:84px;transform:translateX(-50%) translateY(-20px);background:var(--navy);color:var(--cream);font-weight:600;font-size:12px;padding:10px 16px;opacity:0;transition:.3s;z-index:60;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#sheet{position:absolute;inset:0;z-index:40;background:rgba(11,19,40,.6);display:none;align-items:flex-end}
+#sheet.on{display:flex}
+#sheet .in{background:var(--cream);padding:22px 18px 26px;width:100%;max-height:86%;overflow:auto}
+#sheet img.big{width:calc(100% + 36px);margin:-22px -18px 16px;height:280px;object-fit:cover;display:block}
+.demo{position:absolute;top:104px;right:14px;font-size:8.5px;letter-spacing:.2em;color:rgba(245,239,223,.7);z-index:21;pointer-events:none;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="phone" id="ph">
+
+  <div id="splash">
+    <div class="media" id="splashMedia"></div>
+    <div class="in">
+      <div class="frame"><div class="logo" style="font-size:46px">ÉPOCA<small>ALL DAY <i>Café</i></small></div></div>
+      <div class="mesa">Bienvenidos a la mesa 7</div>
+      <button class="cta" id="enter">Ver la carta</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section class="page on" id="pFeed">
+      <div class="top"><div class="row"><div class="logo" style="font-size:22px">ÉPOCA<small>ALL DAY <i>Café</i></small></div><span class="pill">Mesa 7</span></div><div class="cats" id="cats"></div></div>
+      <div id="feed"></div>
+    </section>
+
+    <section class="page" id="pList"><div class="pad">
+      <div class="k">Specialty coffee · comfort food</div>
+      <h1>La carta</h1>
+      <div class="sub">Toca un plato para verlo y + para sumarlo a tu mesa.</div>
+      <input class="search" id="q" placeholder="Buscar: huevos, latte, burger…">
+      <div class="chips" id="jump"></div>
+      <div id="list"></div>
+      <div class="card" style="margin-top:22px"><div class="k">Al terminar</div><h3>¿Cómo estuvo todo?</h3><div class="stars" id="stars"></div><div id="rateOut"></div></div>
+      <div class="sub" style="margin-top:14px">Precios en pesos colombianos. Carta tomada de la carta digital de Época Café Cartagena.</div>
+    </div></section>
+
+    <section class="page" id="pCard"><div class="pad">
+      <div class="k">Tarjeta de la casa</div>
+      <h1>Cada café suma</h1>
+      <div class="sub">10 sellos, 4 regalos. Un sello por visita con consumo, con el PIN del mesero.</div>
+      <div id="cardBox"></div>
+    </div></section>
+
+    <section class="page" id="pChat">
+      <div class="chead"><div class="av">É</div><div><b>Época Café · Cartagena</b><span id="cstat">en línea</span></div></div>
+      <div id="msgs"></div>
+      <div class="qr" id="qr"></div>
+      <form class="cin" id="cform"><input id="cmsg" placeholder="Escribe un mensaje" autocomplete="off"><button type="submit" aria-label="Enviar"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20l18-8L3 4v6l12 2-12 2z"/></svg></button></form>
+      <div class="cnote">Demo del agente · el real responde en el WhatsApp de Época</div>
+    </section>
+
+    <section class="page" id="pMesa"><div class="pad">
+      <h1>Tu mesa</h1>
+      <div class="sub">Arma tu pedido y muéstraselo al mesero.</div>
+      <div id="order"></div>
+      <div class="card"><button class="btn g" id="callW">Llamar al mesero</button><button class="btn g" id="bill">Pedir la cuenta</button></div>
+      <div class="card"><div class="k">Dónde estamos</div><h3>Época Café · Cartagena</h3><p>Centro Histórico, Calle del Arzobispado.<br>Lunes a miércoles 7:30 a. m. – 9:00 p. m.<br>Jueves a sábado 7:30 a. m. – 10:00 p. m.<br>Domingos y festivos 7:30 a. m. – 6:00 p. m.</p><a class="btn g" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%C3%89poca+Caf%C3%A9+Bar+Cartagena">Cómo llegar</a><a class="btn g" target="_blank" rel="noopener" href="https://www.instagram.com/weare.epoca/">Instagram @weare.epoca</a></div>
+    </div></section>
+  </div>
+
+  <div class="demo" id="demoTag">Demo · Carta Viva by SOCIAL</div>
+
+  <div class="nav" id="nav">
+    <button class="on" data-p="Feed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M10.5 9.5l4 2.5-4 2.5z" fill="currentColor"/></svg><span>Descubre</span></button>
+    <button data-p="List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 6h14M5 12h14M5 18h9"/></svg><span>Carta</span></button>
+    <button data-p="Card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="16" cy="12" r="1.6"/></svg><span>Tarjeta</span></button>
+    <button data-p="Chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19l1.4-4A8 8 0 1112 20a8 8 0 01-3.6-.9z"/></svg><span>WhatsApp</span></button>
+    <button data-p="Mesa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h16M6 10v9M18 10v9M8 6h8l2 4H6z"/></svg><span>Mi mesa</span><span class="cnt" id="cnt" style="display:none">0</span></button>
+  </div>
+
+  <div id="sheet"><div class="in" id="sheetIn"></div></div>
+  <div id="toast"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const WA='573008656816';
+const VIDEO='';  /* video de entrada: se agrega cuando llegue */
+const PORTADA=FB+'sx4iHFbniQOUDj53wcTj%2Fmenu%2Fcocina%2FportadaEpocaCafe.jpg1kesnpugd?alt=media&token=98f4f492-9d3b-4132-a023-6cd6b9edcfe4';
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const cop=n=>'$'+n.toLocaleString('es-CO');
+const M=[];CARTA.forEach(c=>c.items.forEach((x,i)=>M.push({id:c.id+'-'+i,cat:c.n,catId:c.id,n:x[0],d:x[1],p:x[2],tg:x[3],img:x[4]?FB+x[4]:'',rec:!!x[5]})));
+const byName=n=>M.find(x=>x.n===n);
+const PAIR={'Eggs benedict':'Cappuccino','Época breakfast':'Americano','Tostadas francesas':'Latte','Huevos rotos con txistorra':'Bloody Mary','Morcilla con huevos':'Americano','Tabla de salmón':'Aperol spritz','Tuna poke salad':'Soda lychee','Cobb salad':'Limonada natural','Roast beef caesar sandwich':'Club Colombia','Carrot cake':'Flat white','Fritos Bazurto':'Club Colombia','Açaí bowl':'Cold brew','Avo toast':'Flat white','Chilaquiles':'Carajillo Época','Época cheeseburger':'Corona','Galleta Milo s’more con helado':'Espresso “siempre doble”'};
+const media=(src,cls)=>/\.mp4/i.test(src)?`<video class="${cls}" src="${src}" autoplay muted loop playsinline></video>`:`<img class="${cls}" src="${src}" alt="">`;
+$('#splashMedia').innerHTML=media(VIDEO||PORTADA,'');
+
+/* FEED */
+const FEED=[{intro:true}].concat(M.filter(x=>x.img&&(x.rec||['completos','ligeros','picar','bowls','dulces','sandwiches'].includes(x.catId))));
+let cat=null;
+function renderFeed(){
+ const cats=[...new Set(FEED.filter(x=>!x.intro).map(x=>x.cat))];
+ $('#cats').innerHTML=`<button class="${!cat?'on':''}" data-c="">Todo</button>`+cats.map(c=>`<button class="${cat==c?'on':''}" data-c="${c}">${c}</button>`).join('');
+ $$('#cats button').forEach(b=>b.onclick=()=>{cat=b.dataset.c||null;renderFeed();$('#feed').scrollTop=0});
+ const items=FEED.filter(x=>x.intro?!cat:(!cat||x.cat==cat));
+ $('#feed').innerHTML=items.map(x=>{
+  if(x.intro)return `<div class="slide">${media(VIDEO||PORTADA,'bg')}<div class="shade"></div><div class="info"><div class="badges"><span class="w">All day café bar</span></div><h2>Specialty coffee, comfort food</h2><p>Café colombiano tostado por Época, brunch todo el día y cócteles clásicos en el Centro Histórico de Cartagena.</p></div><div class="hint">DESLIZA ↑</div></div>`;
+  const pr=PAIR[x.n]?byName(PAIR[x.n]):null;
+  return `<div class="slide"><img class="bg" src="${x.img}" alt="" loading="lazy"><div class="shade"></div>
+  <div class="info"><div class="badges">${x.rec?'<span class="w">Recomendado</span>':''}<span>${x.cat}</span></div><h2>${x.n}</h2><p>${x.d}</p><div class="price">${cop(x.p)}</div>${pr?`<div class="pair">Va perfecto con → <b>${pr.n}</b> · ${cop(pr.p)}</div>`:''}</div>
+  <div class="side"><button class="add" data-add="${x.id}"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span>Pedir</button>
+  ${pr?`<button data-open="${pr.id}"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 7h10v10M7 17L17 7"/></svg></span>Maridaje</button>`:''}
+  <button data-goto="Card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg></span>Sellos</button></div></div>`}).join('');
+ $$('#feed [data-add]').forEach(b=>b.onclick=()=>addItem(b.dataset.add));
+ $$('#feed [data-open]').forEach(b=>b.onclick=()=>openItem(b.dataset.open));
+ $$('#feed [data-goto]').forEach(b=>b.onclick=()=>go(b.dataset.goto));
+}
+
+/* LIST */
+function renderList(){const q=($('#q').value||'').toLowerCase();
+ $('#jump').innerHTML=CARTA.map(c=>`<a href="#s-${c.id}" data-j="${c.id}">${c.n}</a>`).join('');
+ $$('#jump a').forEach(a=>a.onclick=e=>{e.preventDefault();const el=document.getElementById('s-'+a.dataset.j);if(el)$('#pList').scrollTop=el.offsetTop-10});
+ $('#list').innerHTML=CARTA.map(c=>{const its=M.filter(x=>x.catId==c.id&&(!q||(x.n+' '+x.d+' '+x.cat).toLowerCase().includes(q)));if(!its.length)return'';
+  return `<div class="lsec" id="s-${c.id}">${c.n}</div>${c.nota?`<div class="lnote">${c.nota}</div>`:''}`+its.map(x=>`<div class="litem" data-o="${x.id}">${x.img?`<img class="th" src="${x.img}" alt="" loading="lazy">`:''}<div class="tx"><div class="n">${x.n}${x.rec?'<span class="rec">Recomendado</span>':''}</div>${x.d?`<div class="d">${x.d}</div>`:''}${x.tg?`<div class="tg">${x.tg}</div>`:''}</div><div class="p">${cop(x.p)}</div><button class="plus" data-addl="${x.id}">+</button></div>`).join('')}).join('')||'<p class="sub">No encontramos nada con esa búsqueda.</p>';
+ $$('[data-addl]').forEach(b=>b.onclick=e=>{e.stopPropagation();addItem(b.dataset.addl)});
+ $$('[data-o]').forEach(b=>b.onclick=()=>openItem(b.dataset.o));
+}
+$('#q').oninput=renderList;
+function openItem(id){const x=M.find(m=>m.id==id);const pr=PAIR[x.n]?byName(PAIR[x.n]):null;
+ sheet(`${x.img?`<img class="big" src="${x.img}" alt="">`:''}<div class="k">${x.cat}${x.rec?' · Recomendado':''}</div><h1 style="margin-top:6px">${x.n}</h1>${x.d?`<p style="font-size:13.5px;color:#3d4660;margin:10px 0;line-height:1.5">${x.d}</p>`:''}<div class="price" style="color:var(--navy)">${cop(x.p)}</div>${pr?`<div class="sub" style="margin-top:8px">Va perfecto con → <b style="color:var(--navy)">${pr.n}</b> · ${cop(pr.p)}</div>`:''}<button class="btn" onclick="addItem('${x.id}');closeSheet()">Agregar a la mesa</button><button class="btn g" onclick="closeSheet()">Cerrar</button>`)}
+
+/* MESA */
+let order={};
+function addItem(id){order[id]=(order[id]||0)+1;toast('✓ '+M.find(m=>m.id==id).n+' · a tu mesa');updCnt();renderOrder()}
+function updCnt(){const n=Object.values(order).reduce((a,b)=>a+b,0);$('#cnt').style.display=n?'block':'none';$('#cnt').textContent=n}
+function renderOrder(){const ids=Object.keys(order).filter(k=>order[k]>0);const it=k=>M.find(m=>m.id==k);
+ if(!ids.length){$('#order').innerHTML='<div class="card"><p>Todavía no has elegido nada. Desliza en Descubre o abre la Carta y toca +.</p></div>';return}
+ const tot=ids.reduce((s,k)=>s+it(k).p*order[k],0);const hasCafe=ids.some(k=>['cafe','cocteles','bebidas'].includes(it(k).catId));
+ $('#order').innerHTML=`<div class="card">${ids.map(k=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)"><div><div style="font-weight:600;font-size:13.5px;color:var(--navy)">${it(k).n}</div><div style="font-size:11.5px;color:var(--mut)">${cop(it(k).p)}</div></div><div style="display:flex;gap:10px;align-items:center"><button class="plus" data-m="${k}">−</button><b>${order[k]}</b><button class="plus" data-pl="${k}">+</button></div></div>`).join('')}
+ ${!hasCafe?`<div class="card" style="margin:12px 0 0;background:var(--cream)"><div class="k">Para acompañar</div><p>¿Un café de origen? Prueba el Flat white ($12.900) o un método Independencia Blend ($18.900).</p></div>`:''}
+ <div style="display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:28px;margin-top:14px;color:var(--navy)"><span>Total</span><span>${cop(tot)}</span></div><div class="sub">Servicio voluntario no incluido.</div><button class="btn" id="showW">Mostrar al mesero</button></div>`;
+ $$('[data-m]').forEach(b=>b.onclick=()=>{order[b.dataset.m]--;updCnt();renderOrder()});
+ $$('[data-pl]').forEach(b=>b.onclick=()=>{order[b.dataset.pl]++;updCnt();renderOrder()});
+ $('#showW').onclick=()=>sheet(`<div class="k" style="text-align:center">Pedido · mesa 7</div>`+ids.map(k=>`<h1 style="text-align:center;margin:12px 0;font-size:30px">${order[k]} × ${it(k).n}</h1>`).join('')+`<button class="btn" onclick="closeSheet()">Cerrar</button>`)}
+$('#callW').onclick=()=>sheet(`<h1 style="text-align:center">El mesero viene en camino</h1><p class="sub" style="text-align:center">En la versión real este llamado le llega al salón con el número de la mesa.</p><button class="btn" onclick="closeSheet()">Cerrar</button>`);
+$('#bill').onclick=()=>sheet(`<h1 style="text-align:center">Pediste la cuenta de la mesa 7. Ya viene.</h1><button class="btn" onclick="closeSheet()">Cerrar</button>`);
+
+/* RESEÑAS */
+function renderStars(v=0){$('#stars').innerHTML=[1,2,3,4,5].map(i=>`<button class="${i<=v?'on':''}" data-s="${i}">★</button>`).join('');
+ $$('#stars button').forEach(b=>b.onclick=()=>{const s=+b.dataset.s;renderStars(s);
+  $('#rateOut').innerHTML=s>=4?`<p style="text-align:center">¡Gracias! ¿Nos ayudas contándolo en Google?</p><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%C3%89poca+Caf%C3%A9+Bar+Cartagena">Dejar reseña en Google</a>`
+  :`<p>Gracias por decírnoslo. Esto le llega directo al gerente y no se publica.</p><textarea class="f" placeholder="¿Qué pasó?"></textarea><button class="btn" id="sendfb">Enviar al gerente</button>`;
+  const sf=$('#sendfb');if(sf)sf.onclick=()=>{$('#rateOut').innerHTML='<p style="text-align:center">Recibido. El gerente te va a contactar. (Demo: no se envía nada.)</p>'}})}
+
+/* TARJETA */
+const REG={3:['Espresso “siempre doble”',10900],5:['Latte o cold brew',15900],7:['Carrot cake',24900],10:['Café Independencia Blend para llevar',55900]};
+let miembro=null,sellos=0;
+function renderCard(){
+ if(!miembro){$('#cardBox').innerHTML=`<div class="card"><div class="k">Únete gratis</div><h3>Activa tu tarjeta</h3><p>Te toma 20 segundos y hoy ganas tu primer sello.</p>
+  <label class="f">Nombre</label><input class="f" id="rNom" placeholder="Camila Pérez">
+  <label class="f">WhatsApp</label><input class="f" id="rWa" inputmode="tel" placeholder="300 123 4567">
+  <div class="two"><div><label class="f">Día de cumpleaños</label><select class="f" id="rDia">${Array.from({length:31},(_,i)=>`<option>${i+1}</option>`).join('')}</select></div><div><label class="f">Mes</label><select class="f" id="rMes">${['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'].map(m=>`<option>${m}</option>`).join('')}</select></div></div>
+  <label class="ok"><input type="checkbox" id="rOk"> Acepto que Época Café use mis datos para enviarme mi cumpleaños y una invitación al mes (Ley 1581). Puedo salir cuando quiera.</label>
+  <button class="btn" id="rGo">Activar mi tarjeta</button></div>${regalosHTML()}`;
+  $('#rGo').onclick=()=>{const n=$('#rNom').value.trim();if(!n){toast('Escribe tu nombre');return}if(!$('#rOk').checked){toast('Acepta los términos para continuar');return}
+   miembro={n,dia:$('#rDia').value,mes:$('#rMes').value};sellos=1;renderCard();toast('✓ Tarjeta activa · primer sello')};return}
+ const nivel=sellos>=10?'Familia Época':sellos>=5?'Habitual':'Amigo de la casa';
+ $('#cardBox').innerHTML=`<div class="tcard"><div class="lv">${nivel}</div><div class="nm">${miembro.n}</div>
+  <div class="sellos">${Array.from({length:10},(_,i)=>`<div class="sello ${i<sellos?'on':''} ${REG[i+1]?'gift':''}">${REG[i+1]?'★':i+1}</div>`).join('')}</div>
+  <div style="font-size:12px;color:#C9CFDF;position:relative;z-index:1">${sellos} de 10 sellos · ${proximo()}</div></div>
+  <button class="btn" id="sim">Simular visita (el mesero sella con su PIN)</button>
+  ${regalosHTML()}
+  <div class="card" style="margin-top:12px"><div class="k">Así le llega por WhatsApp</div><h3>Cumpleaños, 3 días antes</h3>
+  <div class="wapre"><div class="wab">¡Hola, ${miembro.n.split(' ')[0]}! En Época sabemos que el ${miembro.dia} de ${miembro.mes} es tu cumpleaños. Ven a celebrarlo: tu postre va por la casa esa semana.<small>Época Café</small></div></div>
+  <h3 style="margin-top:16px">Invitación del mes</h3>
+  <div class="wapre"><div class="wab">${miembro.n.split(' ')[0]}, este mes llegó el Colonia Coco a la barra de métodos. Te esperamos con doble sello de lunes a miércoles.<small>Época Café</small></div></div>
+  <p class="sub" style="margin-top:10px">Máximo un mensaje al mes, más el de cumpleaños. Mensajes de ejemplo.</p></div>`;
+ $('#sim').onclick=()=>{if(sellos>=10){sellos=0;toast('Tarjeta nueva · empiezas otra vez');renderCard();return}sellos++;const r=REG[sellos];toast(r?'🎁 Ganaste: '+r[0]:'✓ Sello '+sellos+' de 10');renderCard()};
+}
+function proximo(){for(let i=sellos+1;i<=10;i++)if(REG[i])return `faltan ${i-sellos} para: ${REG[i][0]}`;return '¡tarjeta completa!'}
+function regalosHTML(){return `<div class="card" style="margin-top:12px"><div class="k">Regalos propuestos · por aprobar</div>${Object.entries(REG).map(([v,[n,p]])=>`<div class="regalo"><div class="v">${v}</div><div><b>${n}</b><span>Visita ${v} · valor en carta ${cop(p)}</span></div></div>`).join('')}<p class="sub" style="margin-top:10px">Siempre en producto, nunca en descuento. Un sello por día, con consumo mínimo.</p></div>`}
+
+/* AGENTE WHATSAPP */
+const now=()=>new Date().toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit'});
+let flow=null,data={};
+function say(t,who='bot'){const d=document.createElement('div');d.className='m '+who;d.innerHTML=t+`<small>${now()}</small>`;$('#msgs').appendChild(d);$('#msgs').scrollTop=1e6}
+function bot(t,q){const ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';$('#msgs').appendChild(ty);$('#msgs').scrollTop=1e6;$('#cstat').textContent='escribiendo…';
+ setTimeout(()=>{ty.remove();$('#cstat').textContent='en línea';say(t);quick(q||MAIN)},700+Math.min(900,t.length*6))}
+const MAIN=['Reservar mesa','Horario','¿Dónde están?','Ver la carta','Comprar café','Evento o grupo'];
+function quick(arr){$('#qr').innerHTML=arr.map(a=>`<button>${a}</button>`).join('');$$('#qr button').forEach(b=>b.onclick=()=>user(b.textContent))}
+const HOR='🕖 Nuestro horario en Cartagena:\nLunes a miércoles: 7:30 a. m. – 9:00 p. m.\nJueves a sábado: 7:30 a. m. – 10:00 p. m.\nDomingos y festivos: 7:30 a. m. – 6:00 p. m.';
+function user(t){say(t.replace(/</g,'&lt;'),'me');$('#qr').innerHTML='';const s=t.toLowerCase();
+ if(flow==='res'){return resStep(t)}
+ if(flow==='ev'){return evStep(t)}
+ if(/reserv|mesa|apart/.test(s)){flow='res';data={};return bot('¡Con gusto! ¿Para cuántas personas es la reserva?',['2','4','6','Más de 8'])}
+ if(/horar|abren|cierran|hora/.test(s))return bot(HOR);
+ if(/d[oó]nde|ubica|direcc|llegar|mapa/.test(s))return bot('📍 Estamos en el Centro Histórico de Cartagena, en la Calle del Arzobispado.\n<a href="https://www.google.com/maps/search/?api=1&query=%C3%89poca+Caf%C3%A9+Bar+Cartagena" target="_blank" rel="noopener">Abrir en Google Maps</a>');
+ if(/carta|men[uú]|comer|plato|brunch|desayun/.test(s))return bot('Servimos brunch todo el día: Eggs benedict ($48.000), Huevos rotos con txistorra ($46.000), Tuna poke salad ($54.000) y más.\nMira la carta completa con fotos aquí 👇',['Abrir la carta','Reservar mesa','Horario']);
+ if(/abrir la carta/.test(s)){go('List');return bot('Te abrí la carta. Cuando quieras reservar, escríbeme.')}
+ if(/caf[eé]|grano|comprar|llevar|tienda/.test(s))return bot('☕ Tostamos nuestro propio café:\n• Independencia Blend · $55.900\n• Chiquito Honey · $55.900\n• Colonia Coco · $65.900\n• Resistencia Tropical · $65.900\nLo compras en la barra o con envío a toda Colombia en <a href="https://epocacafe.co" target="_blank" rel="noopener">epocacafe.co</a>');
+ if(/evento|grupo|empresa|cumplea|celebra|corporat/.test(s)){flow='ev';data={};return bot('¡Nos encanta! Cuéntame: ¿cuántas personas serían?',['10 a 20','20 a 40','Más de 40'])}
+ if(/domicil|delivery|rappi/.test(s))return bot('Sí, hacemos domicilios de nuestra carta en Cartagena. Te paso con el equipo para tomar tu pedido 🙌',['Hablar con el equipo','Ver la carta']);
+ if(/equipo|humano|persona|asesor/.test(s))return handoff('Hola, quiero hablar con el equipo de Época Café.');
+ if(/recom|qu[eé] pido|favorit/.test(s))return bot('Nuestros recomendados: Eggs benedict, Tabla de salmón, Roast beef caesar sandwich y, para tomar, un Carajillo Época o un Espresso martini.');
+ if(/hola|buen|hey/.test(s))return bot('¡Hola! 👋 Soy el asistente de Época Café. ¿En qué te ayudo?');
+ if(/gracias/.test(s))return bot('¡Con gusto! Te esperamos en Época ☕');
+ bot('Te puedo ayudar con reservas, horario, ubicación, la carta, café para llevar o eventos. ¿Qué necesitas?');
+}
+function resStep(t){
+ if(!data.p){data.p=t;return bot('Perfecto. ¿Para qué día?',['Hoy','Mañana','Este sábado','Este domingo'])}
+ if(!data.f){data.f=t;return bot('¿A qué hora les gustaría llegar?',['8:00 a. m.','10:00 a. m.','1:00 p. m.','7:00 p. m.'])}
+ if(!data.h){data.h=t;return bot('¿A nombre de quién dejo la reserva?',[])}
+ if(!data.n){data.n=t;flow=null;
+  const msg=`Hola, quiero reservar en Época Café.\n• Personas: ${data.p}\n• Día: ${data.f}\n• Hora: ${data.h}\n• Nombre: ${data.n}`;
+  return bot(`¡Listo, ${data.n.split(' ')[0]}! Te dejo la mesa así:\n👥 ${data.p} personas\n📅 ${data.f}\n🕖 ${data.h}\n\nTe confirmamos por aquí. Y si te registras en la tarjeta de la casa, hoy ganas tu primer sello ☕\n<a href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Enviar esta reserva al WhatsApp real de Época</a>`,['Activar mi tarjeta','Horario','¿Dónde están?'])}
+}
+function evStep(t){
+ if(!data.p){data.p=t;return bot('¿Para qué fecha y qué tipo de evento? (desayuno de empresa, cumpleaños, reunión…)',[])}
+ if(!data.d){data.d=t;flow=null;
+  return handoff(`Hola, quiero cotizar un evento en Época Café.\n• Personas: ${data.p}\n• Detalle: ${data.d}`,`Anotado: ${data.p} personas · ${data.d}.\nTe paso con el equipo de eventos para enviarte la propuesta.`)}
+}
+function handoff(msg,txt){return bot(`${txt||'Te paso con el equipo.'}\n<a href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Continuar en el WhatsApp de Época</a>`)}
+$('#cform').onsubmit=e=>{e.preventDefault();const v=$('#cmsg').value.trim();if(!v)return;$('#cmsg').value='';user(v)};
+let chatOn=false;function startChat(){if(chatOn)return;chatOn=true;bot('¡Hola! 👋 Soy el asistente de Época Café.\nTe ayudo a reservar, te cuento el horario, la carta, el café para llevar y eventos. ¿Qué necesitas?')}
+document.addEventListener('click',e=>{if(e.target.closest('#qr button')&&/activar mi tarjeta/i.test(e.target.textContent)){setTimeout(()=>go('Card'),400)}});
+
+/* UI */
+function sheet(h){$('#sheetIn').innerHTML=h;$('#sheet').classList.add('on')}
+function closeSheet(){$('#sheet').classList.remove('on')}
+$('#sheet').onclick=e=>{if(e.target.id=='sheet')closeSheet()};
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800)}
+function go(p){$$('.page').forEach(e=>e.classList.toggle('on',e.id=='p'+p));$$('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.p==p));$('#demoTag').style.display=p=='Feed'?'block':'none';if(p=='Chat')startChat();location.hash=p.toLowerCase()}
+$$('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.p));
+$('#enter').onclick=()=>$('#splash').classList.add('out');
+renderFeed();renderList();renderOrder();renderStars();renderCard();
+const h=(location.hash||'').slice(1);const map={carta:'List',list:'List',tarjeta:'Card',card:'Card',whatsapp:'Chat',chat:'Chat',mesa:'Mesa'};if(map[h]){$('#splash').classList.add('out');go(map[h])}
+</script>
+</body>
+</html>
